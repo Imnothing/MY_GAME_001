@@ -1,0 +1,159 @@
+// Copyright (c) 2017-2020 Xiamen Yaji Software Co., Ltd.
+CCEffect %{
+  techniques:
+  - passes:
+    - vert: sprite-vs:vert
+      frag: sprite-fs:frag
+      depthStencilState:
+        depthTest: false
+        depthWrite: false
+      blendState:
+        targets:
+        - blend: true
+          blendSrc: src_alpha
+          blendDst: one_minus_src_alpha
+          blendDstAlpha: one_minus_src_alpha
+      rasterizerState:
+        cullMode: none
+      properties:
+        alphaThreshold: { value: 0.5 }
+
+        # 描边颜色
+        outlineColor: { 
+          value: [1.0, 0.0, 0.0, 1.0], 
+          editor: {
+            type: color,
+            tooltip: "描边颜色",
+          }
+        }
+           # 描边宽度
+        outlineWidth: { 
+          value: 0.002,
+          editor: {
+            tooltip: "描边宽度",
+            range: [0.0, 1.0]
+          }
+        }
+}%
+
+CCProgram sprite-vs %{
+  precision highp float;
+  #include <cc-global>
+  #if USE_LOCAL
+    #include <cc-local>
+  #endif
+
+  in vec3 a_position;
+  in vec2 a_texCoord;
+  in vec4 a_color;
+
+  out vec4 color;
+  out vec2 uv0;
+
+  vec4 vert () {
+    vec4 pos = vec4(a_position, 1);
+
+    #if USE_LOCAL
+      pos = cc_matWorld * pos;
+    #endif
+
+    #if USE_PIXEL_ALIGNMENT
+      pos = cc_matView * pos;
+      pos.xyz = floor(pos.xyz);
+      pos = cc_matProj * pos;
+    #else
+      pos = cc_matViewProj * pos;
+    #endif
+
+    uv0 = a_texCoord;
+
+    color = a_color;
+
+    return pos;
+  }
+}%
+
+CCProgram sprite-fs %{
+  precision highp float;
+  #include <embedded-alpha>
+  #include <alpha-test>
+  #include <output>
+
+  in vec4 color;
+
+  #if USE_TEXTURE
+    in vec2 uv0;
+    #pragma builtin(local)
+    layout(set = 2, binding = 10) uniform sampler2D cc_spriteTexture;
+  #endif
+
+  #if SHOW_OUT_LINE
+
+  uniform Outline {
+    // 描边颜色 
+    vec4 outlineColor;
+    // 描边偏移大小
+    float outlineWidth;
+    // 特别地，必须是 vec4 先于 float 声明
+  };
+
+  // 将图像往8个方向偏移后，得到一个类似放大的效果，然后取放大后的图像的透明度，即可得到一个放大后的区域，可以很方便填充（描边）颜色
+  // 取当前点上、下、左、右、上左、上右、下左、下右共计8个方向，距离为 outlineWidth 的8个点，求他们的透明度之和
+  // 由此可以得到当前点是否属于图像往八个方向做偏移后得到的放大图区域，并且能得到该点最终透明度值
+  // 最终对应的为图像偏移/放大后的背景区域
+  float getBgAlpha() {
+    // float outlineWidth = 0.002;
+    vec4 color_up = texture(cc_spriteTexture, uv0 + vec2(0, outlineWidth)); 
+    vec4 color_down = texture(cc_spriteTexture, uv0 - vec2(0, outlineWidth)); 
+    vec4 color_left = texture(cc_spriteTexture, uv0 - vec2(outlineWidth, 0)); 
+    vec4 color_right = texture(cc_spriteTexture, uv0 + vec2(outlineWidth, 0)); 
+    vec4 color_up_left = texture(cc_spriteTexture, uv0 + vec2(outlineWidth, -outlineWidth)); 
+    vec4 color_up_right = texture(cc_spriteTexture, uv0 + vec2(outlineWidth, outlineWidth)); 
+    vec4 color_down_left = texture(cc_spriteTexture, uv0 + vec2(-outlineWidth, -outlineWidth)); 
+    vec4 color_down_right = texture(cc_spriteTexture, uv0 + vec2(-outlineWidth, outlineWidth)); 
+    float total = color_right.a + color_left.a + color_down.a + color_up.a + color_up_left.a + color_up_right.a + color_down_left.a + color_down_right.a; 
+    return clamp(total, 0.0, 1.0);
+  }
+
+  #endif
+
+  vec4 frag () {
+    vec4 o = vec4(1, 1, 1, 1);
+
+    #if USE_TEXTURE
+      o *= CCSampleWithAlphaSeparated(cc_spriteTexture, uv0);
+      //灰色
+      #if IS_GRAY
+        float gray  = 0.2126 * o.r + 0.7152 * o.g + 0.0722 * o.b;
+        // float gray  = o.r +  o.g + 0.5 * o.b;
+        o.r = o.g = o.b = gray;
+      #endif
+      #if CC_USE_ALPHA_ATLAS_TEXTURE
+      o.a *= texture2D(cc_spriteTexture, uv0 + vec2(0, 0.5)).r;
+      #endif
+    #endif
+
+    o *= color;
+    ALPHA_TEST(o);
+
+    //新增
+    // 导出颜色 
+    // CCFragOutput(o); 
+    #if SHOW_OUT_LINE
+      // 无描边宽度即结束
+      if (outlineWidth == 0.0) {
+        return o; 
+      }
+
+      // 先画背景色
+      vec4 color_dest = outlineColor * getBgAlpha();
+      // 然后在背景色上方画图案颜色
+      vec4 color_src = o;
+      
+      // return CCFragOutput(color_src * color_src.a + color_dest * (1.0 - color_src.a));
+            return CCFragOutput(color_dest * (1.0 - color_src.a)+color_src * color_src.a );
+    #endif
+  
+    return CCFragOutput(o); 
+  }
+}%
