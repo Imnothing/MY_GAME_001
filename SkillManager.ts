@@ -3,17 +3,33 @@
 /** 属性等级 */
 enum LevelType {
     /** 攻击等级 */
-    LEVEL_Atk,
+    LEVEL_Atk = "LEVEL_Atk",
     /** 特攻等级 */
-    LEVEL_spAtk,
+    LEVEL_spAtk = "LEVEL_spAtk",
     /** 防御等级 */
-    LEVEL_Def,
+    LEVEL_Def = "LEVEL_Def",
     /** 特防等级 */
-    LEVEL_spDef,
+    LEVEL_spDef = "LEVEL_spDef",
     /** 速度等级 */
-    LEVEL_Spd,
+    LEVEL_Spd = "LEVEL_Spd",
     /** 命中等级 */
-    LEVEL_Hit
+    LEVEL_Hit = "LEVEL_Hit",
+    /** 全部等级 */
+    LEVEL_ALL = "LEVEL_ALL",
+}
+
+/** 等级改变方式 */
+enum ChangLevelWay {
+    /** 提升 */
+    Promote = "1",
+    /** 降低 */
+    Reduce = "2",
+    /** 消除 */
+    Remove = "3",
+    /** 反转 */
+    Reverse = "4",
+    /** 吸收 */
+    Absorb = "5"
 }
 
 /** 受到伤害枚举 */
@@ -45,7 +61,6 @@ enum EnumBuff {
     /** 造成伤害增加 */
     DamageIncrease
 }
-
 /** 减益效果枚举 */
 enum EnumDeBuff {
     /** 下一次攻击无效 */
@@ -79,7 +94,7 @@ export class SkillManager {
      * @param type 等级类型
      * @param num 等级数
      */
-    changLevel(type: LevelType, num: number) { }
+    changLevel(way: ChangLevelWay, type: LevelType, num?: number) { }
 
     /**
      * 恢复体力
