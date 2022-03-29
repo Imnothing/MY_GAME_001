@@ -1,3 +1,4 @@
+import { PetInfo } from "./PetInfo";
 
 
 /** 属性等级 */
@@ -75,15 +76,6 @@ enum EnumDeBuff {
     DamageReduce
 }
 
-/** 性格 */
-enum EnumCharacter {
-
-}
-
-/** 特性 */
-enum EnumFeatures {
-
-}
 
 export class SkillManager {
 
@@ -101,7 +93,7 @@ export class SkillManager {
      * @param pet 精灵类
      * @param hp 体力
      */
-    recoverHp(pet: Pet, hp: number) { }
+    recoverHp(pet: PetInfo, hp: number) { }
 
     /**
      * 造成伤害
@@ -109,7 +101,7 @@ export class SkillManager {
      * @param pet 精灵类
      * @param hp 伤害值
      */
-    reduceHp(type: EnumReduceHP, pet: Pet, hp: number) { }
+    reduceHp(type: EnumReduceHP, pet: PetInfo, hp: number) { }
 
     /**
      * 增加增益效果
@@ -119,7 +111,7 @@ export class SkillManager {
      * @param hurtReduce 减伤倍率
      * @param damageIncrease 增伤倍率
      */
-    addBuff(type: EnumBuff, pet: Pet, possiblity?: number, hurtReduce?: number, damageIncrease?: number) { }
+    addBuff(type: EnumBuff, pet: PetInfo, possiblity?: number, hurtReduce?: number, damageIncrease?: number) { }
 
     /**
      * 增加减益效果
@@ -130,62 +122,10 @@ export class SkillManager {
      * @param damageReduce 增伤倍率
      * @param hurtIncrease 减伤倍率
      */
-    addDeBuff(type: EnumDeBuff, pet: Pet, possiblity?: number, debuffId?: string, damageReduce?: number, hurtIncrease?: number) { }
+    addDeBuff(type: EnumDeBuff, pet: PetInfo, possiblity?: number, debuffId?: string, damageReduce?: number, hurtIncrease?: number) { }
 
 }
 
-/** 精灵类 */
-export class Pet {
-    /** 个体值 */
-    talentValue: number;
-    /** 学习力 */
-    learningAbility: LearningAbility;
-    /** 性格 */
-    character: EnumCharacter;
-    /** 特性 */
-    features: EnumFeatures;
-    /** 抗性 */
-    resistance: Resistance;
 
-}
-
-/** 学习力 */
-class LearningAbility {
-    atk: number;
-    sp_atk: number;
-    def: number;
-    sp_def: number;
-    spd: number;
-    hp: number;
-}
-
-/** 抗性类 */
-class Resistance {
-    damageResist: DamageResist;
-    abnormalResist: AbnormalResist;
-}
-
-/** 伤害抗性类 */
-class DamageResist {
-    /** 暴击伤害抵抗 */
-    criticalResist: number;
-    /** 固定伤害抵抗 */
-    fixedResist: number;
-    /** 百分比伤害 */
-    persentage: number;
-}
-
-/** 异常抗性类 */
-class AbnormalResist {
-    /** 异常抗性抵抗数组 */
-    abnormalStates: Array<AbnormalState>;
-}
-
-//todo: AbStateManager
-/** 异常状态类 */
-export class AbnormalState {
-    public id: number = 0;
-    public type: number = 1;
-}
 
 
