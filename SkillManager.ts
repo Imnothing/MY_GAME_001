@@ -149,6 +149,7 @@ export class Pet {
 
 }
 
+/** 学习力 */
 class LearningAbility {
     atk: number;
     sp_atk: number;
