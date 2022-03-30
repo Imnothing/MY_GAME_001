@@ -14,6 +14,12 @@ enum EnumFeatures {
 export class PetInfo {
     /** 精灵ID */
     id: string;
+    /** 经验类型 */
+    expType: string;
+    /** 已获取经验 */
+    exp: number;
+    /** 精灵等级 */
+    level: number;
     /** 个体值 */
     talentValue: number;
     /** 战斗属性值 */
@@ -26,6 +32,8 @@ export class PetInfo {
     features: EnumFeatures;
     /** 抗性 */
     resistance: Resistance;
+    /** 刻印 */
+    signet: Array<Signet>;
 
 }
 
@@ -73,7 +81,7 @@ class DamageResist {
 /** 异常抗性类 */
 class AbnormalResist {
     /** 异常抗性抵抗数组 */
-    abnormalStates: Array<AbnormalState>;
+    abnormalStates: Map<AbnormalResist, number>
 }
 
 //todo: AbStateManager
@@ -81,6 +89,18 @@ class AbnormalResist {
 export class AbnormalState {
     public id: number = 0;
     public type: number = 1;
+}
+
+/** 刻印 */
+class Signet {
+    atk: number = 0;
+    sp_atk: number = 0;
+    def: number = 0;
+    sp_def: number = 0;
+    spd: number = 0;
+    hp: number = 0;
+
+    constructor() { }
 }
 
 
