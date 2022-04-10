@@ -1,0 +1,68 @@
+<div id="app" style="height: 1000px; overflow:scroll; width: 600px;">
+	<div>
+
+		<!-- <ui-section header="单表操作" expand>
+			<ui-prop>
+				<ui-label value="选择单表"></ui-label>
+				<ui-file @change="onChangeFilePath" type="file" class="output"></ui-file>
+			</ui-prop>
+
+			<ui-button class="blue" style="width: 200px;">
+				<ui-label @click="onBtnClick" value="单表生成json"></ui-label>
+			</ui-button>
+		</ui-section> -->
+
+		<ui-section header="多表操作" expand>
+			<ui-prop style="width: 400px;">
+				<ui-label style="width:140px;">合并所有Json</ui-label>
+				<ui-checkbox  @confirm="onBtnClickMergeJson" :value="isMergeJson"></ui-checkbox>
+				<ui-input  placeholder="请输入json配置文件名" @change="onJsonAllCfgFileChanged"
+					:value="jsonAllFileName"></ui-input>
+			</ui-prop>
+			<ui-prop style="width: 250px;">
+				<ui-label style="width:140px;">Json格式化</ui-label>
+				<ui-checkbox  @confirm="onBtnClickFormatJson" :value="isFormatJson"></ui-checkbox>
+			</ui-prop>
+			<ui-prop>
+				<ui-label value="选择文件目录"></ui-label>
+				<ui-file @change="onChangeFileDirectoryPath" type="directory" class="output" :value="fileDirectoryPath">
+				</ui-file>
+			</ui-prop>
+
+			<ui-button class="blue" style="width: 100px;">
+				<ui-label @click="onBtnAllExcelClick" value="生成所有json" ></ui-label>
+			</ui-button>
+		
+		</ui-section>
+
+		<ui-section header="代码模板操作" expand>
+			<ui-prop>
+				<ui-label value="选择代码存放目录"></ui-label>
+				<ui-file @change="onChangeCodePath" type="directory" class="output" :value="codeSavePath">
+				</ui-file>
+			</ui-prop>
+
+			<ui-button class="blue" style="width: 100px;">
+				<ui-label @click="onBtnGenerateTsClick" value="生成代码模板"></ui-label>
+			</ui-button>
+		</ui-section>
+
+		<ui-section header="配置-Excel" expand>
+			<ui-prop>
+				<ui-label value="输出位置"></ui-label>
+				<ui-file @change="onChangeFileOutPut" type="directory" class="output" :value="fileOutPut"></ui-file>
+			
+			</ui-prop>
+			<ui-prop>
+				<ui-checkbox @confirm="onBtnClickSelectSheet" checked>全选</ui-checkbox>
+				<ui-button @click="onSearchAllExcelFile" style="width: 80px;" class="blue">
+					刷新excel
+				</ui-button>
+			</ui-prop>
+			<ui-tree ref="example" style="height: 200px;"></ui-tree>
+		</ui-section>
+
+	</div>
+
+
+</div>

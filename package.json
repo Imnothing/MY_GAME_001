@@ -1,8 +1,12 @@
 {
-  "name": "My_Game",
-  "uuid": "b5cb258d-f442-40ff-9d0a-1296107c3e0a",
-  "version": "3.4.2",
   "creator": {
     "version": "3.4.2"
+  },
+  "name": "CcFrame332",
+  "type": "3d",
+  "uuid": "b5a243e1-a0ab-456f-9c17-b1e2c076418a",
+  "version": "3.4.2",
+  "dependencies": {
+    "native": "^3.6.1"
   }
 }

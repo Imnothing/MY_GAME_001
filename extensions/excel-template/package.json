@@ -1,0 +1,77 @@
+{
+    "name": "excel-template",
+    "package_version": 2,
+    "version": "1.0.0",
+    "description": "excel导表和模板",
+    "author": "甘艺伟",
+    "main": "browser.js",
+    "panels": {
+        "list": {
+            "title": "excel导表和模板工具",
+            "main": "./panel/panel.js",
+            "type": "dockable",
+            "width": 400,
+            "height": 800
+        }
+    },
+    "contributions": {
+        "menu": [
+            {
+                "path": "扩展",
+                "label": "excel导表和模板",
+                "message": "open-panel"
+            }
+        ],
+        "messages": {
+            "open-panel": {
+                "public": true,
+                "methods": [
+                    "openPanel"
+                ]
+            },
+            "replace": {
+                "public": true,
+                "methods": [
+                    "replace"
+                ]
+            },
+            "save-data": {
+                "public": true,
+                "methods": [
+                    "saveData"
+                ]
+            },
+            "get-data": {
+                "public": true,
+                "methods": [
+                    "getData"
+                ]
+            },
+            "change-mat": {
+                "public": true,
+                "methods": []
+            }
+        },
+        "shortcuts": [
+            {
+                "message": "open-panel",
+                "mac": "cmd+i"
+            }
+        ],
+        "profile": {
+            "project": {
+                "mat": {
+                    "default": "",
+                    "message": "change-mat",
+                    "label": ""
+                }
+            }
+        }
+    },
+    "dependencies": {
+        "fire-path": "^0.1.9",
+        "json-beautifully": "^1.0.3",
+        "node-xlsx": "^0.17.2",
+        "xls-to-json": "^2.1.0"
+    }
+}
