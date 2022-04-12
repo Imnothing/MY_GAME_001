@@ -99,12 +99,19 @@ enum EnumJuedge {
     Enemy_Dead = "Enemy_Dead",
     /** 我方精灵阵亡 */
     Self_Dead = "Self_Dead",
+    /** 体力大于 */
+    Greater_Hp = "greater_hp",
+    /** 体力小于 */
+    Less_Hp = "less_hp"
 
 }
 
 export class SkillManager {
 
     doSkill() { }
+
+    /** 进行判定 */
+    doJuedg(type: EnumJuedge, valueType?: EnumValue, persent?: number) { }
 
     /**
      * 改变精灵属性等级
