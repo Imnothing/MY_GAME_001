@@ -42,7 +42,7 @@ class DamageResist {
     /** 固定伤害抵抗 */
     fixedResist: number = 0;
     /** 百分比伤害 */
-    persentage: number = 0;
+    percentage: number = 0;
 
     constructor() { }
 }

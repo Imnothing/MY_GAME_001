@@ -94,7 +94,7 @@ enum EnumValue {
 }
 
 /** 常用判定 */
-enum EnumJuedge {
+enum EnumJudge {
     /** 敌方精灵阵亡 */
     Enemy_Dead = "Enemy_Dead",
     /** 我方精灵阵亡 */
@@ -111,7 +111,7 @@ export class SkillManager {
     doSkill() { }
 
     /** 进行判定 */
-    doJuedg(type: EnumJuedge, valueType?: EnumValue, persent?: number) { }
+    doJudge(type: EnumJudge, valueType?: EnumValue, percent?: number) { }
 
     /**
      * 改变精灵属性等级
@@ -125,7 +125,7 @@ export class SkillManager {
      * @param pet 精灵类
      * @param hp 体力
      */
-    recoverHp(valueType: EnumValue, persent: number, num?: number) { }
+    recoverHp(valueType: EnumValue, percent: number, num?: number) { }
 
     /**
      * 减少体力
@@ -133,28 +133,28 @@ export class SkillManager {
      * @param pet 精灵类
      * @param hp 伤害值
      */
-    reduceHp(type: EnumReduceHP, valueType: EnumValue, persent: number, num?: number) { }
+    reduceHp(type: EnumReduceHP, valueType: EnumValue, percent: number, num?: number) { }
 
     /**
      * 增加增益效果
      * @param type 增益效果类型
      * @param pet 精灵类
-     * @param possiblity 几率 
+     * @param possibility 几率 
      * @param hurtReduce 减伤倍率
      * @param damageIncrease 增伤倍率
      */
-    addBuff(type: EnumBuff, possiblity?: number, hurtReduce?: number, damageIncrease?: number) { }
+    addBuff(type: EnumBuff, possibility?: number, hurtReduce?: number, damageIncrease?: number) { }
 
     /**
      * 增加减益效果
      * @param type 减益效果类型
      * @param pet 精灵类
-     * @param possiblity 
-     * @param debuffId 几率
+     * @param possibility 几率
+     * @param deBUff 
      * @param damageReduce 增伤倍率
      * @param hurtIncrease 减伤倍率
      */
-    addDeBuff(type: EnumDeBuff, possiblity?: number, debuffId?: string, damageReduce?: number, hurtIncrease?: number) { }
+    addDeBuff(type: EnumDeBuff, possibility?: number, deBUff?: string, damageReduce?: number, hurtIncrease?: number) { }
 
 }
 
