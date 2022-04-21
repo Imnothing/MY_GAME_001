@@ -18,7 +18,7 @@ export default class auto_BattleUI extends Component {
 	ico_shield_normal: Node;
 	label_shield_normal: Node;
 	ico_shield_fix: Node;
-	label_shield_normal-001: Node;
+	label_shield_fix: Node;
 	ico_feature: Node;
 	top_banner: Node;
 	putong: Node;
@@ -64,7 +64,7 @@ export default class auto_BattleUI extends Component {
 		this.ico_shield_normal = this.layout_line2.getChildByName("ico_shield_normal");
 		this.label_shield_normal = this.ico_shield_normal.getChildByName("label_shield_normal");
 		this.ico_shield_fix = this.layout_line2.getChildByName("ico_shield_fix");
-		this.label_shield_normal-001 = this.ico_shield_fix.getChildByName("label_shield_normal-001");
+		this.label_shield_fix = this.ico_shield_fix.getChildByName("label_shield_fix");
 		this.ico_feature = this.pet_avatar.getChildByName("ico_feature");
 		this.top_banner = this.top.getChildByName("top_banner");
 		this.putong = this.top_banner.getChildByName("putong");
