@@ -230,12 +230,12 @@
       "a": 255
     },
     "_spriteFrame": {
-      "__uuid__": "3b9cd657-4d76-473d-a97e-16f630af13d8@f9941",
+      "__uuid__": "a73b0022-f035-4073-b00b-59fb3b9abc1d@f9941",
       "__expectedType__": "cc.SpriteFrame"
     },
     "_type": 0,
     "_fillType": 0,
-    "_sizeMode": 1,
+    "_sizeMode": 0,
     "_fillCenter": {
       "__type__": "cc.Vec2",
       "x": 0,
@@ -398,7 +398,7 @@
       "a": 255
     },
     "_spriteFrame": {
-      "__uuid__": "9b4173d0-6900-4f51-b593-df9e185e1339@f9941",
+      "__uuid__": "7bd7d886-ee5d-4793-8922-fbb11827af0b@f9941",
       "__expectedType__": "cc.SpriteFrame"
     },
     "_type": 0,
@@ -566,7 +566,7 @@
       "a": 255
     },
     "_spriteFrame": {
-      "__uuid__": "c68d7a8b-5e30-47d3-a6da-554fca7b6b61@f9941",
+      "__uuid__": "e3270ff1-9009-483e-95a6-e76300a39b86@f9941",
       "__expectedType__": "cc.SpriteFrame"
     },
     "_type": 0,
@@ -1142,7 +1142,7 @@
       "a": 255
     },
     "_spriteFrame": {
-      "__uuid__": "5da9bbed-9fdf-450f-ac15-7e902d24c11c@f9941",
+      "__uuid__": "6a2079c3-733f-4c26-855c-52d5d57b528c@f9941",
       "__expectedType__": "cc.SpriteFrame"
     },
     "_type": 0,
@@ -3693,12 +3693,12 @@
       "a": 255
     },
     "_spriteFrame": {
-      "__uuid__": "fbd8172a-3eaf-455d-b2af-e7f75e516b50@f9941",
+      "__uuid__": "0a7cf355-7178-42a6-9eed-adb36d1d3fcf@f9941",
       "__expectedType__": "cc.SpriteFrame"
     },
     "_type": 0,
     "_fillType": 0,
-    "_sizeMode": 1,
+    "_sizeMode": 0,
     "_fillCenter": {
       "__type__": "cc.Vec2",
       "x": 0,
@@ -3757,10 +3757,7 @@
       "b": 124,
       "a": 255
     },
-    "_normalSprite": {
-      "__uuid__": "fbd8172a-3eaf-455d-b2af-e7f75e516b50@f9941",
-      "__expectedType__": "cc.SpriteFrame"
-    },
+    "_normalSprite": null,
     "_hoverSprite": null,
     "_pressedSprite": null,
     "_disabledSprite": null,
@@ -6274,7 +6271,10 @@
       "b": 124,
       "a": 255
     },
-    "_normalSprite": null,
+    "_normalSprite": {
+      "__uuid__": "7fbefbe3-cf93-4e85-b3d1-e630ff8fbef5@f9941",
+      "__expectedType__": "cc.SpriteFrame"
+    },
     "_hoverSprite": null,
     "_pressedSprite": null,
     "_disabledSprite": null,
@@ -6780,7 +6780,10 @@
       "b": 124,
       "a": 255
     },
-    "_normalSprite": null,
+    "_normalSprite": {
+      "__uuid__": "52e55990-ef84-42c1-a5ab-1e9d72b8e0d5@f9941",
+      "__expectedType__": "cc.SpriteFrame"
+    },
     "_hoverSprite": null,
     "_pressedSprite": null,
     "_disabledSprite": null,
@@ -7287,7 +7290,10 @@
       "b": 124,
       "a": 255
     },
-    "_normalSprite": null,
+    "_normalSprite": {
+      "__uuid__": "223c97b9-9811-4c27-9bb5-73aa3bdea902@f9941",
+      "__expectedType__": "cc.SpriteFrame"
+    },
     "_hoverSprite": null,
     "_pressedSprite": null,
     "_disabledSprite": null,
@@ -7794,7 +7800,10 @@
       "b": 124,
       "a": 255
     },
-    "_normalSprite": null,
+    "_normalSprite": {
+      "__uuid__": "cd0ee67d-8f23-46bf-be5a-809da9ce16ff@f9941",
+      "__expectedType__": "cc.SpriteFrame"
+    },
     "_hoverSprite": null,
     "_pressedSprite": null,
     "_disabledSprite": null,
@@ -8301,7 +8310,10 @@
       "b": 124,
       "a": 255
     },
-    "_normalSprite": null,
+    "_normalSprite": {
+      "__uuid__": "b8498454-be3e-4d1e-88cb-efcdb2b18e50@f9941",
+      "__expectedType__": "cc.SpriteFrame"
+    },
     "_hoverSprite": null,
     "_pressedSprite": null,
     "_disabledSprite": null,
@@ -8808,7 +8820,10 @@
       "b": 124,
       "a": 255
     },
-    "_normalSprite": null,
+    "_normalSprite": {
+      "__uuid__": "78a784ff-b069-4088-b155-5aa520f68d19@f9941",
+      "__expectedType__": "cc.SpriteFrame"
+    },
     "_hoverSprite": null,
     "_pressedSprite": null,
     "_disabledSprite": null,
@@ -9315,7 +9330,10 @@
       "b": 124,
       "a": 255
     },
-    "_normalSprite": null,
+    "_normalSprite": {
+      "__uuid__": "1d2dfa88-bbd4-4d59-b350-d4cf29857e85@f9941",
+      "__expectedType__": "cc.SpriteFrame"
+    },
     "_hoverSprite": null,
     "_pressedSprite": null,
     "_disabledSprite": null,
