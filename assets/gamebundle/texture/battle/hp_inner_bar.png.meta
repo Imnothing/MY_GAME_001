@@ -52,7 +52,7 @@
         "borderTop": 0,
         "borderBottom": 0,
         "borderLeft": 0,
-        "borderRight": 0,
+        "borderRight": 9,
         "packable": true,
         "isUuid": true,
         "imageUuidOrDatabaseUri": "b5ca6541-9856-4f79-b37e-05a1ab44fa27@6c48a",

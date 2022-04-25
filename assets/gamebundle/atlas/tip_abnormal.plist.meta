@@ -1,0 +1,290 @@
+{
+  "ver": "1.0.6",
+  "importer": "sprite-atlas",
+  "imported": true,
+  "uuid": "3bda8db7-4fad-4b7f-b4e1-f2ee926f1af7",
+  "files": [
+    ".plist",
+    ".json"
+  ],
+  "subMetas": {
+    "f9ff2": {
+      "importer": "sprite-frame",
+      "uuid": "3bda8db7-4fad-4b7f-b4e1-f2ee926f1af7@f9ff2",
+      "displayName": "",
+      "id": "f9ff2",
+      "name": "tip_burn",
+      "userData": {
+        "trimType": "auto",
+        "trimThreshold": 1,
+        "rotated": false,
+        "offsetX": 0,
+        "offsetY": 0,
+        "trimX": 0,
+        "trimY": 0,
+        "width": 809,
+        "height": 286,
+        "rawWidth": 809,
+        "rawHeight": 286,
+        "borderTop": 0,
+        "borderBottom": 0,
+        "borderLeft": 0,
+        "borderRight": 0,
+        "packable": true,
+        "isUuid": true,
+        "imageUuidOrDatabaseUri": "cabd3127-6d6c-4153-8bb8-b382d46d0032@6c48a",
+        "atlasUuid": "3bda8db7-4fad-4b7f-b4e1-f2ee926f1af7"
+      },
+      "ver": "1.0.9",
+      "imported": true,
+      "files": [
+        ".json"
+      ],
+      "subMetas": {}
+    },
+    "3bdfc": {
+      "importer": "sprite-frame",
+      "uuid": "3bda8db7-4fad-4b7f-b4e1-f2ee926f1af7@3bdfc",
+      "displayName": "",
+      "id": "3bdfc",
+      "name": "tip_exhausted",
+      "userData": {
+        "trimType": "auto",
+        "trimThreshold": 1,
+        "rotated": false,
+        "offsetX": 0,
+        "offsetY": 0,
+        "trimX": 809,
+        "trimY": 0,
+        "width": 809,
+        "height": 286,
+        "rawWidth": 809,
+        "rawHeight": 286,
+        "borderTop": 0,
+        "borderBottom": 0,
+        "borderLeft": 0,
+        "borderRight": 0,
+        "packable": true,
+        "isUuid": true,
+        "imageUuidOrDatabaseUri": "cabd3127-6d6c-4153-8bb8-b382d46d0032@6c48a",
+        "atlasUuid": "3bda8db7-4fad-4b7f-b4e1-f2ee926f1af7"
+      },
+      "ver": "1.0.9",
+      "imported": true,
+      "files": [
+        ".json"
+      ],
+      "subMetas": {}
+    },
+    "e60bc": {
+      "importer": "sprite-frame",
+      "uuid": "3bda8db7-4fad-4b7f-b4e1-f2ee926f1af7@e60bc",
+      "displayName": "",
+      "id": "e60bc",
+      "name": "tip_fear",
+      "userData": {
+        "trimType": "auto",
+        "trimThreshold": 1,
+        "rotated": false,
+        "offsetX": 0,
+        "offsetY": 0,
+        "trimX": 0,
+        "trimY": 286,
+        "width": 809,
+        "height": 286,
+        "rawWidth": 809,
+        "rawHeight": 286,
+        "borderTop": 0,
+        "borderBottom": 0,
+        "borderLeft": 0,
+        "borderRight": 0,
+        "packable": true,
+        "isUuid": true,
+        "imageUuidOrDatabaseUri": "cabd3127-6d6c-4153-8bb8-b382d46d0032@6c48a",
+        "atlasUuid": "3bda8db7-4fad-4b7f-b4e1-f2ee926f1af7"
+      },
+      "ver": "1.0.9",
+      "imported": true,
+      "files": [
+        ".json"
+      ],
+      "subMetas": {}
+    },
+    "3c3db": {
+      "importer": "sprite-frame",
+      "uuid": "3bda8db7-4fad-4b7f-b4e1-f2ee926f1af7@3c3db",
+      "displayName": "",
+      "id": "3c3db",
+      "name": "tip_firing",
+      "userData": {
+        "trimType": "auto",
+        "trimThreshold": 1,
+        "rotated": false,
+        "offsetX": 0,
+        "offsetY": 0,
+        "trimX": 809,
+        "trimY": 286,
+        "width": 809,
+        "height": 286,
+        "rawWidth": 809,
+        "rawHeight": 286,
+        "borderTop": 0,
+        "borderBottom": 0,
+        "borderLeft": 0,
+        "borderRight": 0,
+        "packable": true,
+        "isUuid": true,
+        "imageUuidOrDatabaseUri": "cabd3127-6d6c-4153-8bb8-b382d46d0032@6c48a",
+        "atlasUuid": "3bda8db7-4fad-4b7f-b4e1-f2ee926f1af7"
+      },
+      "ver": "1.0.9",
+      "imported": true,
+      "files": [
+        ".json"
+      ],
+      "subMetas": {}
+    },
+    "6bbbf": {
+      "importer": "sprite-frame",
+      "uuid": "3bda8db7-4fad-4b7f-b4e1-f2ee926f1af7@6bbbf",
+      "displayName": "",
+      "id": "6bbbf",
+      "name": "tip_froze",
+      "userData": {
+        "trimType": "auto",
+        "trimThreshold": 1,
+        "rotated": false,
+        "offsetX": 0,
+        "offsetY": 0,
+        "trimX": 0,
+        "trimY": 572,
+        "width": 809,
+        "height": 286,
+        "rawWidth": 809,
+        "rawHeight": 286,
+        "borderTop": 0,
+        "borderBottom": 0,
+        "borderLeft": 0,
+        "borderRight": 0,
+        "packable": true,
+        "isUuid": true,
+        "imageUuidOrDatabaseUri": "cabd3127-6d6c-4153-8bb8-b382d46d0032@6c48a",
+        "atlasUuid": "3bda8db7-4fad-4b7f-b4e1-f2ee926f1af7"
+      },
+      "ver": "1.0.9",
+      "imported": true,
+      "files": [
+        ".json"
+      ],
+      "subMetas": {}
+    },
+    "fc567": {
+      "importer": "sprite-frame",
+      "uuid": "3bda8db7-4fad-4b7f-b4e1-f2ee926f1af7@fc567",
+      "displayName": "",
+      "id": "fc567",
+      "name": "tip_hypnosis",
+      "userData": {
+        "trimType": "auto",
+        "trimThreshold": 1,
+        "rotated": false,
+        "offsetX": 0,
+        "offsetY": 0,
+        "trimX": 809,
+        "trimY": 572,
+        "width": 809,
+        "height": 286,
+        "rawWidth": 809,
+        "rawHeight": 286,
+        "borderTop": 0,
+        "borderBottom": 0,
+        "borderLeft": 0,
+        "borderRight": 0,
+        "packable": true,
+        "isUuid": true,
+        "imageUuidOrDatabaseUri": "cabd3127-6d6c-4153-8bb8-b382d46d0032@6c48a",
+        "atlasUuid": "3bda8db7-4fad-4b7f-b4e1-f2ee926f1af7"
+      },
+      "ver": "1.0.9",
+      "imported": true,
+      "files": [
+        ".json"
+      ],
+      "subMetas": {}
+    },
+    "08c87": {
+      "importer": "sprite-frame",
+      "uuid": "3bda8db7-4fad-4b7f-b4e1-f2ee926f1af7@08c87",
+      "displayName": "",
+      "id": "08c87",
+      "name": "tip_numb",
+      "userData": {
+        "trimType": "auto",
+        "trimThreshold": 1,
+        "rotated": false,
+        "offsetX": 0,
+        "offsetY": 0,
+        "trimX": 0,
+        "trimY": 858,
+        "width": 809,
+        "height": 286,
+        "rawWidth": 809,
+        "rawHeight": 286,
+        "borderTop": 0,
+        "borderBottom": 0,
+        "borderLeft": 0,
+        "borderRight": 0,
+        "packable": true,
+        "isUuid": true,
+        "imageUuidOrDatabaseUri": "cabd3127-6d6c-4153-8bb8-b382d46d0032@6c48a",
+        "atlasUuid": "3bda8db7-4fad-4b7f-b4e1-f2ee926f1af7"
+      },
+      "ver": "1.0.9",
+      "imported": true,
+      "files": [
+        ".json"
+      ],
+      "subMetas": {}
+    },
+    "bf2e5": {
+      "importer": "sprite-frame",
+      "uuid": "3bda8db7-4fad-4b7f-b4e1-f2ee926f1af7@bf2e5",
+      "displayName": "",
+      "id": "bf2e5",
+      "name": "tip_poison",
+      "userData": {
+        "trimType": "auto",
+        "trimThreshold": 1,
+        "rotated": false,
+        "offsetX": 0,
+        "offsetY": 0,
+        "trimX": 809,
+        "trimY": 858,
+        "width": 809,
+        "height": 286,
+        "rawWidth": 809,
+        "rawHeight": 286,
+        "borderTop": 0,
+        "borderBottom": 0,
+        "borderLeft": 0,
+        "borderRight": 0,
+        "packable": true,
+        "isUuid": true,
+        "imageUuidOrDatabaseUri": "cabd3127-6d6c-4153-8bb8-b382d46d0032@6c48a",
+        "atlasUuid": "3bda8db7-4fad-4b7f-b4e1-f2ee926f1af7"
+      },
+      "ver": "1.0.9",
+      "imported": true,
+      "files": [
+        ".json"
+      ],
+      "subMetas": {}
+    }
+  },
+  "userData": {
+    "atlasTextureName": "tip_abnormal.png",
+    "format": 3,
+    "uuid": "3bda8db7-4fad-4b7f-b4e1-f2ee926f1af7",
+    "textureUuid": "cabd3127-6d6c-4153-8bb8-b382d46d0032@6c48a"
+  }
+}
