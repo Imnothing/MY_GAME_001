@@ -67,7 +67,7 @@ function changeValue(value, type) {
     if (value == null || value == "null") return ""
     if (type == "int") return Math.floor(value);
     if (type == "string") return String(value);
-    if (type == "float") return parseFloat(value);
+    if (type == "float") return Math.floor(parseFloat(value * 1000000)) / 1000000;//parseFloat(value);
     if (type == "string[]") return value.split("#");
     if (type == "int[]") {
         if (!value || value == 0) return [];

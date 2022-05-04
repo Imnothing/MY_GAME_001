@@ -1,7 +1,5 @@
 import { Component, game, Node } from "cc";
-import { SettingInfo } from "../../../../mainbundle/scripts/Data/Model/SettingInfo";
 import { MusicConfig } from "../../../../mainbundle/scripts/Datatable/MusicConfig";
-import { GameDataManager } from "../../../../mainbundle/scripts/Manager/GameDataManager";
 import { engine } from "../../engine";
 import { AudioEffect } from "./AudioEffect";
 import { AudioMusic } from "./AudioMusic";
@@ -53,16 +51,12 @@ export class AudioManager extends Component {
         }
     }
 
-
-
     /**
      *  播放背景音乐
      * @param url        资源地址
      * @param callback   音乐播放完成事件
      */
     playMusic(id: string, callback: Function | null = null) {
-        let setInfo: SettingInfo = GameDataManager.getInstance().getGameData().settingInfo;
-        if (!setInfo.switchMusic) return;
         if (this._switch_music) {
             let musicConfig = engine.ccTable.get("MusicConfig");
             if (!musicConfig) return;
@@ -70,7 +64,6 @@ export class AudioManager extends Component {
             if (!itemConfig) return;
             let url = "audios/" + itemConfig.File;
             this.music.volume = itemConfig.MusicPower / 100;
-
             this.music.load(url);
             this.music.onComplete = callback;
         }
@@ -84,8 +77,6 @@ export class AudioManager extends Component {
      * @param callback   音乐播放完成事件
      */
     playSound(id: string) {
-        let setInfo: SettingInfo = GameDataManager.getInstance().getGameData().settingInfo;
-        if (!setInfo.switchSound) return;
         if (this._switch_effect) {
             let musicConfig = engine.ccTable.get("MusicConfig");
             if (!musicConfig) return;

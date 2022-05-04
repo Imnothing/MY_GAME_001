@@ -7,21 +7,15 @@ import { engine } from "../../../scripts/framework/engine";
 import { LOG_TAG } from "../../../scripts/framework/lib/logger/LoggerInterface";
 import { ConstValue } from "../Configs/ConstValue";
 import { GameData } from "../Data/GameData";
+import { ListenerType } from "../Data/ListenerType";
 import { LocalKeys } from "../Data/LocalKeys";
-import { AccountInfo, AwsToken, BaseInfo } from "../Data/Model/AccountInfo";
-import { PlatformManager } from "../Platform/PlatformManager";
-import { AccountManager } from "./AccountManager";
+import { PlayerManager } from "./PlayerManager";
 
 export class GameDataManager {
     private static instance: GameDataManager;
 
     private gameData: GameData = null;
 
-    private accountInfo: AccountInfo = null;
-
-    public baseInfo: BaseInfo = null;
-
-    public awsToken: AwsToken = null;
     static getInstance(): GameDataManager {
         if (this.instance == null) {
             this.instance = new GameDataManager();
@@ -39,28 +33,32 @@ export class GameDataManager {
         this.gameData = _gameData;
     }
 
-    getAccountInfo(): AccountInfo {
-        return this.accountInfo;
-    }
-
-    setAccountInfo(accountInfo) {
-        this.accountInfo = accountInfo;
-        this.accountInfo.save();
-    }
-
     init() {
         //平台初始化进入
-        PlatformManager.getInstance().getPlatform().appEnter((param) => {
-            engine.logger.log(LOG_TAG.GAME, JSON.stringify(param));
-            engine.storage.register();
-            let accountJson = engine.storage.getLocalItem(LocalKeys.LOCAL_ACCOUNTINFO);
-            this.accountInfo = accountJson ? new AccountInfo(JSON.parse(accountJson)) : new AccountInfo();
-            this.accountInfo.save();
+        // PlatformManager.getInstance().getPlatform().appEnter((param) => {
+        //     engine.logger.log(LOG_TAG.GAME, JSON.stringify(param));
+        //     engine.storage.register();
+        //     let accountJson = engine.storage.getLocalItem(LocalKeys.LOCAL_ACCOUNTINFO);
+        //     this.accountInfo = accountJson ? new AccountInfo(JSON.parse(accountJson)) : new AccountInfo();
+        //     this.accountInfo.save();
 
-            // PlatformManager.getInstance().getPlatform().initLogParam()
-            AccountManager.getInstance().loginAccount(param);
-            // this.requestPermisstion();
-        });
+        // PlatformManager.getInstance().getPlatform().initLogParam()
+        // AccountManager.getInstance().loginAccount(param);
+        // this.requestPermisstion();
+        // });
+
+
+        this.setGameData(this.gameData);
+
+        let playerInfo = engine.storage.getLocalItem(LocalKeys.LOCAL_PLAYERINFO, null);
+        if (playerInfo) {
+            this.gameData.initLoalInfo();
+        } else {
+            //todo:读取游戏数据
+            this.gameData.initLoalInfo();
+        }
+        PlayerManager.getInstance();
+        engine.listenerManager.trigger(ListenerType.GameStart);
     }
 
     private requestPermisstion() {

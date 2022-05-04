@@ -3,13 +3,27 @@
 */
 export class EffectConfig {
        
-	/** 编号 */
-	Id: number;
-	/** 特效类型 */
-	EffectType: number;
-	/** 缩放倍率 */
-	EffectScale: number;
-	/** 特效路径 */
-	EffectPath: string;
+	/** 效果ID */
+	string: any;
+	/** 效果类型 */
+	string: any;
+	/** 有效范围 */
+	string: any;
+	/** 附加方 */
+	string: any;
+	/** 初始判定 */
+	string: any;
+	/** 参数1 */
+	string: any;
+	/** 参数2 */
+	string: any;
+	/** 成功效果 */
+	string: any;
+	/** 失败效果 */
+	string: any;
+	/** 先手效果 */
+	string: any;
+	/** 后手效果 */
+	string: any;
 
 }

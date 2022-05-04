@@ -1,0 +1,31 @@
+import { SkillConfig } from "../Datatable/SkillConfig";
+import { EnumFeatures, Resistance } from "./PetData";
+
+/** 精灵类 */
+export class FightPet {
+    /** 精灵ID */
+    id: string = null;
+    /** 精灵属性ID */
+    attribute: string = null;
+    /** 精灵等级 */
+    level: number = 1;
+    /** 战斗属性值 */
+    battleValue: BattleValue = new BattleValue();
+    /** 抗性 */
+    resistance: Resistance = new Resistance();
+    /** 特性 */
+    features: EnumFeatures = null;
+    /** 技能 */
+    skills: Map<SkillConfig, number> = new Map<SkillConfig, number>();
+}
+
+/** 战斗属性值 */
+class BattleValue {
+    atk: number = 0;
+    sp_atk: number = 0;
+    def: number = 0;
+    sp_def: number = 0;
+    spd: number = 0;
+    max_hp: number = 0;
+    hp: number = 0;
+}

@@ -5,6 +5,7 @@ import { PlayerInfo } from "./Model/PlayerInfo";
 import { SettingInfo } from "./Model/SettingInfo";
 import { PropInfo } from "./Model/PropInfo";
 import { AreaInfo } from "./Model/AreaInfo";
+import { PetData } from "./PetData";
 
 /**
  * 数据管理类
@@ -20,6 +21,8 @@ export class GameData {
     public areaInfo: AreaInfo = null;
     //道具集合
     public propList: Map<number, PropInfo> = null;
+    /**精灵背包 */
+    public petBagList: Map<number, PetData> = null
     //----------------------------------------------------------------
 
     constructor() {
@@ -37,11 +40,14 @@ export class GameData {
         this.settingInfo = settingJson ? new SettingInfo(JSON.parse(settingJson)) : new SettingInfo();
         let playerJson = engine.storage.getLocalItem(LocalKeys.LOCAL_PLAYERINFO);
         this.playerInfo = playerJson ? new PlayerInfo(JSON.parse(playerJson)) : new PlayerInfo();
-        let areaInfoJson = engine.storage.getLocalItem(LocalKeys.LOCAL_ARREAINFO);
-        this.areaInfo = areaInfoJson ? new AreaInfo(JSON.parse(areaInfoJson)) : new AreaInfo();
-
         let propListJson = engine.storage.getLocalItem(LocalKeys.LOCAL_PROPLIST);
         this.propList = propListJson ? JSON.parse(propListJson) : new Map<number, PropInfo>();
+        let petBagListJson = engine.storage.getLocalItem(LocalKeys.LOCAL_PETBAG);
+        this.petBagList = petBagListJson ? JSON.parse(petBagListJson) : new Map<number, PetData>();
+
+        // let areaInfoJson = engine.storage.getLocalItem(LocalKeys.LOCAL_ARREAINFO);
+        // this.areaInfo = areaInfoJson ? new AreaInfo(JSON.parse(areaInfoJson)) : new AreaInfo();
+
     }
 
     initData() {
@@ -49,10 +55,9 @@ export class GameData {
         // this.playerInfo.heart = parseInt(JsonConfig['CommonParameter']['FirstRenown'].Value);
     }
 
-    pushToLocalData(gameInfo: GameInfo) {
-        this.playerInfo = gameInfo.playerInfo || new PlayerInfo();
-        this.settingInfo = gameInfo.settingInfo || new SettingInfo();
-        this.settingInfo = gameInfo.settingInfo || new SettingInfo();
-    }
+    // pushToLocalData(gameInfo: GameInfo) {
+    //     this.playerInfo = gameInfo.playerInfo || new PlayerInfo();
+    //     this.settingInfo = gameInfo.settingInfo || new SettingInfo();
+    // }
 
 }

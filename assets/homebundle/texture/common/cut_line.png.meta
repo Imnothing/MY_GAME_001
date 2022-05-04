@@ -1,0 +1,74 @@
+{
+  "ver": "1.0.22",
+  "importer": "image",
+  "imported": true,
+  "uuid": "1bbb7d38-af36-462a-831d-b9d6e973b682",
+  "files": [
+    ".png",
+    ".json"
+  ],
+  "subMetas": {
+    "6c48a": {
+      "importer": "texture",
+      "uuid": "1bbb7d38-af36-462a-831d-b9d6e973b682@6c48a",
+      "displayName": "cut_line",
+      "id": "6c48a",
+      "name": "texture",
+      "userData": {
+        "wrapModeS": "clamp-to-edge",
+        "wrapModeT": "clamp-to-edge",
+        "minfilter": "linear",
+        "magfilter": "linear",
+        "mipfilter": "none",
+        "anisotropy": 0,
+        "isUuid": true,
+        "imageUuidOrDatabaseUri": "1bbb7d38-af36-462a-831d-b9d6e973b682"
+      },
+      "ver": "1.0.21",
+      "imported": true,
+      "files": [
+        ".json"
+      ],
+      "subMetas": {}
+    },
+    "f9941": {
+      "importer": "sprite-frame",
+      "uuid": "1bbb7d38-af36-462a-831d-b9d6e973b682@f9941",
+      "displayName": "cut_line",
+      "id": "f9941",
+      "name": "spriteFrame",
+      "userData": {
+        "trimType": "custom",
+        "trimThreshold": 1,
+        "rotated": false,
+        "offsetX": 0,
+        "offsetY": 0,
+        "trimX": 0,
+        "trimY": 0,
+        "width": 180,
+        "height": 1,
+        "rawWidth": 180,
+        "rawHeight": 1,
+        "borderTop": 0,
+        "borderBottom": 0,
+        "borderLeft": 80,
+        "borderRight": 80,
+        "packable": true,
+        "isUuid": true,
+        "imageUuidOrDatabaseUri": "1bbb7d38-af36-462a-831d-b9d6e973b682@6c48a",
+        "atlasUuid": ""
+      },
+      "ver": "1.0.9",
+      "imported": true,
+      "files": [
+        ".json"
+      ],
+      "subMetas": {}
+    }
+  },
+  "userData": {
+    "hasAlpha": true,
+    "type": "sprite-frame",
+    "redirect": "1bbb7d38-af36-462a-831d-b9d6e973b682@f9941"
+  }
+}

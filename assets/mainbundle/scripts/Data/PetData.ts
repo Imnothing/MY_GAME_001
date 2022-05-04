@@ -1,0 +1,142 @@
+import { SkillConfig } from "../Datatable/SkillConfig";
+
+/** 性格 */
+export enum EnumCharacter {
+    Lonely = "孤独",
+
+}
+/** 异常状态 */
+export enum EnumAbnormal {
+
+}
+/** 属性 */
+export enum EnumAttribute {
+    water = "1001",
+    fire = "1002",
+    grass = "1003",
+    flying = "1004",
+    ground = "1005",
+    mechanics = "1006",
+    thunder = "1007",
+    ice = "1008",
+    dark = "1009",
+    light = "1010",
+    psychic = "1011",
+    fight = "1012",
+    normal = "1013",
+    saint = "1014",
+    deity = "1015",
+    chaos = "1016",
+
+}
+/** 异常状态类型 */
+export enum EnumAbType {
+    unControl = 1,
+    Control = 2
+}
+export enum EnumBattleValue {
+    NONE = 0,
+    ATK = 1,
+    SP_ATK = 2,
+    DEF = 3,
+    SP_DEF = 4,
+    SPD = 5
+}
+/** 特性 */
+export enum EnumFeatures {
+
+}
+
+/** 精灵类 */
+export class PetData {
+    /** 精灵ID */
+    id: string = null;
+    /** 精灵属性ID */
+    attribute: string = null;
+    /** 经验类型 */
+    expType: string = null;
+    /** 已获取经验 */
+    exp: number = 0;
+    /** 精灵等级 */
+    level: number = 1;
+    /** 个体值 */
+    talentValue: number = 0;
+    /** 战斗属性值 */
+    battleValue: BattleValue = new BattleValue();
+    /** 学习力 */
+    learningValue: LearningValue = new LearningValue();
+    /** 性格 */
+    character: EnumCharacter = null;
+    /** 特性 */
+    features: EnumFeatures = null;
+    /** 抗性 */
+    resistance: Resistance = new Resistance();
+    /** 刻印 */
+    signet: Array<Signet> = new Array<Signet>();
+    /** 技能 */
+    skills: Map<SkillConfig, number> = new Map<SkillConfig, number>();
+
+}
+
+/** 战斗属性值 */
+export class BattleValue {
+    atk: number = 0;
+    sp_atk: number = 0;
+    def: number = 0;
+    sp_def: number = 0;
+    spd: number = 0;
+    max_hp: number = 0;
+    hp: number = 0;
+}
+
+/** 学习力 */
+export class LearningValue {
+    atk: number = 0;
+    sp_atk: number = 0;
+    def: number = 0;
+    sp_def: number = 0;
+    spd: number = 0;
+    hp: number = 0;
+
+    constructor() { }
+}
+
+/** 抗性类 */
+export class Resistance {
+    damageResist: DamageResist = new DamageResist();
+    abnormalResist: AbnormalResist = new AbnormalResist();
+}
+
+/** 伤害抗性类 */
+export class DamageResist {
+    /** 暴击伤害抵抗 */
+    criticalResist: number = 0;
+    /** 固定伤害抵抗 */
+    fixedResist: number = 0;
+    /** 百分比伤害 */
+    percentage: number = 0;
+
+    constructor() { }
+}
+
+/** 异常抗性类 */
+export class AbnormalResist {
+    /** 异常抗性抵抗数组 */
+    abnormalStates: Map<AbnormalResist, number> = new Map<AbnormalResist, number>();
+
+    constructor() { }
+}
+
+/** 刻印 */
+export class Signet {
+    atk: number = 0;
+    sp_atk: number = 0;
+    def: number = 0;
+    sp_def: number = 0;
+    spd: number = 0;
+    hp: number = 0;
+
+    constructor() { }
+}
+
+

@@ -2,8 +2,9 @@
  * 玩家数据管理
  */
 
+import { game, sys } from "cc";
 import { engine } from "../../../scripts/framework/engine";
-import { ListenerType } from "../Data/ListenerType";
+import { ConstValue } from "../Configs/ConstValue";
 import { SettingInfo } from "../Data/Model/SettingInfo";
 import { GameDataManager } from "./GameDataManager";
 
@@ -24,24 +25,23 @@ export class SettingManager {
      * 设置-音乐
      */
     setMusic() {
-        let settingInfo: SettingInfo = GameDataManager.getInstance().getGameData().settingInfo;
-        let state = settingInfo.switchMusic;
-        settingInfo.switchMusic = !state;
-        settingInfo.save();
+        let state = !engine.audioManager.getSwitchMusic();
+        engine.audioManager.setSwitchMusic(state);
+        // engine.audioManager.playMusic(ConstValue.GAME_MUSIC.BGM);
+        engine.audioManager.save();
     }
 
     /**
-     * 设置-音乐
+     * 设置-音效
      */
     setSound() {
-        let settingInfo: SettingInfo = GameDataManager.getInstance().getGameData().settingInfo;
-        let state = settingInfo.switchSound;
-        settingInfo.switchSound = !state;
-        settingInfo.save();
+        let state = !engine.audioManager.getSwitchEffect();
+        engine.audioManager.setSwitchEffect(state);
+        engine.audioManager.save();
     }
 
     /**
-     * 设置-音乐
+     * 设置-提示
      */
     setHint() {
         let settingInfo: SettingInfo = GameDataManager.getInstance().getGameData().settingInfo;
@@ -51,12 +51,23 @@ export class SettingManager {
     }
 
     /**
-     * 设置-音乐
+     * 设置-通知
      */
     setNotific() {
         let settingInfo: SettingInfo = GameDataManager.getInstance().getGameData().settingInfo;
         let state = settingInfo.switchNotific;
         settingInfo.switchNotific = !state;
         settingInfo.save();
+    }
+
+    /**
+     * 设置-多语言
+     */
+    setLanguage(language: string) {
+        let settingInfo: SettingInfo = GameDataManager.getInstance().getGameData().settingInfo;
+        if (language == settingInfo.languageType) return;
+        settingInfo.languageType = language;
+        settingInfo.save();
+        game.restart();
     }
 }
