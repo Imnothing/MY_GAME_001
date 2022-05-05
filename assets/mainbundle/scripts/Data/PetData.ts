@@ -11,21 +11,37 @@ export enum EnumAbnormal {
 }
 /** 属性 */
 export enum EnumAttribute {
+    /** 水系 */
     water = "1001",
+    /** 火系 */
     fire = "1002",
+    /** 草系 */
     grass = "1003",
+    /** 飞行系 */
     flying = "1004",
+    /** 地面系 */
     ground = "1005",
+    /** 机械系 */
     mechanics = "1006",
+    /** 电系 */
     thunder = "1007",
+    /** 冰系 */
     ice = "1008",
+    /** 暗影系 */
     dark = "1009",
+    /** 光系 */
     light = "1010",
+    /** 超能系 */
     psychic = "1011",
+    /** 战斗系 */
     fight = "1012",
+    /** 普通系 */
     normal = "1013",
+    /** 圣灵系 */
     saint = "1014",
+    /** 神灵系 */
     deity = "1015",
+    /** 混沌系 */
     chaos = "1016",
 
 }
