@@ -21,12 +21,12 @@ if (b) {
   if (json) {
     configs = JSON.parse(json);
     if (configs.fileDirectoryPath) {
-      try {
+      try{
         fs.statSync(configs.fileDirectoryPath);
         //如果可以执行到这里那么就表示存在了
-      } catch (e) {
-        //捕获异常
-        configs.fileDirectoryPath = '';
+      }catch(e){
+          //捕获异常
+          configs.fileDirectoryPath = '';
       }
       excelArray = excelUtil.getAllSheet(configs.fileDirectoryPath);
     }
@@ -133,9 +133,9 @@ exports.ready = async function () {
         for (var i = 0; i < excelArray.length; i++) {
           let item = excelArray[i];
           if (!item.checkbox) continue;
-          // var list = xlsx.parse(item.fullPath);
-          console.log("正在导出" + item.sheet);
-          let tableData = excelUtil.praseExcel(item.data);
+          var list = xlsx.parse(item.fullPath);
+          console.log("正在导出"+item.sheet );
+          let tableData = excelUtil.praseExcel(list);
           if (tableData) {
             if (this.isMergeJson) {
               tableMergeJson[item.sheet] = tableData;
@@ -189,7 +189,7 @@ exports.ready = async function () {
         // @ts-ignore
         const vm = this;
         var test = [];
-        if (!excelArray) return;
+        if(!excelArray) return;
         for (let i = 0; i < excelArray.length; i++) {
           // test.push(JSON.parse(JSON.stringify(t)));
           var t = { detail: excelArray[i] };
@@ -283,8 +283,8 @@ export class %s {
         for (var i = 0; i < excelArray.length; i++) {
           let item = excelArray[i];
           if (!item.checkbox) continue;
-          // var list = xlsx.parse(item.fullPath);
-          let tableDefines = excelUtil.getTableDefine(item.data);
+          var list = xlsx.parse(item.fullPath);
+          let tableDefines = excelUtil.getTableDefine(list);
           let nodeStr = '';
           if (tableDefines) {
             for (var j = 0; j < tableDefines.keys.length; j++) {

@@ -1,3 +1,4 @@
+import { EnumAbnormal } from "../../../mainbundle/scripts/Data/PetData";
 import PetUI from "../UI/Battle/PetUI";
 
 /** 属性等级 */
@@ -107,6 +108,7 @@ enum EnumJudge {
 }
 
 export class BattleSkillSystem {
+    init() { }
 
     /** 进行判定 */
     doJudge(pet: PetUI, type: EnumJudge, valueType?: EnumValue, percent?: number) { }
@@ -117,6 +119,12 @@ export class BattleSkillSystem {
      * @param num 等级数
      */
     changLevel(pet: PetUI, way: ChangLevelWay, type: LevelType, num?: number) { }
+
+    /**
+     * 消除回合类效果
+     * @param pet 
+     */
+    changeRoundEffect(pet: PetUI) { }
 
     /**
      * 恢复体力
@@ -153,6 +161,14 @@ export class BattleSkillSystem {
      * @param hurtIncrease 减伤倍率
      */
     addDeBuff(pet: PetUI, type: EnumDeBuff, possibility?: number, deBUff?: string, damageReduce?: number, hurtIncrease?: number) { }
+
+    /**
+     * 进入异常状态
+     * @param pet 
+     * @param type 
+     * @param possibility 
+     */
+    addAbnormal(pet: PetUI, type: EnumAbnormal, possibility?: number) { }
 
 }
 

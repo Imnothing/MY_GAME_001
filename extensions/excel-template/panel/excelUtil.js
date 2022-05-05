@@ -2,8 +2,8 @@ var fs = require('fs');
 let path = require('fire-path');
 var xlsx = require("node-xlsx");
 //解析Excel
-exports.praseExcel = function (excleData) {
-    // var excleData = list[0].data;
+exports.praseExcel = function (list) {
+    var excleData = list[0].data;
     var sheetArray = {};
     var titleArray = excleData[0];
     var typeArray = excleData[1];
@@ -29,9 +29,8 @@ exports.praseExcel = function (excleData) {
 /**
  * 获取表定义结构
  */
-exports.getTableDefine = function (excleData) {
-    // var excleData = list[0].data;
-    // console.log(list);
+exports.getTableDefine = function (list) {
+    var excleData = list[0].data;
     var titleArray = excleData[0];
     var typeArray = excleData[1];
     var keyArray = excleData[2];
@@ -67,7 +66,7 @@ function changeValue(value, type) {
     if (value == null || value == "null") return ""
     if (type == "int") return Math.floor(value);
     if (type == "string") return String(value);
-    if (type == "float") return Math.floor(parseFloat(value * 1000000)) / 1000000;//parseFloat(value);
+    if (type == "float") return parseFloat(value);
     if (type == "string[]") return value.split("#");
     if (type == "int[]") {
         if (!value || value == 0) return [];
@@ -154,8 +153,7 @@ exports.getAllSheet = function (fileDirectoryPath) {
                 checkbox: true,
                 fullPath: itemFullPath,
                 name: "name",
-                sheet: excelData[j].name,
-                data: excelData[j].data
+                sheet: excelData[j].name
             };
             itemData.name = itemFullPath.substr(fileDirectoryPath.length + 1, itemFullPath.length - fileDirectoryPath.length);
             if (itemData.sheet.substring(0, 1) == "#") continue;

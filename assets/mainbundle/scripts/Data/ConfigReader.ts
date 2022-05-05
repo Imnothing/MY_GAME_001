@@ -35,6 +35,11 @@ export class ConfigReader {
         return engine.ccTable.get("AbnormalConfig")[id];
     }
 
+    public static readPetConfig(id?: number | string) {
+        if (!id) return engine.ccTable.get("PetConfig");
+        return engine.ccTable.get("PetConfig")[id];
+    }
+
 }
 
 class ConfigDataProcessor {
