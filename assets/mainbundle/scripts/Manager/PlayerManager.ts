@@ -20,24 +20,13 @@ export class PlayerManager {
     }
 
     /**
-     * 增加星星
-     * @param num 
-     */
-    addStar(num: number) {
-        let playerInfo = GameDataManager.getInstance().getGameData().playerInfo;
-        if (playerInfo.star + num < 0) return false;
-        playerInfo.star += num;
-        playerInfo.save();
-        engine.listenerManager.trigger(ListenerType.RefreshTopInfo);
-        return true;
-    }
-
-    /**
       * 增加金币
-      * @param num 
+      * @param num 金币数量
       */
     addGold(num: number) {
+        //获取玩家信息
         let playerInfo = GameDataManager.getInstance().getGameData().playerInfo;
+        //玩家金币不够时则返回false
         if (playerInfo.gold + num < 0) return false;
         playerInfo.gold += num;
         playerInfo.save();

@@ -2,17 +2,17 @@ import { BundleConfigs } from "./BundleConfigs";
 
 export const ResPathEnum = {
     Attribute: <ResConfig>{
-        bundle: BundleConfigs.HomeBundle,
+        bundle: BundleConfigs.CommonBundle,
         resPath: "atlas/attribute"
     },
 
     Abnormal: <ResConfig>{
-        bundle: BundleConfigs.HomeBundle,
+        bundle: BundleConfigs.CommonBundle,
         resPath: "atlas/abnormal"
     },
 
     PropIcon: <ResConfig>{
-        bundle: BundleConfigs.HomeBundle,
+        bundle: BundleConfigs.CommonBundle,
         resPath: "atlas/prop"
     }
 

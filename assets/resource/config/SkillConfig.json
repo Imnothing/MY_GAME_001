@@ -1,1 +1,1 @@
-{"1001":{"Id":"1001","Name":"撞击","Type":1,"Attribute":"普通","Power":40,"PP":20,"Priority":0,"HitRate":98,"CritRate":10,"Desc":"-"}}
+{"1001":{"Id":"1001","Name":"撞击","Type":1,"Attribute":"普通","Power":40,"PP":20,"Priority":0,"HitRate":98,"CritRate":10,"Desc":"-"},"1002":{"Id":"1002","Name":"气临九渊怒","Type":1,"Attribute":"1012","Power":160,"PP":5,"Priority":0,"HitRate":100,"CritRate":10,"Desc":"","Effect":"1002|1003|1010"},"1003":{"Id":"1003","Name":"龙怒天火断","Type":1,"Attribute":"1012","Power":150,"PP":5,"Priority":0,"HitRate":95,"CritRate":10,"Desc":"","Effect":"1003|"}}

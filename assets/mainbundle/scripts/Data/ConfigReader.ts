@@ -40,6 +40,16 @@ export class ConfigReader {
         return engine.ccTable.get("PetConfig")[id];
     }
 
+    public static readShopConfig(id?: number | string) {
+        if (!id) return engine.ccTable.get("ShopConfig");
+        return engine.ccTable.get("ShopConfig")[id];
+    }
+
+    public static readItemConfig(id?: number | string) {
+        if (!id) return engine.ccTable.get("ItemConfig");
+        return engine.ccTable.get("ItemConfig")[id];
+    }
+
 }
 
 class ConfigDataProcessor {

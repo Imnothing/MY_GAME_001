@@ -18,7 +18,7 @@ export class EffectConfig {
 	/** 参数2 */
 	string: any;
 	/** 成功效果 */
-	string: any;
+	0: any;
 	/** 失败效果 */
 	string: any;
 	/** 先手效果 */

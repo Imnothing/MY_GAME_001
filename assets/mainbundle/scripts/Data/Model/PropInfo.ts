@@ -7,8 +7,6 @@ export class PropInfo {
     public id: number = 0;
     /**道具数量 */
     public count: number = 0;
-    /**使用时间 */
-    public useTime: number = 0;
     constructor(data?: any) {
         if (!data) return;
         var keys = Object.keys(data);
