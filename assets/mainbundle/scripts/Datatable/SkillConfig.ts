@@ -7,6 +7,8 @@ export class SkillConfig {
 	Id: string;
 	/** 技能名称 */
 	Name: string;
+	/** 是否是第五 */
+	Special: number;
 	/** 攻击类型 */
 	Type: number;
 	/** 技能属性 */

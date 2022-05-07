@@ -4,12 +4,12 @@
 export class CharacterConfig {
        
 	/** 性格ID */
-	1001: string;
+	Id: string;
 	/** 性格名称 */
-	孤独: string;
+	Name: string;
 	/** 性格优势 */
-	1: number;
+	Good: number;
 	/** 性格弱势 */
-	3: number;
+	Bad: number;
 
 }

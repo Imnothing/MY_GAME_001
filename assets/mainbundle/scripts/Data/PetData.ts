@@ -113,7 +113,7 @@ export class LearningValue {
     sp_def: number = 0;
     spd: number = 0;
     hp: number = 0;
-
+    all: number = 0
     constructor() { }
 }
 

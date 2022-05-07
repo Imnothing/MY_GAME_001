@@ -50,6 +50,16 @@ export class ConfigReader {
         return engine.ccTable.get("ItemConfig")[id];
     }
 
+    public static readCharacterConfig(id?: number | string) {
+        if (!id) return engine.ccTable.get("CharacterConfig");
+        return engine.ccTable.get("CharacterConfig")[id];
+    }
+
+    public static readFeatureConfig(id?: number | string) {
+        if (!id) return engine.ccTable.get("FeatureConfig");
+        return engine.ccTable.get("FeatureConfig")[id];
+    }
+
 }
 
 class ConfigDataProcessor {
