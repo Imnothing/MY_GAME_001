@@ -5,6 +5,8 @@ export class AttributeConfig {
        
 	/** 属性ID */
 	Id: string;
+	/** 图标 */
+	Icon: string;
 	/** 属性 */
 	Name: string;
 	/** 水 */

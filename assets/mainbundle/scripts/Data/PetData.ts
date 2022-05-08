@@ -90,7 +90,7 @@ export class PetData {
     /** 刻印 */
     signet: Array<Signet> = new Array<Signet>();
     /** 技能 */
-    skills: Map<SkillConfig, number> = new Map<SkillConfig, number>();
+    skills: Map<string, number> = new Map<string, number>();
 
 }
 
@@ -137,8 +137,11 @@ export class DamageResist {
 
 /** 异常抗性类 */
 export class AbnormalResist {
-    /** 异常抗性抵抗数组 */
-    abnormalStates: Map<AbnormalResist, number> = new Map<AbnormalResist, number>();
+    /** 控制类异常抗性抵抗 */
+    controlResist: Map<string, number> = new Map<string, number>();
+
+    /** 弱化类异常抗性抵抗 */
+    weekResist: Map<string, number> = new Map<string, number>();
 
     constructor() { }
 }

@@ -60,6 +60,16 @@ export class ConfigReader {
         return engine.ccTable.get("FeatureConfig")[id];
     }
 
+    public static readSkillConfig(id?: number | string) {
+        if (!id) return engine.ccTable.get("SkillConfig");
+        return engine.ccTable.get("SkillConfig")[id];
+    }
+
+    public static readAttributeConfig(id?: number | string) {
+        if (!id) return engine.ccTable.get("AttributeConfig");
+        return engine.ccTable.get("AttributeConfig")[id];
+    }
+
 }
 
 class ConfigDataProcessor {

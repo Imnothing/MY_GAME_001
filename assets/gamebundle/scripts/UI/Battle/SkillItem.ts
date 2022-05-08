@@ -5,12 +5,20 @@
  * @Version 1.0
  */
 
-import { _decorator, Component, Node, Button, Event, Toggle, Label } from 'cc';
+import { _decorator, Component, Node, Button, Event, Toggle, Label, Sprite } from 'cc';
 import { BundleConfigs } from '../../../../mainbundle/scripts/Configs/BundleConfigs';
+import { ResPathEnum } from '../../../../mainbundle/scripts/Configs/ResPathEnum';
 import { EnumUILayer } from '../../../../mainbundle/scripts/Configs/UIConfigs';
+import { ConfigReader } from '../../../../mainbundle/scripts/Data/ConfigReader';
+import { AttributeConfig } from '../../../../mainbundle/scripts/Datatable/AttributeConfig';
 import { SkillConfig } from '../../../../mainbundle/scripts/Datatable/SkillConfig';
+import { engine } from '../../../../scripts/framework/engine';
 import { BaseUI } from '../../../../scripts/framework/lib/router/BaseUI';
+import { GameListenerType } from '../../Data/GameListenerType';
+import { EnumPlayer } from '../../Manager/BattleManager';
+import { McGame } from '../../Manager/McGame';
 import auto_SkillItem from './autoUI/auto_SkillItem';
+import PetUI from './PetUI';
 const { ccclass, property } = _decorator;
 
 @ccclass
@@ -21,6 +29,8 @@ export default class SkillItem extends BaseUI {
     protected static className = "SkillItem";
     protected static layerZIndex = EnumUILayer.UILayer;
     private skillId: string = null;
+    private petId: string = null;
+    private maxPP: number = null;
 
 
     onLoad() {
@@ -32,25 +42,54 @@ export default class SkillItem extends BaseUI {
         onShowed && onShowed();
     }
 
-    setData(data) {
-        let skill: SkillConfig = data.skill;
-        let pp = data.pp;
-        //第五效果
-        this.ui.skill_frame.getComponent(Toggle).isChecked = (skill.Special == 1);
-        //技能名称
-        this.ui.label_name.getComponent(Label).string = skill.Name;
-        //技能PP
-        this.ui.label_pp.getComponent(Label).string = `${pp}/${skill.PP}`
-        //技能威力
-        this.ui.label_damage.getComponent(Label).string = String(skill.Power);
+    setData(sid: string) {
+        let petUI = McGame.battleManager.getPetNow(EnumPlayer.Own).getComponent(PetUI);
+        if (sid) {
+            this.skillId = sid;
+            let skill: SkillConfig = ConfigReader.readSkillConfig(this.skillId);
+            let pp = petUI.getPetInfo().skills[this.skillId];
+            this.petId = petUI.getFightId();
+            this.maxPP = skill.PP;
+            //图标
+            let attribute: AttributeConfig = ConfigReader.readAttributeConfig(skill.Attribute);
+            this.ui.ico_attribute.getComponent(Sprite).spriteFrame = engine.resLoader.getAtlasByTag(ResPathEnum.Attribute.bundle, ResPathEnum.Attribute.resPath, attribute.Icon)
+            //第五效果
+            this.ui.skill_frame.getComponent(Toggle).isChecked = (skill.Special == 1);
+            //技能名称
+            this.ui.label_name.getComponent(Label).string = skill.Name;
+            //技能PP
+            this.ui.label_pp.getComponent(Label).string = `${pp}/${this.maxPP}`
+            //技能威力
+            this.ui.label_damage.getComponent(Label).string = String(skill.Power);
+        } else {
+            //不切换的话只对pp值有影响
+            let pp = petUI.getPetInfo().skills[this.skillId];
+            //技能PP
+            this.ui.label_pp.getComponent(Label).string = `${pp}/${this.maxPP}`
+        }
+
+        this.refreshSkillState()
     }
 
     hide(onHided: Function): void {
         onHided();
     }
 
-    initEvent() {
+    refreshSkillState(isClose?: boolean) {
+        let isGray: boolean = (parseInt(this.ui.label_pp.getComponent(Label).string) == 0)
+        this.ui.skill_frame.getComponent(Sprite).grayscale = isGray;
+        this.ui.spSkill_frame.getComponent(Sprite).grayscale = isGray;
+        if (isClose)
+            this.ui.skill_frame.getComponent(Button).interactable = isClose;
+        else
+            this.ui.skill_frame.getComponent(Button).interactable = !isGray;
+    }
 
+    initEvent() {
+        this.onRegisterEvent(this.ui.skill_frame, () => {
+            this.ui.skill_frame.getComponent(Button).interactable = false;
+            engine.listenerManager.trigger(GameListenerType.DoSkill, (this.petId, this.skillId))
+        }, this)
     }
 
 }

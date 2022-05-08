@@ -14,16 +14,16 @@ export class McGame {
     public static isWin: boolean = false;
     public static isEnd: boolean = false;
     //关卡id
-    public static levelId: number = 0;
+    public static levelId: string = null;
     //关卡json
     public static levelJson: any = null;
 
-    public static async init(levelId: number) {
+    public static async init(levelId: string) {
         window['McGame'] = this;
         return new Promise<boolean>(async (resolved, reject) => {
+            this.levelId = levelId;
             if (!this.battleManager)
                 this.battleManager = new BattleManager();
-
             resolved(true);
         });
     }
@@ -51,14 +51,9 @@ export class McGame {
      */
     public static savePetInfo(pets) { }
 
-    /**
-     * 失败
-     */
-    public static loseGame() {
-        let playerInfo = GameDataManager.getInstance().getGameData().playerInfo;
-        playerInfo.winRepeatedly = 0;
-        playerInfo.save();
-    }
+    public static loseGame() { }
+
+    public static winGame() { }
 
 }
 

@@ -20,9 +20,9 @@ export class GameData {
     //所有区域解锁信息
     public areaInfo: AreaInfo = null;
     //道具集合
-    public propList: Map<number, PropInfo> = null;
+    public propList: Map<string, PropInfo> = null;
     /**精灵背包 */
-    public petBagList: Map<number, PetData> = null
+    public petBagList: Map<string, PetData> = null
     //----------------------------------------------------------------
 
     constructor() {

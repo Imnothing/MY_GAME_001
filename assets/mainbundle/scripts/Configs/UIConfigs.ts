@@ -84,6 +84,20 @@ export const UIConfigs = {
         prefabPath: `${BundleConfigs.GameBundle}/prefabs/UI/shop/ShopUI`,
         layerZIndex: EnumUILayer.UILayer,
     },
+    /**
+     * 精灵详情页
+     */
+    petDetail: <ViewConfig>{
+        prefabPath: `${BundleConfigs.GameBundle}/prefabs/UI/pet/PetDetail`,
+        layerZIndex: EnumUILayer.UILayer,
+    },
+    /**
+     * 精灵背包页
+     */
+    petBag: <ViewConfig>{
+        prefabPath: `${BundleConfigs.GameBundle}/prefabs/UI/pet/PetBag`,
+        layerZIndex: EnumUILayer.UILayer,
+    },
 
 
 };

@@ -5,6 +5,8 @@ export class AbnormalConfig {
        
 	/** 异常ID */
 	Id: string;
+	/** 图标 */
+	Icon: string;
 	/** 异常名称 */
 	Name: string;
 	/** 异常类型 */

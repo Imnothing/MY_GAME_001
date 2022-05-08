@@ -27,7 +27,7 @@ export default class PetUI extends BaseUI {
     /** 精灵基本信息 */
     private petInfo: FightPet = null;
     /** 战斗专属Id */
-    private fightId: number = 0;
+    private fightId: string = null;
     /** 精灵增益效果 */
     private pet_buffs: Map<EnumBuff, number> = null;
     /** 精灵减益效果 */
@@ -40,6 +40,8 @@ export default class PetUI extends BaseUI {
     private multi_damage: number = 1;
     /** 受到伤害倍率 */
     private multi_hurt: number = 1;
+    /** 是否死亡 */
+    private isDead: boolean = false;
 
 
 
@@ -52,6 +54,8 @@ export default class PetUI extends BaseUI {
         onShowed && onShowed();
         this.petInfo = data.petInfo;
         this.fightId = data.fightId;
+        this.isDead = false;
+        this.initPet();
     }
 
     hide(onHided: Function): void {
@@ -64,7 +68,18 @@ export default class PetUI extends BaseUI {
 
     /** 初始化精灵状态，切换上场时调用 */
     initPet() {
-
+        // 初始化精灵Buff
+        this.pet_buffs = new Map<EnumBuff, number>();
+        // 初始化精灵DeBuff
+        this.pet_deBuffs = new Map<EnumDeBuff, number>();
+        // 初始化精灵异常状态
+        this.pet_abnormal = new Map<EnumAbnormal, number>();
+        // 初始化精灵先制等级
+        this.pet_priority = 0;
+        // 初始化精灵造成伤害倍率
+        this.multi_damage = 1;
+        // 初始化精灵受到伤害倍率
+        this.multi_hurt = 1
     }
 
     /** 初始化精灵状态，回合开始时调用 */
@@ -85,6 +100,7 @@ export default class PetUI extends BaseUI {
      * @param id 技能
      */
     onUseSkill(id: string) {
+        //检测异常状态
         let abConfig: AbnormalConfig = ConfigReader.readAbnormalConfig();
         for (let abnormal in this.pet_abnormal) {
             if (this.pet_abnormal[abnormal] && abConfig[abnormal].Type == EnumAbType.Control) return false;
@@ -110,6 +126,10 @@ export default class PetUI extends BaseUI {
 
     getDeBuffs() {
         return this.pet_deBuffs;
+    }
+
+    getFightId() {
+        return this.fightId;
     }
 
 }

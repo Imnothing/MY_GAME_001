@@ -5,13 +5,22 @@
  * @Version 1.0
  */
 
-import { _decorator, Component, Node, Button, Event, Label } from 'cc';
+import { _decorator, Component, Node, Button, Event, Label, Prefab, instantiate, Sprite } from 'cc';
 import { BundleConfigs } from '../../../../mainbundle/scripts/Configs/BundleConfigs';
-import { EnumUILayer } from '../../../../mainbundle/scripts/Configs/UIConfigs';
+import { ResPathEnum } from '../../../../mainbundle/scripts/Configs/ResPathEnum';
+import { EnumUILayer, UIConfigs } from '../../../../mainbundle/scripts/Configs/UIConfigs';
 import { ConfigReader } from '../../../../mainbundle/scripts/Data/ConfigReader';
-import { PetData } from '../../../../mainbundle/scripts/Data/PetData';
+import { PropInfo } from '../../../../mainbundle/scripts/Data/Model/PropInfo';
+import { PetData, Resistance } from '../../../../mainbundle/scripts/Data/PetData';
+import { AbnormalConfig } from '../../../../mainbundle/scripts/Datatable/AbnormalConfig';
+import { AttributeConfig } from '../../../../mainbundle/scripts/Datatable/AttributeConfig';
+import { SkillConfig } from '../../../../mainbundle/scripts/Datatable/SkillConfig';
+import { GameDataManager } from '../../../../mainbundle/scripts/Manager/GameDataManager';
+import { engine } from '../../../../scripts/framework/engine';
+import ScrollViewContent from '../../../../scripts/framework/lib/components/ScrollView/ScrollViewContent';
 import { BaseUI } from '../../../../scripts/framework/lib/router/BaseUI';
 import auto_PetDetail from './autoUI/auto_PetDetail';
+import PetDetailSkillItem from './PetDetailSkillItem';
 const { ccclass, property } = _decorator;
 enum EnumTab {
     Info = 0,
@@ -22,6 +31,12 @@ enum EnumTab {
 
 @ccclass
 export default class PetDetail extends BaseUI {
+
+    @property({ type: Prefab, displayName: '' })
+    private petDetailSkillItem: Prefab = null;
+
+    @property({ type: Prefab, displayName: '' })
+    private petBagItem: Prefab = null;
     ui: auto_PetDetail = null;
 
     protected static prefabUrl = `${BundleConfigs.HomeBundle}/prefabs/pet/PetDetail`;
@@ -29,6 +44,7 @@ export default class PetDetail extends BaseUI {
     protected static layerZIndex = EnumUILayer.UILayer;
     private enumTab = EnumTab.Info;
     private petInfo: PetData = null;
+    private spSkillId: string = null;
 
     onLoad() {
         this.ui = this.node.addComponent(auto_PetDetail);
@@ -74,6 +90,10 @@ export default class PetDetail extends BaseUI {
             this.enumTab = EnumTab.Prop;
             this.switchTab(this.enumTab)
         }, this)
+
+        this.onRegisterEvent(this.ui.btn_back, () => {
+            this.doClose(UIConfigs.petDetail)
+        }, this)
     }
 
     switchTab(tab: EnumTab) {
@@ -116,6 +136,77 @@ export default class PetDetail extends BaseUI {
         //体力
         this.ui.lbl_hp.getComponent(Label).string = String(this.petInfo.battleValue.hp);
         this.ui.lbl_learn_hp.getComponent(Label).string = String(this.petInfo.learningValue.hp);
+
+        //精灵技能
+        let skills = this.petInfo.skills;
+        if (skills) {
+            for (let i in skills) {
+                let skill: SkillConfig = ConfigReader.readSkillConfig(i);
+                if (skill.Special == 0) {
+                    let skill_node = instantiate(this.petDetailSkillItem);
+                    this.ui.grid_skill.addChild(skill_node);
+                    skill_node.getComponent(PetDetailSkillItem).show({ skill: skill, pp: skills[i] })
+                } else {
+                    //图标
+                    let attribute: AttributeConfig = ConfigReader.readAttributeConfig(skill.Attribute);
+                    this.ui.ico_attribute_spSkill.getComponent(Sprite).spriteFrame = engine.resLoader.getAtlasByTag(ResPathEnum.Attribute.bundle, ResPathEnum.Attribute.resPath, attribute.Icon)
+                    //技能名称
+                    this.ui.lbl_spSkill.getComponent(Label).string = skill.Name;
+                    //技能PP
+                    this.ui.lbl_PP_spSkill.getComponent(Label).string = `${skills[i]}/${skill.PP}`
+                    //技能威力
+                    this.ui.lbl_damage_spSkill.getComponent(Label).string = String(skill.Power);
+                }
+            }
+
+        }
+
+        //精灵抗性
+        let resist: Resistance = this.petInfo.resistance;
+        if (resist) {
+            //伤害抗性
+            //致命伤害
+            this.ui.lbl_critical.getComponent(Label).string = `${resist.damageResist.criticalResist * 100}%`
+            //固定伤害
+            this.ui.lbl_fix.getComponent(Label).string = `${resist.damageResist.fixedResist * 100}%`
+            //百分比伤害
+            this.ui.lbl_percent.getComponent(Label).string = `${resist.damageResist.percentage * 100}%`
+
+            //异常抗性
+            //控制
+            let controlResist: Map<string, number> = resist.abnormalResist.controlResist;
+            let index = 1;
+            for (let i in controlResist) {
+                this.ui[`control_item${i}`].active = true;
+                let abnormal: AbnormalConfig = ConfigReader.readAbnormalConfig(i);
+                this.ui[`ico_control${i}`].getComponent(Sprite).spriteFrame = engine.resLoader.getAtlasByTag(ResPathEnum.Attribute.bundle, ResPathEnum.Attribute.resPath, abnormal.Icon)
+                this.ui[`lbl_control${i}`].getComponent(Label).string = "免疫" + abnormal.Name;
+                this.ui[`num_control${i}`].getComponent(Label).string = controlResist[i] + "%";
+                index++;
+            }
+            index = 1;
+            //弱化
+            let weekResist: Map<string, number> = resist.abnormalResist.weekResist;
+            for (let i in weekResist) {
+                this.ui[`week_item${i}`].active = true;
+                let abnormal: AbnormalConfig = ConfigReader.readAbnormalConfig(i);
+                this.ui[`ico_week${i}`].getComponent(Sprite).spriteFrame = engine.resLoader.getAtlasByTag(ResPathEnum.Attribute.bundle, ResPathEnum.Attribute.resPath, abnormal.Icon)
+                this.ui[`lbl_week${i}`].getComponent(Label).string = "免疫" + abnormal.Name;
+                this.ui[`num_week${i}`].getComponent(Label).string = weekResist[i] + "%";
+                index++;
+            }
+        }
+
+        //精灵道具
+        let propList: Map<string, PropInfo> = GameDataManager.getInstance().getGameData().propList;
+        if (propList) {
+            let arr: Array<PropInfo> = [];
+            for (let key in propList) {
+                arr.push(propList[key]);
+            }
+            this.ui.scv_prop.getComponent(ScrollViewContent).setData(arr);
+        }
+
     }
 
 }

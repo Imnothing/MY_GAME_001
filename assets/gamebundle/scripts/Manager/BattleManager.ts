@@ -40,7 +40,9 @@ export class BattleManager {
     }
 
     setInitData(data: any) {
+        // 我方所有精灵
         this.own_pets = this.analysisPetData(data.own.petJson, EnumPlayer.Own);
+        // 敌方所有精灵
         this.enemy_pets = this.analysisPetData(data.enemy.petJson, EnumPlayer.Enemy);
 
         this.showPet(EnumPlayer.Own);
@@ -49,10 +51,13 @@ export class BattleManager {
 
     analysisPetData(petJson, player: EnumPlayer) {
         let fightPetJson = new Map<String, Node>();
+        let index: number = 1
         for (let i in petJson) {
+            // 精灵所有数据
             let petData: PetData = petJson[i];
-            let fightId = `${player.valueOf()}_${Date.now()}`
-
+            // 生成战斗专属独一Id
+            let fightId = `${player.valueOf()}_${index}`;
+            // 将精灵所有数据转化为战斗数据
             let fightPet: FightPet = new FightPet();
             fightPet.id = petData.id;
             fightPet.attribute = petData.attribute;
@@ -60,10 +65,12 @@ export class BattleManager {
             fightPet.features = petData.features;
             fightPet.level = petData.level;
             fightPet.resistance = petData.resistance;
-
+            // 生成精灵节点
             let pet_node = instantiate(engine.uiManager.getPrefab(UIConfigs.petUI));
             pet_node.getComponent(PetUI).show({ petInfo: fightPet, fightId: fightId })
             fightPetJson[fightId] = pet_node;
+
+            index++;
         }
 
         return fightPetJson;
@@ -101,7 +108,7 @@ export class BattleManager {
             if (pet_node) {
                 this.own_pet_now = pet_node;
                 //发送表现层修改通知
-                engine.listenerManager.trigger(GameListenerType.RefreshBattlePetUI, player, pet_node)
+                engine.listenerManager.trigger(GameListenerType.RefreshBattlePetUI, player)
             }
         } else if (player == EnumPlayer.Enemy) {
             if (!fightId) {
@@ -118,11 +125,9 @@ export class BattleManager {
             if (pet_node) {
                 this.enemy_pet_now = pet_node;
                 //发送表现层修改通知
-                engine.listenerManager.trigger(GameListenerType.RefreshBattlePetUI, player, pet_node)
+                engine.listenerManager.trigger(GameListenerType.RefreshBattlePetUI, player)
             }
         }
-
-
     }
 
     /**
@@ -167,6 +172,13 @@ export class BattleManager {
             case EnumAttribute.chaos.valueOf():
                 return attribute.chaos;
         }
+    }
+
+    getPetNow(player: EnumPlayer) {
+        if (EnumPlayer.Own)
+            return this.own_pet_now;
+        else
+            return this.enemy_pet_now;
     }
 }
 

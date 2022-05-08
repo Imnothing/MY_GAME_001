@@ -16,7 +16,7 @@ export class FightPet {
     /** 特性 */
     features: EnumFeatures = null;
     /** 技能 */
-    skills: Map<SkillConfig, number> = new Map<SkillConfig, number>();
+    skills: Map<string, number> = new Map<string, number>();
 }
 
 /** 战斗属性值 */

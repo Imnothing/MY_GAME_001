@@ -759,7 +759,7 @@
     "_lpos": {
       "__type__": "cc.Vec3",
       "x": 0,
-      "y": -95,
+      "y": -90,
       "z": 0
     },
     "_lrot": {
@@ -1252,8 +1252,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 180,
-      "height": 60
+      "width": 150,
+      "height": 50
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -1289,7 +1289,7 @@
       "a": 255
     },
     "_spriteFrame": {
-      "__uuid__": "17614df1-3b4e-4629-beb7-3630850ee7d9@f9941",
+      "__uuid__": "d7d18e4a-8fa2-46ee-8723-5305b6813486@f9941",
       "__expectedType__": "cc.SpriteFrame"
     },
     "_type": 0,
@@ -1354,7 +1354,7 @@
       "a": 255
     },
     "_normalSprite": {
-      "__uuid__": "17614df1-3b4e-4629-beb7-3630850ee7d9@f9941",
+      "__uuid__": "d7d18e4a-8fa2-46ee-8723-5305b6813486@f9941",
       "__expectedType__": "cc.SpriteFrame"
     },
     "_hoverSprite": null,
@@ -1385,7 +1385,7 @@
     "_left": 0,
     "_right": 0,
     "_top": 0,
-    "_bottom": 0,
+    "_bottom": 10,
     "_horizontalCenter": 0,
     "_verticalCenter": 0,
     "_isAbsLeft": true,

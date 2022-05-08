@@ -3606,7 +3606,7 @@
         "__id__": 160
       }
     ],
-    "_active": false,
+    "_active": true,
     "_components": [
       {
         "__id__": 708
@@ -21382,7 +21382,7 @@
         "__id__": 986
       }
     ],
-    "_active": true,
+    "_active": false,
     "_components": [
       {
         "__id__": 994
@@ -22026,7 +22026,7 @@
         "__id__": 1016
       }
     ],
-    "_active": true,
+    "_active": false,
     "_components": [
       {
         "__id__": 1024
@@ -22670,7 +22670,7 @@
         "__id__": 1046
       }
     ],
-    "_active": true,
+    "_active": false,
     "_components": [
       {
         "__id__": 1054
@@ -22685,7 +22685,7 @@
     "_lpos": {
       "__type__": "cc.Vec3",
       "x": 0,
-      "y": -149,
+      "y": -105,
       "z": 0
     },
     "_lrot": {
@@ -23310,7 +23310,7 @@
     "_contentSize": {
       "__type__": "cc.Size",
       "width": 270,
-      "height": 166
+      "height": 34
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -23617,7 +23617,7 @@
         "__id__": 1090
       }
     ],
-    "_active": true,
+    "_active": false,
     "_components": [
       {
         "__id__": 1098
@@ -24261,7 +24261,7 @@
         "__id__": 1120
       }
     ],
-    "_active": true,
+    "_active": false,
     "_components": [
       {
         "__id__": 1128
@@ -24276,7 +24276,7 @@
     "_lpos": {
       "__type__": "cc.Vec3",
       "x": 0,
-      "y": -105,
+      "y": -61,
       "z": 0
     },
     "_lrot": {
@@ -24905,7 +24905,7 @@
         "__id__": 1150
       }
     ],
-    "_active": true,
+    "_active": false,
     "_components": [
       {
         "__id__": 1158
@@ -24920,7 +24920,7 @@
     "_lpos": {
       "__type__": "cc.Vec3",
       "x": 0,
-      "y": -149,
+      "y": -61,
       "z": 0
     },
     "_lrot": {
@@ -25546,7 +25546,7 @@
     "_contentSize": {
       "__type__": "cc.Size",
       "width": 270,
-      "height": 166
+      "height": 34
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -26803,37 +26803,6 @@
     "fileId": "edeISTAmdD0K4NjJtrNcir"
   },
   {
-    "__type__": "cc.ScrollView",
-    "_name": "",
-    "_objFlags": 0,
-    "__editorExtras__": {},
-    "node": {
-      "__id__": 1204
-    },
-    "_enabled": true,
-    "__prefab": {
-      "__id__": 1224
-    },
-    "bounceDuration": 0.23,
-    "brake": 0.75,
-    "elastic": true,
-    "inertia": true,
-    "horizontal": false,
-    "vertical": true,
-    "cancelInnerEvents": true,
-    "scrollEvents": [],
-    "_content": {
-      "__id__": 1206
-    },
-    "_horizontalScrollBar": null,
-    "_verticalScrollBar": null,
-    "_id": ""
-  },
-  {
-    "__type__": "cc.CompPrefabInfo",
-    "fileId": "f62ydTzyNNL59UtOlUa0KD"
-  },
-  {
     "__type__": "cc.Widget",
     "_name": "",
     "_objFlags": 0,
@@ -26842,7 +26811,7 @@
     },
     "_enabled": true,
     "__prefab": {
-      "__id__": 1226
+      "__id__": 1224
     },
     "_alignFlags": 1,
     "_target": null,
@@ -26867,6 +26836,43 @@
   {
     "__type__": "cc.CompPrefabInfo",
     "fileId": "83t6Sme9dDyoOG1RxLg2ti"
+  },
+  {
+    "__type__": "9d0cagwb21MYLlgB8gHoHp5",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 1204
+    },
+    "_enabled": true,
+    "__prefab": {
+      "__id__": 1226
+    },
+    "bounceDuration": 1,
+    "brake": 0.5,
+    "elastic": false,
+    "inertia": true,
+    "horizontal": false,
+    "vertical": true,
+    "cancelInnerEvents": true,
+    "scrollEvents": [],
+    "_content": {
+      "__id__": 1206
+    },
+    "_horizontalScrollBar": null,
+    "_verticalScrollBar": null,
+    "caculatePosition": false,
+    "scrollViewItemPrefab": {
+      "__uuid__": "44876fb6-7825-4a7b-93d7-13cecf63266d",
+      "__expectedType__": "cc.Prefab"
+    },
+    "prefabClassName": "PetDetailPropItem",
+    "fenzhen": true,
+    "_id": ""
+  },
+  {
+    "__type__": "cc.CompPrefabInfo",
+    "fileId": "5egWvGRUJNqoynVd9c9LpO"
   },
   {
     "__type__": "cc.PrefabInfo",
@@ -28185,6 +28191,14 @@
     "_enabled": true,
     "__prefab": {
       "__id__": 1295
+    },
+    "petDetailSkillItem": {
+      "__uuid__": "209cfde0-3bcf-49c7-a6e5-d3eef23ced72",
+      "__expectedType__": "cc.Prefab"
+    },
+    "petBagItem": {
+      "__uuid__": "761902d0-2b3b-472e-bf8a-348f4667fc68",
+      "__expectedType__": "cc.Prefab"
     },
     "_id": ""
   },

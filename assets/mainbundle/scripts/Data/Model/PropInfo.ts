@@ -4,7 +4,7 @@
 
 export class PropInfo {
     /**道具id */
-    public id: number = 0;
+    public id: string = null;
     /**道具数量 */
     public count: number = 0;
     constructor(data?: any) {
