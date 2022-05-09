@@ -17,24 +17,10 @@ export class PlayerInfo extends BaseModel {
     public no: string = '';
     //当前关卡Id
     public level: number = 1;
-    //经验
-    public exp: number = 0;
-    //创建时间
-    public create_time: string = null;
-
     //当前金币总数
     public gold: number = 0;
     //钻石
     public diamond: number = 0;
-    //爱心
-    public heart: number = 5;
-    //星星
-    public star: number = 1;
-    /**性别 */ //【1-男，2-女】
-    public sex: number = 1;
-
-    //上次体力恢复时间
-    public lastHeartRecoveryTime: number = 0;
 
     constructor(data?: any) {
         super(data);

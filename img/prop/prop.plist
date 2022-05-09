@@ -60,7 +60,7 @@
                 <key>spriteSourceSize</key>
                 <string>{100,100}</string>
                 <key>textureRect</key>
-                <string>{{500,0},{100,100}}</string>
+                <string>{{0,100},{100,100}}</string>
                 <key>textureRotated</key>
                 <false/>
             </dict>
@@ -105,7 +105,7 @@
                 <key>spriteSourceSize</key>
                 <string>{100,100}</string>
                 <key>textureRect</key>
-                <string>{{600,0},{100,100}}</string>
+                <string>{{100,100},{100,100}}</string>
                 <key>textureRotated</key>
                 <false/>
             </dict>
@@ -120,7 +120,7 @@
                 <key>spriteSourceSize</key>
                 <string>{100,100}</string>
                 <key>textureRect</key>
-                <string>{{800,0},{100,100}}</string>
+                <string>{{300,100},{100,100}}</string>
                 <key>textureRotated</key>
                 <false/>
             </dict>
@@ -135,7 +135,7 @@
                 <key>spriteSourceSize</key>
                 <string>{100,100}</string>
                 <key>textureRect</key>
-                <string>{{900,0},{100,100}}</string>
+                <string>{{400,100},{100,100}}</string>
                 <key>textureRotated</key>
                 <false/>
             </dict>
@@ -150,7 +150,7 @@
                 <key>spriteSourceSize</key>
                 <string>{100,100}</string>
                 <key>textureRect</key>
-                <string>{{1000,0},{100,100}}</string>
+                <string>{{0,200},{100,100}}</string>
                 <key>textureRotated</key>
                 <false/>
             </dict>
@@ -165,7 +165,7 @@
                 <key>spriteSourceSize</key>
                 <string>{100,100}</string>
                 <key>textureRect</key>
-                <string>{{700,0},{100,100}}</string>
+                <string>{{200,100},{100,100}}</string>
                 <key>textureRotated</key>
                 <false/>
             </dict>
@@ -180,7 +180,7 @@
                 <key>spriteSourceSize</key>
                 <string>{100,100}</string>
                 <key>textureRect</key>
-                <string>{{1100,0},{100,100}}</string>
+                <string>{{100,200},{100,100}}</string>
                 <key>textureRotated</key>
                 <false/>
             </dict>
@@ -195,7 +195,82 @@
                 <key>spriteSourceSize</key>
                 <string>{100,100}</string>
                 <key>textureRect</key>
-                <string>{{1200,0},{100,100}}</string>
+                <string>{{200,200},{100,100}}</string>
+                <key>textureRotated</key>
+                <false/>
+            </dict>
+            <key>learn_forget.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{0,0}</string>
+                <key>spriteSize</key>
+                <string>{100,100}</string>
+                <key>spriteSourceSize</key>
+                <string>{100,100}</string>
+                <key>textureRect</key>
+                <string>{{300,200},{100,100}}</string>
+                <key>textureRotated</key>
+                <false/>
+            </dict>
+            <key>learn_up.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{0,0}</string>
+                <key>spriteSize</key>
+                <string>{100,100}</string>
+                <key>spriteSourceSize</key>
+                <string>{100,100}</string>
+                <key>textureRect</key>
+                <string>{{400,200},{100,100}}</string>
+                <key>textureRotated</key>
+                <false/>
+            </dict>
+            <key>lv_up1.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{0,0}</string>
+                <key>spriteSize</key>
+                <string>{100,100}</string>
+                <key>spriteSourceSize</key>
+                <string>{100,100}</string>
+                <key>textureRect</key>
+                <string>{{0,300},{100,100}}</string>
+                <key>textureRotated</key>
+                <false/>
+            </dict>
+            <key>lv_up100.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{0,0}</string>
+                <key>spriteSize</key>
+                <string>{100,100}</string>
+                <key>spriteSourceSize</key>
+                <string>{100,100}</string>
+                <key>textureRect</key>
+                <string>{{200,300},{100,100}}</string>
+                <key>textureRotated</key>
+                <false/>
+            </dict>
+            <key>lv_up2.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{0,0}</string>
+                <key>spriteSize</key>
+                <string>{100,100}</string>
+                <key>spriteSourceSize</key>
+                <string>{100,100}</string>
+                <key>textureRect</key>
+                <string>{{100,300},{100,100}}</string>
                 <key>textureRotated</key>
                 <false/>
             </dict>
@@ -210,7 +285,37 @@
                 <key>spriteSourceSize</key>
                 <string>{100,100}</string>
                 <key>textureRect</key>
-                <string>{{1300,0},{100,100}}</string>
+                <string>{{300,300},{100,100}}</string>
+                <key>textureRotated</key>
+                <false/>
+            </dict>
+            <key>talent_random.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{0,0}</string>
+                <key>spriteSize</key>
+                <string>{100,100}</string>
+                <key>spriteSourceSize</key>
+                <string>{100,100}</string>
+                <key>textureRect</key>
+                <string>{{400,300},{100,100}}</string>
+                <key>textureRotated</key>
+                <false/>
+            </dict>
+            <key>talent_up1.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{0,0}</string>
+                <key>spriteSize</key>
+                <string>{100,100}</string>
+                <key>spriteSourceSize</key>
+                <string>{100,100}</string>
+                <key>textureRect</key>
+                <string>{{0,400},{100,100}}</string>
                 <key>textureRotated</key>
                 <false/>
             </dict>
@@ -226,9 +331,9 @@
             <key>realTextureFileName</key>
             <string>prop.png</string>
             <key>size</key>
-            <string>{1400,100}</string>
+            <string>{500,500}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:ad55f71adc79686837b4f2e99a719358:3537c8750ca0aef25fd2241643016ac7:f00710e483f99d68c2a3ea567d288b30$</string>
+            <string>$TexturePacker:SmartUpdate:def9b96cd019d8228ece633af18339c5:5c183af07d83c1ed49de849bd31da5f6:f00710e483f99d68c2a3ea567d288b30$</string>
             <key>textureFileName</key>
             <string>prop.png</string>
         </dict>

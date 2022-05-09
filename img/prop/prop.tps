@@ -198,7 +198,14 @@
             <key type="filename">drug_pp5.png</key>
             <key type="filename">feture_active_chip.png</key>
             <key type="filename">feture_random_drug.png</key>
+            <key type="filename">learn_forget.png</key>
+            <key type="filename">learn_up.png</key>
+            <key type="filename">lv_up1.png</key>
+            <key type="filename">lv_up100.png</key>
+            <key type="filename">lv_up2.png</key>
             <key type="filename">signet_chip.png</key>
+            <key type="filename">talent_random.png</key>
+            <key type="filename">talent_up1.png</key>
             <struct type="IndividualSpriteSettings">
                 <key>pivotPoint</key>
                 <point_f>0.5,0.5</point_f>
@@ -230,6 +237,13 @@
             <filename>feture_active_chip.png</filename>
             <filename>feture_random_drug.png</filename>
             <filename>signet_chip.png</filename>
+            <filename>learn_forget.png</filename>
+            <filename>learn_up.png</filename>
+            <filename>lv_up1.png</filename>
+            <filename>lv_up100.png</filename>
+            <filename>lv_up2.png</filename>
+            <filename>talent_random.png</filename>
+            <filename>talent_up1.png</filename>
         </array>
         <key>ignoreFileList</key>
         <array/>
