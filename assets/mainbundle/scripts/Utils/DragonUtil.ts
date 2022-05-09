@@ -9,18 +9,18 @@ import { engine } from "../../../scripts/framework/engine";
 
 export class DragonUtil {
     public static dragonPool: NodePool = new NodePool();
-    public static dragonMap:Map<string,Node> = new Map<string,Node> ();
+    public static dragonMap: Map<string, Node> = new Map<string, Node>();
     /**
      * 播放龙骨
      * diff  偏移
      * delay  延迟
      * timeScale  速度
      */
-    public static playDragon(file: string, aniName, parent: Node, playTimes: number, position: Vec3, scale?: number, noDestroy?: boolean, completeCallback?: Function,frameCallback?: Function, timeScale?: number) {
+    public static playDragon(file: string, aniName, parent: Node, playTimes: number, position: Vec3, scale?: number, noDestroy?: boolean, completeCallback?: Function, frameCallback?: Function, timeScale?: number) {
         // let node = this.dragonPool.get() || new Node();
         // let node = new Node();
         let node = this.dragonMap[file];
-        if(!node){
+        if (!node) {
             node = new Node();
         }
         node.setPosition(position);
@@ -47,14 +47,13 @@ export class DragonUtil {
                         node.destroy();
                     }
                     // this.dragonPool.put(node);
-                    // LogWrap.log(LOG_TAG.DEV_GYW, "龙骨播放回调" + file);
                     armatureDisplay.removeEventListener(dragonBones.EventObject.COMPLETE, this, armatureDisplay);
                     completeCallback && completeCallback();
                 }, armatureDisplay);
-                if(frameCallback)
+                if (frameCallback)
                     armatureDisplay.addEventListener(dragonBones.EventObject.FRAME_EVENT, (event) => {
                         // cc.log(event.animationState.name);
-                        console.log("event.animationState.name",event.animationState.name);
+                        console.log("event.animationState.name", event.animationState.name);
                         frameCallback(event.animationState.name);
                     }, this);
             } else {
