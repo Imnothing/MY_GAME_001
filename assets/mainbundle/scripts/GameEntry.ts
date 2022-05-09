@@ -4,7 +4,6 @@ import { LOG_TAG } from "../../scripts/framework/lib/logger/LoggerInterface";
 import { BundleConfigs } from "./Configs/BundleConfigs";
 import { UIConfigs } from "./Configs/UIConfigs";
 import { GameDataManager } from "./Manager/GameDataManager";
-import { PlatformManager } from "./Platform/PlatformManager";
 import { Utils } from "./Utils/Utils";
 
 const { ccclass, property } = _decorator;
@@ -50,7 +49,7 @@ export default class GameEntry extends Component {
         engine.ccTable.init("config/");
         //初始化音频管理器
         engine.audioManager.init();
-        engine.http.init("http://www.liwaishenghuo.com/match_dev");
+        // engine.http.init("http://www.liwaishenghuo.com/match_dev");
         // 初始化面板路由器 
         engine.uiManager.init(this.rootLayerNode, true);
     }
@@ -60,11 +59,11 @@ export default class GameEntry extends Component {
         // 加载 Bundle,Bundle需要在面板上勾选
         await engine.resLoader.loadBundle(BundleConfigs.LoadingBundle);
         await engine.resLoader.loadBundle(BundleConfigs.CommonBundle);
-        // await engine.resLoader.loadBundle(BundleConfigs.HomeBundle);
-        // await engine.resLoader.loadBundle(BundleConfigs.GameBundle);
+        await engine.resLoader.loadBundle(BundleConfigs.HomeBundle);
+        await engine.resLoader.loadBundle(BundleConfigs.GameBundle);
 
         //加载数据表
-        // engine.ccTable.loadTable("WordText");//单表模式
+        engine.ccTable.loadTable("WordText");//单表模式
         //多表模式
         // let tables = ["WordText", "CommonParameter", "MusicConfig", "EffectConfig", "LevelConfig", "ItemConfig", "TaskConfig", "AreaConfig", "PicConfig", "ShopConfig", "RechargeConfig", "ChipConfig"]
         // engine.ccTable.loadTables(tables);
