@@ -219,7 +219,7 @@ export default class ScrollViewContent extends ScrollView {
                     //     childNode.getComponent(UIOpacity).opacity = 255;
                     // }
                     let list_item = childNode.getChildByName("list_item");
-                    if (!list_item.active) {
+                    if (list_item && !list_item.active) {
                         list_item.active = true;
                     }
                 }
@@ -234,7 +234,7 @@ export default class ScrollViewContent extends ScrollView {
                     //     childNode.getComponent(UIOpacity).opacity = 0;
                     // }
                     let list_item = childNode.getChildByName("list_item");
-                    if (list_item.active) {
+                    if (list_item && list_item.active) {
                         list_item.active = false;
                     }
                 }

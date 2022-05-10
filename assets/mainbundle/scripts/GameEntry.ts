@@ -65,10 +65,9 @@ export default class GameEntry extends Component {
         //加载数据表
         engine.ccTable.loadTable("WordText");//单表模式
         //多表模式
-        // let tables = ["WordText", "CommonParameter", "MusicConfig", "EffectConfig", "LevelConfig", "ItemConfig", "TaskConfig", "AreaConfig", "PicConfig", "ShopConfig", "RechargeConfig", "ChipConfig"]
-        // engine.ccTable.loadTables(tables);
-        // await engine.uiManager.openUIAsync(UIConfigs.loadingUI, null);
-        // PlatformManager.getInstance().init();
-        // GameDataManager.getInstance().init();
+        let tables = ["EffectConfig", "SkillConfig", "SpiritConfig", "PetConfig", "SptConfig", "ShopConfig", "AttributeConfig", "FeatureConfig", "ItemConfig", "CharacterConfig", "AbnormalConfig"]
+        engine.ccTable.loadTables(tables);
+        await engine.uiManager.openUIAsync(UIConfigs.loadingUI, null);
+        GameDataManager.getInstance().init();
     }
 }

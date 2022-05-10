@@ -34,7 +34,7 @@ export class GameData {
      * 初始化游戏本地数据
      * @param settingInfo
      */
-    initLoalInfo() {
+    initLocalInfo() {
         //不是第一次登陆，则读取本地数据到缓存中
         let settingJson = engine.storage.getLocalItem(LocalKeys.LOCAL_SETTINGINFO);
         this.settingInfo = settingJson ? new SettingInfo(JSON.parse(settingJson)) : new SettingInfo();

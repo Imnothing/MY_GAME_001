@@ -57,18 +57,34 @@ export const UIConfigs = {
         layerZIndex: EnumUILayer.TipLayer,
     },
     /**
-     * 游戏启动页
+     * 游戏加载页
      */
     loadingUI: <ViewConfig>{
         prefabPath: `${BundleConfigs.LoadingBundle}/prefabs/LoadingView`,
         layerZIndex: EnumUILayer.UILayer,
     },
     ////////////////////////////////////////////////////////////////////////////////////
+    /**
+     * 战斗加载页
+     */
+    gamePreloadUI: <ViewConfig>{
+        prefabPath: `${BundleConfigs.GameBundle}/prefabs/UI/Battle/gamePreloadUI`,
+        layerZIndex: EnumUILayer.UILayer,
+    },
+    /**
+     * 精灵UI
+     */
+    battleUI: <ViewConfig>{
+        prefabPath: `${BundleConfigs.GameBundle}/prefabs/UI/Battle/BattleUI`,
+        layerZIndex: EnumUILayer.UILayer,
+    },
+    /**
+     * 精灵UI
+     */
     petUI: <ViewConfig>{
         prefabPath: `${BundleConfigs.GameBundle}/prefabs/UI/Battle/PetUI`,
         layerZIndex: EnumUILayer.UILayer,
     },
-
     ////////////////////////////////////////////////////////////////////////////////
     /**
      * 游戏主页面

@@ -64,20 +64,19 @@ export default class LoadingView extends BaseUI {
 
         // 加载游戏设置面板
         this._onLoadProgressChanged(0.4, "加载游戏资源...");
-        await engine.uiManager.loadAsync(UIConfigs.gamePrealoadUI);
+        await engine.uiManager.loadAsync(UIConfigs.gamePreloadUI);
 
         // // 加载游戏主面板
         this._onLoadProgressChanged(0.5, "加载游戏资源...");
         // await engine.uiManager.loadAsync(TestBombUI);
         //预加载 资源
-        await engine.resLoader.loadBundleResSync(ResPathEnum.Icons.bundle, ResPathEnum.Icons.resPath, SpriteAtlas);
-        await engine.resLoader.loadBundleResSync(ResPathEnum.CellAtlas.bundle, ResPathEnum.CellAtlas.resPath, SpriteAtlas);
-        await engine.resLoader.loadBundleResSync(ResPathEnum.Shadow.bundle, ResPathEnum.Shadow.resPath, SpriteAtlas);
-        await engine.resLoader.loadBundleResSync(ResPathEnum.GameGold.bundle, ResPathEnum.GameGold.resPath, Prefab);
+        await engine.resLoader.loadBundleResSync(ResPathEnum.Abnormal.bundle, ResPathEnum.Abnormal.resPath, SpriteAtlas);
+        await engine.resLoader.loadBundleResSync(ResPathEnum.Attribute.bundle, ResPathEnum.Attribute.resPath, SpriteAtlas);
+        await engine.resLoader.loadBundleResSync(ResPathEnum.PropIcon.bundle, ResPathEnum.PropIcon.resPath, SpriteAtlas);
         // 打开主面板
         this._onLoadProgressChanged(1.0);
         if (ConstValue.DEBUG_MAP_LOCAL) {
-            engine.uiManager.openUI(UIConfigs.gamePrealoadUI, null, () => {
+            engine.uiManager.openUI(UIConfigs.gamePreloadUI, null, () => {
                 this.doClose(UIConfigs.loadingUI, true);
             });
         } else {

@@ -8,7 +8,7 @@ export default class auto_LoadingView extends Component {
 	loadingProgressBar: Node;
 	Bar: Node;
 
-	public static URL:string = "assets/loadingbundle/prefabs/LoadingView.prefab"
+	public static URL:string = "assets\loadingbundle\prefabs\LoadingView.prefab"
 
     onLoad () {
 		this.LoadingView = this.node

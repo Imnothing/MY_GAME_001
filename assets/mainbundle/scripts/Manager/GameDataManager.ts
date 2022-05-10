@@ -34,28 +34,14 @@ export class GameDataManager {
     }
 
     init() {
-        //平台初始化进入
-        // PlatformManager.getInstance().getPlatform().appEnter((param) => {
-        //     engine.logger.log(LOG_TAG.GAME, JSON.stringify(param));
-        //     engine.storage.register();
-        //     let accountJson = engine.storage.getLocalItem(LocalKeys.LOCAL_ACCOUNTINFO);
-        //     this.accountInfo = accountJson ? new AccountInfo(JSON.parse(accountJson)) : new AccountInfo();
-        //     this.accountInfo.save();
-
-        // PlatformManager.getInstance().getPlatform().initLogParam()
-        // AccountManager.getInstance().loginAccount(param);
-        // this.requestPermisstion();
-        // });
-
-
         this.setGameData(this.gameData);
 
         let playerInfo = engine.storage.getLocalItem(LocalKeys.LOCAL_PLAYERINFO, null);
         if (playerInfo) {
-            this.gameData.initLoalInfo();
+            this.gameData.initLocalInfo();
         } else {
             //todo:读取游戏数据
-            this.gameData.initLoalInfo();
+            this.gameData.initLocalInfo();
         }
         PlayerManager.getInstance();
         engine.listenerManager.trigger(ListenerType.GameStart);
