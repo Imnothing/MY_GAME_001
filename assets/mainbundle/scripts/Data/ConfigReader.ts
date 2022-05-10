@@ -70,6 +70,11 @@ export class ConfigReader {
         return engine.ccTable.get("AttributeConfig")[id];
     }
 
+    public static readSptConfig(id?: number | string) {
+        if (!id) return engine.ccTable.get("readSptConfig");
+        return engine.ccTable.get("readSptConfig")[id];
+    }
+
 }
 
 class ConfigDataProcessor {

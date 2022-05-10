@@ -15,7 +15,7 @@ import { AttributeConfig } from '../../../../mainbundle/scripts/Datatable/Attrib
 import { PetConfig } from '../../../../mainbundle/scripts/Datatable/PetConfig';
 import { engine } from '../../../../scripts/framework/engine';
 import { BaseUI } from '../../../../scripts/framework/lib/router/BaseUI';
-import BattleControl from '../../BattleControl';
+import BattleControl from '../../Manager/BattleInfo';
 import { EnumPlayer } from '../../Manager/BattleManager';
 import { McGame } from '../../Manager/McGame';
 import auto_BattleUI from './autoUI/auto_BattleUI';
@@ -46,6 +46,7 @@ export default class BattleUI extends BaseUI {
     show(data?: any, onShowed?: Function) {
         window["BattleUI"] = this;
         onShowed && onShowed();
+        McGame.playLevel(data);
     }
 
     hide(onHided: Function): void {

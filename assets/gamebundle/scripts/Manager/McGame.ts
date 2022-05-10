@@ -1,4 +1,5 @@
 import { ConstValue } from "../../../mainbundle/scripts/Configs/ConstValue";
+import { ConfigReader } from "../../../mainbundle/scripts/Data/ConfigReader";
 import { GameDataManager } from "../../../mainbundle/scripts/Manager/GameDataManager";
 import { engine } from "../../../scripts/framework/engine";
 import { LOG_TAG } from "../../../scripts/framework/lib/logger/LoggerInterface";
@@ -14,14 +15,14 @@ export class McGame {
     public static isWin: boolean = false;
     public static isEnd: boolean = false;
     //关卡id
-    public static levelId: string = null;
+    public static sptId: number = null;
     //关卡json
-    public static levelJson: any = null;
+    public static sptJson: any = null;
 
-    public static async init(levelId: string) {
+    public static async init(sptId: number) {
         window['McGame'] = this;
         return new Promise<boolean>(async (resolved, reject) => {
-            this.levelId = levelId;
+            this.sptId = sptId;
             if (!this.battleManager)
                 this.battleManager = new BattleManager();
             resolved(true);
@@ -40,8 +41,9 @@ export class McGame {
     /**
      * 开始游戏
      */
-    public static playLevel(levelJson: any) {
-        this.battleManager.setInitData(levelJson);
+    public static playLevel(sptId: any) {
+        let sptConfig = ConfigReader.readSptConfig(sptId)
+        this.battleManager.setInitData(sptConfig);
     }
 
 

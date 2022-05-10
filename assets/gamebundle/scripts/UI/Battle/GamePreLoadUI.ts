@@ -35,7 +35,10 @@ export default class GamePreLoadUI extends BaseUI {
         await McGame.init(levelId);
         McGame.initData()
         await engine.uiManager.loadAsync(UIConfigs.battleUI);
-        // await engine.resLoader.loadBundleResSync(ResPathEnum)
+        await engine.uiManager.loadAsync(UIConfigs.petUI);
+        // await engine.resLoader.loadBundleResSync(ResPathEnum);
+        engine.uiManager.openUI(UIConfigs.battleUI, levelId)
+
     }
 
     hide(onHided: Function): void {
