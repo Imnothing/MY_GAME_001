@@ -14,7 +14,7 @@ export default class auto_SptUI extends Component {
 	common_back: Node;
 	lbl_top: Node;
 
-	public static URL:string = "assets\homebundle\prefabs\UI\sptScene\SptUI.prefab"
+	public static URL:string = "assets\homebundle\prefabs\UI\spt\SptUI.prefab"
 
     onLoad () {
 		this.SptUI = this.node

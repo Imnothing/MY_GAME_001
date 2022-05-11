@@ -44,9 +44,8 @@ export class GameData {
         this.propList = propListJson ? JSON.parse(propListJson) : new Map<number, PropInfo>();
         let petBagListJson = engine.storage.getLocalItem(LocalKeys.LOCAL_PETBAG);
         this.petBagList = petBagListJson ? JSON.parse(petBagListJson) : new Map<number, PetData>();
-
-        // let areaInfoJson = engine.storage.getLocalItem(LocalKeys.LOCAL_ARREAINFO);
-        // this.areaInfo = areaInfoJson ? new AreaInfo(JSON.parse(areaInfoJson)) : new AreaInfo();
+        let areaInfoJson = engine.storage.getLocalItem(LocalKeys.LOCAL_ARREAINFO);
+        this.areaInfo = areaInfoJson ? new AreaInfo(JSON.parse(areaInfoJson)) : new AreaInfo();
 
     }
 

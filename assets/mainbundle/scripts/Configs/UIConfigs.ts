@@ -121,5 +121,12 @@ export const UIConfigs = {
         prefabPath: `${BundleConfigs.HomeBundle}/prefabs/UI/spt/SptUI`,
         layerZIndex: EnumUILayer.UILayer,
     },
+    /**
+     * 精灵开始页
+     */
+    startUI: <ViewConfig>{
+        prefabPath: `${BundleConfigs.HomeBundle}/prefabs/UI/spt/StartUI`,
+        layerZIndex: EnumUILayer.UILayer,
+    },
 
 };

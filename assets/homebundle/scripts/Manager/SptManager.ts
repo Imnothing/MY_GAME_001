@@ -16,7 +16,7 @@ export class SptManager {
     public areaMap: Map<number, Array<SptConfig>> = null;
     public init() {
         this.areaMap = new Map<number, Array<SptConfig>>();
-        this._sptConfigs = engine.ccTable.get("TaskConfig");
+        this._sptConfigs = ConfigReader.readSptConfig();
         for (let key in this._sptConfigs) {
             let spt: SptConfig = this._sptConfigs[key];
             let areaId = spt.Area;
@@ -58,8 +58,7 @@ export class SptManager {
      * @param sptId 
      * @returns [道具Id,数量]
      */
-    public getPrize(sptId: number) {
-        let allPrize: string = ConfigReader.readSptConfig(sptId).Prize;
+    public getPrize(allPrize: string) {
         let prize: Array<Array<any>> = new Array();
         allPrize.split('|').forEach(prizes => {
             prize.push(prizes.split('#'));

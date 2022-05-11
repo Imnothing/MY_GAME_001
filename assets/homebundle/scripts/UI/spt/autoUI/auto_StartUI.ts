@@ -11,14 +11,14 @@ export default class auto_StartUI extends Component {
 	pet_name_banner: Node;
 	lbl_name: Node;
 	target_banner: Node;
-	lbl_target: Node;
+	title_target: Node;
 	ico_diamond: Node;
 	lay_target: Node;
 	target_item: Node;
 	ico_star_light: Node;
-	lbl_tartget: Node;
+	lbl_target: Node;
 	price_banner: Node;
-	lbl_price: Node;
+	title_price: Node;
 	ico_diamond2: Node;
 	lay_prizes: Node;
 	prize_item: Node;
@@ -30,7 +30,7 @@ export default class auto_StartUI extends Component {
 	btn_recover: Node;
 	btn_close: Node;
 
-	public static URL:string = "assets\homebundle\prefabs\UI\sptScene\StartUI.prefab"
+	public static URL:string = "assets\homebundle\prefabs\UI\spt\StartUI.prefab"
 
     onLoad () {
 		this.StartUI = this.node
@@ -41,14 +41,14 @@ export default class auto_StartUI extends Component {
 		this.pet_name_banner = this.item_bg.getChildByName("pet_name_banner");
 		this.lbl_name = this.pet_name_banner.getChildByName("lbl_name");
 		this.target_banner = this.item_bg.getChildByName("target_banner");
-		this.lbl_target = this.target_banner.getChildByName("lbl_target");
+		this.title_target = this.target_banner.getChildByName("title_target");
 		this.ico_diamond = this.target_banner.getChildByName("ico_diamond");
 		this.lay_target = this.item_bg.getChildByName("lay_target");
 		this.target_item = this.lay_target.getChildByName("target_item");
 		this.ico_star_light = this.target_item.getChildByName("ico_star_light");
-		this.lbl_tartget = this.target_item.getChildByName("lbl_tartget");
+		this.lbl_target = this.target_item.getChildByName("lbl_target");
 		this.price_banner = this.item_bg.getChildByName("price_banner");
-		this.lbl_price = this.price_banner.getChildByName("lbl_price");
+		this.title_price = this.price_banner.getChildByName("title_price");
 		this.ico_diamond2 = this.price_banner.getChildByName("ico_diamond2");
 		this.lay_prizes = this.item_bg.getChildByName("lay_prizes");
 		this.prize_item = this.lay_prizes.getChildByName("prize_item");

@@ -1,10 +1,12 @@
 import { PropManager } from "./PropManager";
 import { ShopManager } from "./ShopManager";
+import { SptManager } from "./SptManager";
 
 
 export class HomeManager {
     public static propManager: PropManager;
     public static shopManager: ShopManager;
+    public static sptManager: SptManager;
 
     public static async init() {
         window['HomeMgr'] = this;
@@ -13,6 +15,8 @@ export class HomeManager {
             this.propManager.init();
             this.shopManager = new ShopManager();
             this.shopManager.init();
+            this.sptManager = new SptManager();
+            this.sptManager.init();
             resolve(true)
         })
     }

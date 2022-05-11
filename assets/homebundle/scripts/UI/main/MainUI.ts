@@ -56,8 +56,8 @@ export default class MainUI extends BaseUI {
         let pet: PetConfig = ConfigReader.readPetConfig(petId)
         let petPic: PicConfig = ConfigReader.readPicConfig(pet.PetPic);
         let petAvatar: PicConfig = ConfigReader.readPicConfig(pet.PetAvatar);
-        this.ui.ico_avatar.getComponent(Sprite).spriteFrame = engine.resLoader.getAtlasByTag(BundleConfigs.CommonBundle, petPic.PicPath, petAvatar.PicName);
-        this.ui.pet_show.getComponent(Sprite).spriteFrame = engine.resLoader.getAtlasByTag(BundleConfigs.CommonBundle, petAvatar.PicPath, petAvatar.PicName);
+        this.ui.ico_avatar.getComponent(Sprite).spriteFrame = engine.resLoader.getAtlasByTag(BundleConfigs.CommonBundle, petAvatar.PicPath, petAvatar.PicName);
+        this.ui.pet_show.getComponent(Sprite).spriteFrame = engine.resLoader.getAtlasByTag(BundleConfigs.CommonBundle, petPic.PicPath, petPic.PicName);
     }
 
     initEvent() {
@@ -66,13 +66,13 @@ export default class MainUI extends BaseUI {
             engine.uiManager.openUIAsync(UIConfigs.shopUI); //打开商店UI
         }, this)
         // 精灵
-        this.onRegisterEvent(this.ui.node_pet, () => {
+        this.onRegisterEvent(this.ui.ico_pet, () => {
             engine.uiManager.openUIAsync(UIConfigs.petBag);
         }, this)
         // 挑战
         this.onRegisterEvent(this.ui.btn_pve, () => {
-            // let playerInfo = GameDataManager.getInstance().getGameData().playerInfo;
-            // engine.uiManager.openUIAsync(UIConfigs.sptUI, playerInfo.level);
+            let playerInfo = GameDataManager.getInstance().getGameData().playerInfo;
+            engine.uiManager.openUIAsync(UIConfigs.sptUI);
         }, this)
 
 

@@ -5,8 +5,14 @@ export class SptConfig {
        
 	/** 挑战ID */
 	SptId: number;
+	/** 关卡图片 */
+	SptPic: string;
+	/** 关卡名称 */
+	SptName: string;
 	/** 通过奖励 */
 	Prize: string;
+	/** 通关条件 */
+	Target: string;
 	/** 本关卡Boss */
 	Boss: string;
 	/** 攻击加成 */
