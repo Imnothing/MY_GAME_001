@@ -10,17 +10,19 @@ export class PlayerInfo extends BaseModel {
     //王国id
     public id: number = 0;
     //昵称
-    public nickname: string = '';
+    public nickname: string = '玩家1001';
     //头像URL
-    public avatar: string = '';
+    public avatar: string = '4';
+    //签名
+    public sign: string = '打的就是精锐';
     //编号
     public no: string = '';
-    //当前关卡Id
-    public level: number = 1;
     //当前金币总数
     public gold: number = 0;
     //钻石
     public diamond: number = 0;
+    //主页展示精灵Id
+    public show_pet: string = '4';
 
     constructor(data?: any) {
         super(data);

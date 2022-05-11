@@ -4,26 +4,26 @@
 export class EffectConfig {
        
 	/** 效果ID */
-	string: any;
+	Id: string;
 	/** 效果类型 */
-	string: any;
+	Type: string;
 	/** 有效范围 */
-	string: any;
+	Range: string;
 	/** 附加方 */
-	string: any;
+	Additional: string;
 	/** 初始判定 */
-	string: any;
+	InitialJuedg: string;
 	/** 参数1 */
-	string: any;
+	Value1: string;
 	/** 参数2 */
-	string: any;
+	Value2: string;
 	/** 成功效果 */
-	0: any;
+	SucEffect: any;
 	/** 失败效果 */
-	string: any;
+	FailEffect: string;
 	/** 先手效果 */
-	string: any;
+	PreEffect: string;
 	/** 后手效果 */
-	string: any;
+	AfterEffect: string;
 
 }

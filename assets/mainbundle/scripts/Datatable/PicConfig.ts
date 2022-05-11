@@ -4,8 +4,10 @@
 export class PicConfig {
        
 	/** 编号 */
-	Id: number;
+	Id: string;
 	/** 图片路径 */
 	PicPath: string;
+	/** 图片名称 */
+	PicName: string;
 
 }

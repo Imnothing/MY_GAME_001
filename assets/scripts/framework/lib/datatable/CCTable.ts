@@ -24,15 +24,16 @@ export class CCTable implements CCTableInterface {
 
     loadTable(name: string) {
         if (!this._configPath) {
-            engine.logger.error(LOG_TAG.GAME,"配置表路径未配置");
+            engine.logger.error(LOG_TAG.GAME, "配置表路径未配置");
             return;
         }
 
         return new Promise<Object>((resolve, reject) => {
             var url = this._configPath + name;
             engine.resLoader.load(url, JsonAsset, (err: Error | null, content: JsonAsset) => {
+                console.log("load config:" + url);
                 if (err) {
-                    error(err.message);
+                    error("load config failed:" + err.message);
                 }
                 this.data.set(name, content.json);
                 resolve(content.json);
@@ -40,10 +41,17 @@ export class CCTable implements CCTableInterface {
         });
     }
 
-    loadTables(tables: string[]) {
-        tables.forEach(table => {
-            this.loadTable(table);
+    async loadTables(tables: string[]) {
+        return new Promise<void>(async (resolve, reject) => {
+            let proArr = [];
+            tables.forEach(table => {
+                proArr.push(this.loadTable(table));
+            });
+            await Promise.all(proArr).then(() => {
+                resolve();
+            });
         });
+
     }
 
 

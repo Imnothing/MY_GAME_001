@@ -12,7 +12,7 @@ export class AreaInfo extends BaseModel {
 
     public unlockAreaNum: number = 1;
 
-    public lastTaskId: number;
+    public nextSptId: number;
     constructor(data?: any) {
         super(data);
         if (!data) return;
@@ -32,18 +32,18 @@ export class AreaInfo extends BaseModel {
 
     /**
      * 增加指定解锁
-     * @param taskId 
+     * @param sptId 
      */
-    addTaskId(areaId: number, taskId: number) {
-        let taskIds = this.areaList[areaId];
-        if (!taskIds) {
-            taskIds = Array<number>();
-            // this.areaList.set(areaId,taskIds);
-            this.areaList[areaId] = taskIds;
+    addSptId(areaId: number, sptId: number) {
+        let sptIds = this.areaList[areaId];
+        if (!sptIds) {
+            sptIds = Array<number>();
+            // this.areaList.set(areaId,sptIds);
+            this.areaList[areaId] = sptIds;
         }
-        if (taskIds.indexOf(taskId) == -1) {
-            taskIds.push(taskId);
-            this.lastTaskId = taskId;
+        if (sptIds.indexOf(sptId) == -1) {
+            sptIds.push(sptId);
+            this.nextSptId = ++sptId;
             this.save();
         }
     }

@@ -27,7 +27,7 @@ export class SettingManager {
     setMusic() {
         let state = !engine.audioManager.getSwitchMusic();
         engine.audioManager.setSwitchMusic(state);
-        // engine.audioManager.playMusic(ConstValue.GAME_MUSIC.BGM);
+        engine.audioManager.playMusic(ConstValue.GAME_MUSIC.BGM);
         engine.audioManager.save();
     }
 

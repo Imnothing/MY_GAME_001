@@ -1,4 +1,5 @@
 import { Button, Component, log, _decorator, Node } from "cc";
+import { ConstValue } from "../../../../mainbundle/scripts/Configs/ConstValue";
 import { ViewConfig } from "../../../../mainbundle/scripts/Configs/UIConfigs";
 import { engine } from "../../engine";
 
@@ -70,7 +71,7 @@ export class BaseUI extends Component {
         node.on("click", (e) => {
             callback.bind(target)(e);
             if (playAudio)
-                engine.audioManager.playSound("2001");
+                engine.audioManager.playSound(ConstValue.GAME_SOUND.Common_Click);
         }, target);
 
         this._registerEventList.set(node.name, { callback: callback, target: target, playAudio: playAudio });

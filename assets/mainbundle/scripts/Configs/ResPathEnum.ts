@@ -14,7 +14,17 @@ export const ResPathEnum = {
     PropIcon: <ResConfig>{
         bundle: BundleConfigs.CommonBundle,
         resPath: "atlas/prop"
-    }
+    },
+
+    PetS1: <ResConfig>{
+        bundle: BundleConfigs.CommonBundle,
+        resPath: "pets/Pet/pet_S1"
+    },
+
+    PetAvatarS1: <ResConfig>{
+        bundle: BundleConfigs.CommonBundle,
+        resPath: "pets/PetAvatar/petAvatars_S1"
+    },
 
 }
 

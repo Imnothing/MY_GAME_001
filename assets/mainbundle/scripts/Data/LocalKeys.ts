@@ -11,6 +11,8 @@ export class LocalKeys {
 
     public static readonly LOCAL_PROPLIST = "LOCAL_PROPLIST";//道具集合
 
-    public static readonly LOCAL_PETBAG = "LOCAL_PETBAG";//道具集合
+    public static readonly LOCAL_PETBAG = "LOCAL_PETBAG";//精灵背包
+
+    public static readonly LOCAL_ARREAINFO = "LOCAL_ARREAINFO"
 
 }

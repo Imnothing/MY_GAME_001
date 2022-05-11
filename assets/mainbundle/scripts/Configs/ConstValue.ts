@@ -69,6 +69,14 @@ export class ConstValue {
         CN: "CN",
         EN: "EN"
     };
+
+    public static readonly GAME_MUSIC = {
+        BGM: "10001",
+    }
+
+    public static readonly GAME_SOUND = {
+        Common_Click: "20001",
+    }
     //当前语言类型
     // public static CURRENT_LANGUAGE = sys.language == sys.LANGUAGE_CHINESE ? ConstValue.LANGUAGE_TYPE.CN : ConstValue.LANGUAGE_TYPE.EN;
 

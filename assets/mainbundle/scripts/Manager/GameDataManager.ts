@@ -34,17 +34,10 @@ export class GameDataManager {
     }
 
     init() {
-        this.setGameData(this.gameData);
-
-        let playerInfo = engine.storage.getLocalItem(LocalKeys.LOCAL_PLAYERINFO, null);
-        if (playerInfo) {
-            this.gameData.initLocalInfo();
-        } else {
-            //todo:读取游戏数据
-            this.gameData.initLocalInfo();
-        }
+        engine.storage.register();
+        this.gameData = new GameData();
+        this.gameData.initLocalInfo();
         PlayerManager.getInstance();
-        engine.listenerManager.trigger(ListenerType.GameStart);
     }
 
     private requestPermisstion() {

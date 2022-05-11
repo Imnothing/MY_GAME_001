@@ -71,8 +71,13 @@ export class ConfigReader {
     }
 
     public static readSptConfig(id?: number | string) {
-        if (!id) return engine.ccTable.get("readSptConfig");
-        return engine.ccTable.get("readSptConfig")[id];
+        if (!id) return engine.ccTable.get("SptConfig");
+        return engine.ccTable.get("SptConfig")[id];
+    }
+
+    public static readPicConfig(id?: number | string) {
+        if (!id) return engine.ccTable.get("PicConfig");
+        return engine.ccTable.get("PicConfig")[id];
     }
 
 }

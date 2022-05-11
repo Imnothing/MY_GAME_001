@@ -1,5 +1,8 @@
 import { Component, game, Node } from "cc";
+import { ConfigReader } from "../../../../mainbundle/scripts/Data/ConfigReader";
+import { SettingInfo } from "../../../../mainbundle/scripts/Data/Model/SettingInfo";
 import { MusicConfig } from "../../../../mainbundle/scripts/Datatable/MusicConfig";
+import { GameDataManager } from "../../../../mainbundle/scripts/Manager/GameDataManager";
 import { engine } from "../../engine";
 import { AudioEffect } from "./AudioEffect";
 import { AudioMusic } from "./AudioMusic";
@@ -78,7 +81,7 @@ export class AudioManager extends Component {
      */
     playSound(id: string) {
         if (this._switch_effect) {
-            let musicConfig = engine.ccTable.get("MusicConfig");
+            let musicConfig = ConfigReader.readMusicConfig();
             if (!musicConfig) return;
             let itemConfig: MusicConfig = musicConfig[id];
             if (!itemConfig) return;

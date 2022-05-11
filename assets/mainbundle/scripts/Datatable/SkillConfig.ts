@@ -23,8 +23,6 @@ export class SkillConfig {
 	HitRate: number;
 	/** 暴击概率 */
 	CritRate: number;
-	/** 技能描述 */
-	Desc: string;
 	/** 技能效果 */
 	Effect: string;
 

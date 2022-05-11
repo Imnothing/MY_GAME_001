@@ -5,6 +5,12 @@ export class PetConfig {
        
 	/** 精灵ID */
 	Id: string;
+	/** 精灵头像 */
+	PetAvatar: string;
+	/** 精灵图片 */
+	PetPic: string;
+	/** 精灵属性 */
+	Attribute: string;
 	/** 精灵名称 */
 	Name: string;
 	/** 攻击 */

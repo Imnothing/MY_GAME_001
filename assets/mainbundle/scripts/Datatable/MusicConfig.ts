@@ -7,9 +7,9 @@ export class MusicConfig {
 	Id: string;
 	/** 类型 */
 	Type: number;
+	/** 音量 */
+	MusicPower: number;
 	/** 文件路径 */
 	File: string;
-	/** 基础音量 */
-	MusicPower: number;
 
 }

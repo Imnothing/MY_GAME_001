@@ -47,7 +47,7 @@ export default class LoadingView extends BaseUI {
 
     show(data?: any, onShowed?: Function): void {
         onShowed && onShowed();
-        // this._initGame();
+        this._initGame();
     }
 
     hide(onHided: Function): void {
@@ -64,7 +64,7 @@ export default class LoadingView extends BaseUI {
 
         // 加载游戏设置面板
         this._onLoadProgressChanged(0.4, "加载游戏资源...");
-        await engine.uiManager.loadAsync(UIConfigs.gamePreloadUI);
+        await engine.uiManager.loadAsync(UIConfigs.gamePreLoadUI);
 
         // // 加载游戏主面板
         this._onLoadProgressChanged(0.5, "加载游戏资源...");
@@ -73,17 +73,19 @@ export default class LoadingView extends BaseUI {
         await engine.resLoader.loadBundleResSync(ResPathEnum.Abnormal.bundle, ResPathEnum.Abnormal.resPath, SpriteAtlas);
         await engine.resLoader.loadBundleResSync(ResPathEnum.Attribute.bundle, ResPathEnum.Attribute.resPath, SpriteAtlas);
         await engine.resLoader.loadBundleResSync(ResPathEnum.PropIcon.bundle, ResPathEnum.PropIcon.resPath, SpriteAtlas);
+        await engine.resLoader.loadBundleResSync(ResPathEnum.PetS1.bundle, ResPathEnum.PetS1.resPath, SpriteAtlas);
+        await engine.resLoader.loadBundleResSync(ResPathEnum.PetAvatarS1.bundle, ResPathEnum.PetAvatarS1.resPath, SpriteAtlas);
         // 打开主面板
         this._onLoadProgressChanged(1.0);
-        if (ConstValue.DEBUG_MAP_LOCAL) {
-            engine.uiManager.openUI(UIConfigs.gamePreloadUI, null, () => {
-                this.doClose(UIConfigs.loadingUI, true);
-            });
-        } else {
-            engine.uiManager.openUI(UIConfigs.mainUI, null, () => {
-                this.doClose(UIConfigs.loadingUI, true);
-            });
-        }
+        // if (ConstValue.DEBUG_MAP_LOCAL) {
+        //     engine.uiManager.openUI(UIConfigs.gamePreloadUI, null, () => {
+        //         this.doClose(UIConfigs.loadingUI, true);
+        //     });
+        // } else {
+        engine.uiManager.openUI(UIConfigs.mainUI, null, () => {
+            this.doClose(UIConfigs.loadingUI, true);
+        });
+        // }
 
     }
 

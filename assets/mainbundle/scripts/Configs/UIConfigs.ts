@@ -67,8 +67,8 @@ export const UIConfigs = {
     /**
      * 战斗加载页
      */
-    gamePreloadUI: <ViewConfig>{
-        prefabPath: `${BundleConfigs.GameBundle}/prefabs/UI/Battle/gamePreloadUI`,
+    gamePreLoadUI: <ViewConfig>{
+        prefabPath: `${BundleConfigs.GameBundle}/prefabs/UI/Battle/GamePreLoadUI`,
         layerZIndex: EnumUILayer.UILayer,
     },
     /**
@@ -90,30 +90,36 @@ export const UIConfigs = {
      * 游戏主页面
      */
     mainUI: <ViewConfig>{
-        prefabPath: `${BundleConfigs.GameBundle}/prefabs/UI/main/MainUI`,
+        prefabPath: `${BundleConfigs.HomeBundle}/prefabs/UI/main/MainUI`,
         layerZIndex: EnumUILayer.UILayer,
     },
     /**
      * 商店页
      */
     shopUI: <ViewConfig>{
-        prefabPath: `${BundleConfigs.GameBundle}/prefabs/UI/shop/ShopUI`,
+        prefabPath: `${BundleConfigs.HomeBundle}/prefabs/UI/shop/ShopUI`,
         layerZIndex: EnumUILayer.UILayer,
     },
     /**
      * 精灵详情页
      */
     petDetail: <ViewConfig>{
-        prefabPath: `${BundleConfigs.GameBundle}/prefabs/UI/pet/PetDetail`,
+        prefabPath: `${BundleConfigs.HomeBundle}/prefabs/UI/pet/PetDetail`,
         layerZIndex: EnumUILayer.UILayer,
     },
     /**
      * 精灵背包页
      */
     petBag: <ViewConfig>{
-        prefabPath: `${BundleConfigs.GameBundle}/prefabs/UI/pet/PetBag`,
+        prefabPath: `${BundleConfigs.HomeBundle}/prefabs/UI/pet/PetBag`,
         layerZIndex: EnumUILayer.UILayer,
     },
-
+    /**
+     * 精灵背包页
+     */
+    sptUI: <ViewConfig>{
+        prefabPath: `${BundleConfigs.HomeBundle}/prefabs/UI/spt/SptUI`,
+        layerZIndex: EnumUILayer.UILayer,
+    },
 
 };
