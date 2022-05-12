@@ -111,7 +111,7 @@ export class BattleSkillSystem {
     init() { }
 
     /** 进行判定 */
-    doJudge(pet: PetUI, type: EnumJudge, valueType?: EnumValue, percent?: number) { }
+    doJudge(pet: PetUI, type?: EnumJudge, valueType?: EnumValue, percent?: number) { }
 
     /**
      * 改变精灵属性等级
@@ -146,10 +146,10 @@ export class BattleSkillSystem {
      * @param type 增益效果类型
      * @param pet 精灵类
      * @param possibility 几率 
-     * @param hurtReduce 减伤倍率
-     * @param damageIncrease 增伤倍率
+     * @param value 参数
+     * @param now 当回合生效
      */
-    addBuff(pet: PetUI, type: EnumBuff, possibility?: number, hurtReduce?: number, damageIncrease?: number) { }
+    addBuff(pet: PetUI, type: EnumBuff, possibility?: number, value?: number, now?: boolean) { }
 
     /**
      * 增加减益效果
@@ -160,7 +160,7 @@ export class BattleSkillSystem {
      * @param damageReduce 增伤倍率
      * @param hurtIncrease 减伤倍率
      */
-    addDeBuff(pet: PetUI, type: EnumDeBuff, possibility?: number, deBUff?: string, damageReduce?: number, hurtIncrease?: number) { }
+    addDeBuff(pet: PetUI, type: EnumDeBuff, possibility?: number, deBUff?: string, damageReduce?: number, hurtIncrease?: number, now?: boolean) { }
 
     /**
      * 进入异常状态

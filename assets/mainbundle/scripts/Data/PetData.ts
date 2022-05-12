@@ -43,6 +43,8 @@ export enum EnumAttribute {
     deity = "1015",
     /** 混沌系 */
     chaos = "1016",
+    /** 属性 */
+    spirit = "1017"
 
 }
 /** 异常状态类型 */
