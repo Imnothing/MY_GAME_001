@@ -1,5 +1,6 @@
 import { SkillConfig } from "../Datatable/SkillConfig";
-import { EnumFeatures, Resistance } from "./PetData";
+import { EnumFeatures } from "./PetData";
+import { Resistance } from "./Resistance";
 
 /** 精灵类 */
 export class FightPet {

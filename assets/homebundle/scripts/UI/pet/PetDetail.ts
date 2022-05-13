@@ -11,7 +11,8 @@ import { ResPathEnum } from '../../../../mainbundle/scripts/Configs/ResPathEnum'
 import { EnumUILayer, UIConfigs } from '../../../../mainbundle/scripts/Configs/UIConfigs';
 import { ConfigReader } from '../../../../mainbundle/scripts/Data/ConfigReader';
 import { PropInfo } from '../../../../mainbundle/scripts/Data/Model/PropInfo';
-import { PetData, Resistance } from '../../../../mainbundle/scripts/Data/PetData';
+import { PetData } from '../../../../mainbundle/scripts/Data/PetData';
+import { Resistance } from "../../../../mainbundle/scripts/Data/Resistance";
 import { AbnormalConfig } from '../../../../mainbundle/scripts/Datatable/AbnormalConfig';
 import { AttributeConfig } from '../../../../mainbundle/scripts/Datatable/AttributeConfig';
 import { SkillConfig } from '../../../../mainbundle/scripts/Datatable/SkillConfig';

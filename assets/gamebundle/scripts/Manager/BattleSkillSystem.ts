@@ -165,10 +165,10 @@ export class BattleSkillSystem {
     /**
      * 进入异常状态
      * @param pet 
-     * @param type 
+     * @param abId 
      * @param possibility 
      */
-    addAbnormal(pet: PetUI, type: EnumAbnormal, possibility?: number) { }
+    addAbnormal(pet: PetUI, abId: string, possibility?: number) { }
 
 }
 

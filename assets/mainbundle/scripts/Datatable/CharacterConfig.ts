@@ -7,9 +7,15 @@ export class CharacterConfig {
 	Id: string;
 	/** 性格名称 */
 	Name: string;
-	/** 性格优势 */
-	Good: number;
-	/** 性格弱势 */
-	Bad: number;
+	/** 攻击 */
+	Atk: number;
+	/** 特攻 */
+	SpAtk: number;
+	/** 防御 */
+	Def: number;
+	/** 特防 */
+	SpDef: number;
+	/** 速度 */
+	Spd: number;
 
 }

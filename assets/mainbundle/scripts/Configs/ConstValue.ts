@@ -55,8 +55,8 @@ export class ConstValue {
     public static isCloseNative: boolean = false;
     /**是否oppo超休闲 */
     public static isOppoXiuxian: boolean = false;
-    /** 种植时间限制 */
-    public static isShifeiLimit: boolean = false;
+    /** 精灵最大等级 */
+    public static readonly MaxPetLevel: number = 100;
     /** 测试热更 */
     public static isTestHot: boolean = false;
     /** 测试防沉迷未成年 */

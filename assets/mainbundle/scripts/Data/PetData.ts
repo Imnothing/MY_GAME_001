@@ -1,8 +1,35 @@
-import { SkillConfig } from "../Datatable/SkillConfig";
+import { BattleValue } from "./BattleValue";
+import { LearningValue } from "./LearningValue";
+import { Resistance } from "./Resistance";
+import { Signet } from "./Signet";
 
 /** 性格 */
 export enum EnumCharacter {
-    Lonely = "孤独",
+    Stubborn = "1001",
+    Lonely = "1002",
+    Mischievous = "1003",
+    Brave = "1004",
+    Guard = "1005",
+    Steady = "1006",
+    Careless = "1007",
+    Calm = "1008",
+    Shy = "1009",
+    Honest = "1010",
+    Frank = "1011",
+    Impetuous = "1012",
+    Earnest = "1013",
+    Bold = "1014",
+    Naughty = "1015",
+    Carefree = "1016",
+    Leisurely = "1017",
+    Composure = "1018",
+    Careful = "1019",
+    Docile = "1020",
+    Arrogance = "1021",
+    Timid = "1022",
+    Optimistic = "1023",
+    Impatience = "1024",
+    Naive = "1025"
 
 }
 /** 异常状态 */
@@ -49,7 +76,7 @@ export enum EnumAttribute {
 }
 /** 异常状态类型 */
 export enum EnumAbType {
-    unControl = 1,
+    Week = 1,
     Control = 2
 }
 export enum EnumBattleValue {
@@ -74,90 +101,24 @@ export class PetData {
     /** 经验类型 */
     expType: string = null;
     /** 已获取经验 */
-    exp: number = 0;
+    exp: number = null;
     /** 精灵等级 */
-    level: number = 1;
+    level: number = null;
     /** 个体值 */
-    talentValue: number = 0;
+    talentValue: number = null;
     /** 战斗属性值 */
-    battleValue: BattleValue = new BattleValue();
+    battleValue: BattleValue = null;
     /** 学习力 */
-    learningValue: LearningValue = new LearningValue();
+    learningValue: LearningValue = null;
     /** 性格 */
     character: EnumCharacter = null;
     /** 特性 */
     features: EnumFeatures = null;
     /** 抗性 */
-    resistance: Resistance = new Resistance();
+    resistance: Resistance = null;
     /** 刻印 */
-    signet: Array<Signet> = new Array<Signet>();
+    signet: Array<Signet> = null;
     /** 技能 */
-    skills: Map<string, number> = new Map<string, number>();
+    skills: Map<string, number> = null;
 
 }
-
-/** 战斗属性值 */
-export class BattleValue {
-    atk: number = 0;
-    sp_atk: number = 0;
-    def: number = 0;
-    sp_def: number = 0;
-    spd: number = 0;
-    max_hp: number = 0;
-    hp: number = 0;
-}
-
-/** 学习力 */
-export class LearningValue {
-    atk: number = 0;
-    sp_atk: number = 0;
-    def: number = 0;
-    sp_def: number = 0;
-    spd: number = 0;
-    hp: number = 0;
-    all: number = 0
-    constructor() { }
-}
-
-/** 抗性类 */
-export class Resistance {
-    damageResist: DamageResist = new DamageResist();
-    abnormalResist: AbnormalResist = new AbnormalResist();
-}
-
-/** 伤害抗性类 */
-export class DamageResist {
-    /** 暴击伤害抵抗 */
-    criticalResist: number = 0;
-    /** 固定伤害抵抗 */
-    fixedResist: number = 0;
-    /** 百分比伤害 */
-    percentage: number = 0;
-
-    constructor() { }
-}
-
-/** 异常抗性类 */
-export class AbnormalResist {
-    /** 控制类异常抗性抵抗 */
-    controlResist: Map<string, number> = new Map<string, number>();
-
-    /** 弱化类异常抗性抵抗 */
-    weekResist: Map<string, number> = new Map<string, number>();
-
-    constructor() { }
-}
-
-/** 刻印 */
-export class Signet {
-    atk: number = 0;
-    sp_atk: number = 0;
-    def: number = 0;
-    sp_def: number = 0;
-    spd: number = 0;
-    hp: number = 0;
-
-    constructor() { }
-}
-
-
