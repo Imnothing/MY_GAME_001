@@ -128,5 +128,12 @@ export const UIConfigs = {
         prefabPath: `${BundleConfigs.HomeBundle}/prefabs/UI/spt/StartUI`,
         layerZIndex: EnumUILayer.UILayer,
     },
+    /**
+     * 道具提示页
+     */
+    propDialog: <ViewConfig>{
+        prefabPath: `${BundleConfigs.HomeBundle}/prefabs/UI/dialog/PropDialog`,
+        layerZIndex: EnumUILayer.UILayer,
+    },
 
 };

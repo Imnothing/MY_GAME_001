@@ -5,15 +5,18 @@
  * @Version 1.0
  */
 
-import { _decorator, Component, Node, Button, Event } from 'cc';
+import { _decorator, Component, Node, Button, Event, Sprite } from 'cc';
 import { BundleConfigs } from '../../../../mainbundle/scripts/Configs/BundleConfigs';
 import { EnumUILayer } from '../../../../mainbundle/scripts/Configs/UIConfigs';
 import { ConfigReader } from '../../../../mainbundle/scripts/Data/ConfigReader';
 import { FightPet } from '../../../../mainbundle/scripts/Data/FightPet';
 import { EnumAbnormal, EnumAbType } from '../../../../mainbundle/scripts/Data/PetData';
 import { AbnormalConfig } from '../../../../mainbundle/scripts/Datatable/AbnormalConfig';
+import { PetConfig } from '../../../../mainbundle/scripts/Datatable/PetConfig';
+import { PicConfig } from '../../../../mainbundle/scripts/Datatable/PicConfig';
+import { engine } from '../../../../scripts/framework/engine';
 import { BaseUI } from '../../../../scripts/framework/lib/router/BaseUI';
-import { EnumBuff, EnumDeBuff } from '../../Manager/BattleSkillSystem';
+import { EnumBuff, EnumDeBuff, LevelType } from '../../Manager/BattleSkillSystem';
 import auto_PetUI from './autoUI/auto_PetUI';
 const { ccclass, property } = _decorator;
 
@@ -34,6 +37,8 @@ export default class PetUI extends BaseUI {
     private pet_deBuffs: Map<EnumDeBuff, number> = null;
     /** 精灵异常状态 */
     private pet_abnormal: Map<EnumAbnormal, number> = null;
+    /** 精灵属性等级 */
+    private level_value: Map<LevelType, number> = null
     /** 先制等级 */
     private pet_priority: number = 0;
     /** 造成伤害倍率 */
@@ -52,9 +57,13 @@ export default class PetUI extends BaseUI {
 
     show(data?: any, onShowed?: Function) {
         onShowed && onShowed();
+    }
+
+    setData(data: any) {
         this.petInfo = data.petInfo;
         this.fightId = data.fightId;
         this.isDead = false;
+
         this.initPet();
     }
 
@@ -74,6 +83,8 @@ export default class PetUI extends BaseUI {
         this.pet_deBuffs = new Map<EnumDeBuff, number>();
         // 初始化精灵异常状态
         this.pet_abnormal = new Map<EnumAbnormal, number>();
+        // 初始化精灵属性等级
+        this.level_value = new Map<LevelType, number>();
         // 初始化精灵先制等级
         this.pet_priority = 0;
         // 初始化精灵造成伤害倍率
@@ -85,6 +96,12 @@ export default class PetUI extends BaseUI {
     /** 初始化精灵状态，回合开始时调用 */
     initRound() {
 
+    }
+
+    showSprite() {
+        let pet: PetConfig = ConfigReader.readPetConfig(this.petInfo.id)
+        let petPic: PicConfig = ConfigReader.readPicConfig(pet.PetPic);
+        this.ui.pet_sprite.getComponent(Sprite).spriteFrame = engine.resLoader.getAtlasByTag(BundleConfigs.CommonBundle, petPic.PicPath, petPic.PicName);
     }
 
     // doSkill(id: string) { }
@@ -130,6 +147,46 @@ export default class PetUI extends BaseUI {
 
     getFightId() {
         return this.fightId;
+    }
+
+    getBattleLevel() {
+        return this.level_value;
+    }
+
+    getAbState() {
+        return this.pet_abnormal;
+    }
+
+    getPriority() {
+        return this.pet_priority;
+    }
+
+    setPriority(pri: number) {
+        this.pet_priority += pri;
+    }
+
+    getMultiDamage() {
+        return this.multi_damage;
+    }
+
+    setMultiDamage(multi: number) {
+        this.multi_damage = multi;
+    }
+
+    getMultiHurt() {
+        return this.multi_hurt;
+    }
+
+    setMultiHurt(multi: number) {
+        this.multi_hurt = multi;
+    }
+
+    checkDead() {
+        return this.isDead;
+    }
+    setDead() {
+        this.isDead = true;
+        this.onDead();
     }
 
 }

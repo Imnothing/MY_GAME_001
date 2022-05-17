@@ -1,4 +1,9 @@
+import { ConfigReader } from "../../../mainbundle/scripts/Data/ConfigReader";
+import { FightPet } from "../../../mainbundle/scripts/Data/FightPet";
 import { EnumAbnormal } from "../../../mainbundle/scripts/Data/PetData";
+import { SkillConfig } from "../../../mainbundle/scripts/Datatable/SkillConfig";
+import { Utils } from "../../../mainbundle/scripts/Utils/Utils";
+import { GameConstValue } from "../Data/GameConstValue";
 import PetUI from "../UI/Battle/PetUI";
 
 /** 属性等级 */
@@ -118,7 +123,15 @@ export class BattleSkillSystem {
      * @param type 等级类型
      * @param num 等级数
      */
-    changLevel(pet: PetUI, way: ChangLevelWay, type: LevelType, num?: number) { }
+    changLevel(pet: PetUI, way: ChangLevelWay, type: LevelType, num?: number) {
+        switch (way) {
+            case ChangLevelWay.Promote:
+                pet.getBattleValue()[type] = pet.getBattleValue()[type] + num >= GameConstValue.MaxBattleValue ? GameConstValue.MaxBattleValue : pet.getBattleValue()[type] + num
+            case ChangLevelWay.Reduce:
+                pet.getBattleValue()[type] = pet.getBattleValue()[type] - num <= -GameConstValue.MaxBattleValue ? -GameConstValue.MaxBattleValue : pet.getBattleValue()[type] - num
+
+        }
+    }
 
     /**
      * 消除回合类效果
@@ -131,7 +144,23 @@ export class BattleSkillSystem {
      * @param pet 精灵类
      * @param hp 体力
      */
-    recoverHp(pet: PetUI, valueType: EnumValue, percent: number, num?: number) { }
+    recoverHp(pet: PetUI, valueType: EnumValue, percent: number, num?: number) {
+        let petInfo: FightPet = pet.getPetInfo();
+        if (petInfo.battleValue.hp == petInfo.battleValue.max_hp) return false;
+        if (valueType == EnumValue.Fixed_Number) {
+            petInfo.battleValue.hp = petInfo.battleValue.hp + num >= petInfo.battleValue.max_hp ? petInfo.battleValue.max_hp : petInfo.battleValue.hp + num
+        }
+
+        return true;
+    }
+
+    recoverPP(pet: PetUI, pp: number) {
+        let petInfo: FightPet = pet.getPetInfo();
+        for (let key in petInfo.skills) {
+            let skill: SkillConfig = ConfigReader.readSkillConfig(key);
+            petInfo.skills[key] = petInfo.skills[key] + pp >= skill.PP ? skill.PP : petInfo.skills[key] + pp;
+        }
+    }
 
     /**
      * 减少体力
@@ -139,7 +168,15 @@ export class BattleSkillSystem {
      * @param pet 精灵类
      * @param hp 伤害值
      */
-    reduceHp(pet: PetUI, type: EnumReduceHP, valueType: EnumValue, percent: number, num?: number) { }
+    reduceHp(pet: PetUI, type: EnumReduceHP, valueType: EnumValue, percent: number, num?: number) {
+        let petInfo: FightPet = pet.getPetInfo();
+        if (petInfo.battleValue.hp == petInfo.battleValue.max_hp) return false;
+        if (valueType == EnumValue.Fixed_Number) {
+            petInfo.battleValue.hp = petInfo.battleValue.hp + num >= petInfo.battleValue.max_hp ? petInfo.battleValue.max_hp : petInfo.battleValue.hp + num
+        }
+
+        return true;
+    }
 
     /**
      * 增加增益效果
@@ -160,7 +197,9 @@ export class BattleSkillSystem {
      * @param damageReduce 增伤倍率
      * @param hurtIncrease 减伤倍率
      */
-    addDeBuff(pet: PetUI, type: EnumDeBuff, possibility?: number, deBUff?: string, damageReduce?: number, hurtIncrease?: number, now?: boolean) { }
+    addDeBuff(pet: PetUI, type: EnumDeBuff, possibility?: number, deBUff?: string, damageReduce?: number, hurtIncrease?: number, now?: boolean) {
+
+    }
 
     /**
      * 进入异常状态
@@ -168,7 +207,18 @@ export class BattleSkillSystem {
      * @param abId 
      * @param possibility 
      */
-    addAbnormal(pet: PetUI, abId: string, possibility?: number) { }
+    addAbnormal(pet: PetUI, abId: string, possibility?: number) {
+        if (possibility) {
+            let rd = Utils.randomNum(1, 100);
+            if (rd > possibility) return false;
+        }
+        if (!pet.getAbState()[abId]) {
+            pet.getAbState()[abId] = Utils.randomNum(1, 3);
+        } else {
+            pet.getAbState()[abId]++;
+        }
+        return true;
+    }
 
 }
 

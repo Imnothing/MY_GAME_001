@@ -31,14 +31,15 @@ export default class GamePreLoadUI extends BaseUI {
 
     async show(data?: any, onShowed?: Function) {
         onShowed && onShowed();
-        let levelId = data && (data.levelId || 1);
-        await McGame.init(levelId);
-        McGame.initData()
+        let petJson = data.petJson;
+        let sptConfig = data.sptConfig;
+        await McGame.init();
+        McGame.initData(sptConfig, petJson)
         await engine.uiManager.loadAsync(UIConfigs.battleUI);
         await engine.uiManager.loadAsync(UIConfigs.petUI);
         // await engine.resLoader.loadBundleResSync(ResPathEnum);
-        engine.uiManager.openUI(UIConfigs.battleUI, levelId)
-
+        engine.uiManager.openUI(UIConfigs.battleUI);
+        this.doClose(UIConfigs.gamePreLoadUI);
     }
 
     hide(onHided: Function): void {

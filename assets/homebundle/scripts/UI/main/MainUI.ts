@@ -10,9 +10,11 @@ import { BundleConfigs } from '../../../../mainbundle/scripts/Configs/BundleConf
 import { EnumUILayer, UIConfigs } from '../../../../mainbundle/scripts/Configs/UIConfigs';
 import { ConfigReader } from '../../../../mainbundle/scripts/Data/ConfigReader';
 import { ListenerType } from '../../../../mainbundle/scripts/Data/ListenerType';
+import { LocalKeys } from '../../../../mainbundle/scripts/Data/LocalKeys';
 import { PetConfig } from '../../../../mainbundle/scripts/Datatable/PetConfig';
 import { PicConfig } from '../../../../mainbundle/scripts/Datatable/PicConfig';
 import { GameDataManager } from '../../../../mainbundle/scripts/Manager/GameDataManager';
+import { Utils } from '../../../../mainbundle/scripts/Utils/Utils';
 import { engine } from '../../../../scripts/framework/engine';
 import { BaseUI } from '../../../../scripts/framework/lib/router/BaseUI';
 import { HomeManager } from '../../Manager/HomeManager';
@@ -71,8 +73,17 @@ export default class MainUI extends BaseUI {
         }, this)
         // 挑战
         this.onRegisterEvent(this.ui.btn_pve, () => {
-            let playerInfo = GameDataManager.getInstance().getGameData().playerInfo;
             engine.uiManager.openUIAsync(UIConfigs.sptUI);
+        }, this)
+        // 招募精灵
+        this.onRegisterEvent(this.ui.pet_recruit, async () => {
+            // TODO: 临时测试用，获取精灵
+            let rdId = Utils.randomNum(1, 8);
+            let rdLv = Utils.randomNum(1, 100);
+            let pet = await HomeManager.petManager.instantiatePet(String(rdId), rdLv);
+            let pet_list = GameDataManager.getInstance().getGameData().petBagList;
+            pet_list[Date.now()] = pet;
+            HomeManager.petManager.savePetBag();
         }, this)
 
 

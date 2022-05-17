@@ -33,6 +33,7 @@ export default class auto_BattleUI extends Component {
 	tip_level_up_enemy: Node;
 	top: Node;
 	pet_avatar: Node;
+	pic_avatar: Node;
 	layout_petInfo: Node;
 	level_bg: Node;
 	label_lv: Node;
@@ -70,6 +71,7 @@ export default class auto_BattleUI extends Component {
 	count_less_bg: Node;
 	label_count: Node;
 	pet_avatar_enemy: Node;
+	pic_avatar_enemy: Node;
 	layout_petInfo_enemy: Node;
 	level_bg_enemy: Node;
 	label_lv_enemy: Node;
@@ -120,6 +122,11 @@ export default class auto_BattleUI extends Component {
 	ico_surrender: Node;
 	ico_prop: Node;
 	btn_back: Node;
+	over: Node;
+	over_bg: Node;
+	lbl_over: Node;
+	show_win: Node;
+	show_lose: Node;
 
 	public static URL:string = "assets\gamebundle\prefabs\UI\Battle\BattleUI.prefab"
 
@@ -154,6 +161,7 @@ export default class auto_BattleUI extends Component {
 		this.tip_level_up_enemy = this.Tip_Right.getChildByName("tip_level_up_enemy");
 		this.top = this.View.getChildByName("top");
 		this.pet_avatar = this.top.getChildByName("pet_avatar");
+		this.pic_avatar = this.pet_avatar.getChildByName("pic_avatar");
 		this.layout_petInfo = this.pet_avatar.getChildByName("layout_petInfo");
 		this.level_bg = this.layout_petInfo.getChildByName("level_bg");
 		this.label_lv = this.level_bg.getChildByName("label_lv");
@@ -191,6 +199,7 @@ export default class auto_BattleUI extends Component {
 		this.count_less_bg = this.count_bg.getChildByName("count_less_bg");
 		this.label_count = this.count_bg.getChildByName("label_count");
 		this.pet_avatar_enemy = this.top.getChildByName("pet_avatar_enemy");
+		this.pic_avatar_enemy = this.pet_avatar_enemy.getChildByName("pic_avatar_enemy");
 		this.layout_petInfo_enemy = this.pet_avatar_enemy.getChildByName("layout_petInfo_enemy");
 		this.level_bg_enemy = this.layout_petInfo_enemy.getChildByName("level_bg_enemy");
 		this.label_lv_enemy = this.level_bg_enemy.getChildByName("label_lv_enemy");
@@ -236,11 +245,16 @@ export default class auto_BattleUI extends Component {
 		this.bar = this.scrollBar.getChildByName("bar");
 		this.view = this.scv_prop.getChildByName("view");
 		this.content = this.view.getChildByName("content");
-		this.bottom_bg = this.bottom.getChildByName("bottom_bg");
+		this.bottom_bg = this.View.getChildByName("bottom_bg");
 		this.pet_change = this.bottom_bg.getChildByName("pet_change");
 		this.ico_surrender = this.bottom_bg.getChildByName("ico_surrender");
 		this.ico_prop = this.bottom_bg.getChildByName("ico_prop");
 		this.btn_back = this.ico_prop.getChildByName("btn_back");
+		this.over = this.BattleUI.getChildByName("over");
+		this.over_bg = this.over.getChildByName("over_bg");
+		this.lbl_over = this.over_bg.getChildByName("lbl_over");
+		this.show_win = this.over.getChildByName("show_win");
+		this.show_lose = this.over.getChildByName("show_lose");
 
     }
 }

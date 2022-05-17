@@ -42,7 +42,7 @@ export default class SkillItem extends BaseUI {
         onShowed && onShowed();
     }
 
-    setData(sid: string) {
+    setData(sid?: string) {
         let petUI = McGame.battleManager.getPetNow(EnumPlayer.Own).getComponent(PetUI);
         if (sid) {
             this.skillId = sid;
@@ -54,42 +54,42 @@ export default class SkillItem extends BaseUI {
             let attribute: AttributeConfig = ConfigReader.readAttributeConfig(skill.Attribute);
             this.ui.ico_attribute.getComponent(Sprite).spriteFrame = engine.resLoader.getAtlasByTag(ResPathEnum.Attribute.bundle, ResPathEnum.Attribute.resPath, attribute.Icon)
             //第五效果
-            this.ui.skill_frame.getComponent(Toggle).isChecked = (skill.Special == 1);
+            this.ui.spSkill_frame.active = (skill.Special == 1);
             //技能名称
             this.ui.label_name.getComponent(Label).string = skill.Name;
             //技能PP
-            this.ui.label_pp.getComponent(Label).string = `${pp}/${this.maxPP}`
+            this.ui.label_pp.getComponent(Label).string = `次数：${pp}/${this.maxPP}`
             //技能威力
-            this.ui.label_damage.getComponent(Label).string = String(skill.Power);
+            this.ui.label_damage.getComponent(Label).string = `威力：${skill.Power}`;
         } else {
             //不切换的话只对pp值有影响
             let pp = petUI.getPetInfo().skills[this.skillId];
             //技能PP
-            this.ui.label_pp.getComponent(Label).string = `${pp}/${this.maxPP}`
+            this.ui.label_pp.getComponent(Label).string = `次数：${pp}/${this.maxPP}`
         }
-
-        this.refreshSkillState()
     }
 
     hide(onHided: Function): void {
         onHided();
     }
 
-    refreshSkillState(isClose?: boolean) {
+    refreshSkillState(isChoose?: boolean) {
+        this.setData();
         let isGray: boolean = (parseInt(this.ui.label_pp.getComponent(Label).string) == 0)
         this.ui.skill_frame.getComponent(Sprite).grayscale = isGray;
         this.ui.spSkill_frame.getComponent(Sprite).grayscale = isGray;
-        if (isClose)
-            this.ui.skill_frame.getComponent(Button).interactable = isClose;
+        if (isChoose)
+            this.ui.skill_frame.getComponent(Button).interactable = !isChoose;
         else
             this.ui.skill_frame.getComponent(Button).interactable = !isGray;
     }
 
     initEvent() {
         this.onRegisterEvent(this.ui.skill_frame, () => {
-            this.ui.skill_frame.getComponent(Button).interactable = false;
-            engine.listenerManager.trigger(GameListenerType.DoSkill, (this.petId, this.skillId))
+            engine.listenerManager.trigger(GameListenerType.DoSkill, (this.skillId))
         }, this)
+
+        this.onAddEvent(GameListenerType.RefreshSkillItem, this, this.refreshSkillState);
     }
 
 }

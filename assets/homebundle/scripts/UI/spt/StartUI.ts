@@ -10,6 +10,7 @@ import { BundleConfigs } from '../../../../mainbundle/scripts/Configs/BundleConf
 import { ResPathEnum } from '../../../../mainbundle/scripts/Configs/ResPathEnum';
 import { EnumUILayer, UIConfigs } from '../../../../mainbundle/scripts/Configs/UIConfigs';
 import { ConfigReader } from '../../../../mainbundle/scripts/Data/ConfigReader';
+import { PetData } from '../../../../mainbundle/scripts/Data/PetData';
 import { PetConfig } from '../../../../mainbundle/scripts/Datatable/PetConfig';
 import { PicConfig } from '../../../../mainbundle/scripts/Datatable/PicConfig';
 import { SptConfig } from '../../../../mainbundle/scripts/Datatable/SptConfig';
@@ -94,6 +95,34 @@ export default class StartUI extends BaseUI {
         this.onRegisterEvent(this.ui.btn_close, () => {
             this.doClose(UIConfigs.startUI);
         }, this)
+
+        this.onRegisterEvent(this.ui.btn_start, async () => {
+            // 生成相应BOSS数据
+            let petId: string = this.sptConfig.Boss.split("#")[0];
+            let level: number = parseInt(this.sptConfig.Boss.split("#")[1]);
+            let pet: PetData = await HomeManager.petManager.instantiatePet(petId, level);
+            // 加强boss
+            pet.battleValue.atk += this.sptConfig.Atk;
+            pet.battleValue.sp_atk += this.sptConfig.SpAtk;
+            pet.battleValue.def += this.sptConfig.Def;
+            pet.battleValue.sp_def += this.sptConfig.SpDef;
+            pet.battleValue.spd += this.sptConfig.Spd;
+            pet.battleValue.max_hp += this.sptConfig.Hp;
+            let enemy_pets = new Map<number, PetData>();
+            enemy_pets[Date.now()] = pet;
+            engine.uiManager.openUIAsync(UIConfigs.gamePreLoadUI, { sptConfig: this.sptConfig, petJson: enemy_pets });
+            this.doClose(UIConfigs.startUI, true);
+            this.doClose(UIConfigs.sptUI, true);
+            this.doClose(UIConfigs.mainUI, true);
+        }, this)
+
+        this.onRegisterEvent(this.ui.btn_petbag, () => {
+            engine.uiManager.openUIAsync(UIConfigs.petBag);
+        }, this)
+    }
+
+    async startLevel() {
+
     }
 
 }

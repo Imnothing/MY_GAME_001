@@ -47,9 +47,9 @@ export default class PetDetailSkillItem extends BaseUI {
         //技能名称
         this.ui.lbl_skill_name.getComponent(Label).string = skill.Name;
         //技能PP
-        this.ui.lbl_skill_PP.getComponent(Label).string = `${pp}/${skill.PP}`
+        this.ui.lbl_skill_PP.getComponent(Label).string = `PP：${pp}/${skill.PP}`
         //技能威力
-        this.ui.lbl_skill_damage.getComponent(Label).string = String(skill.Power);
+        this.ui.lbl_skill_damage.getComponent(Label).string = `威力：${skill.Power}`;
     }
 
     hide(onHided: Function): void {

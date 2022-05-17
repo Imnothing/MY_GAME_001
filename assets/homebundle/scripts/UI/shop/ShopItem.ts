@@ -59,7 +59,7 @@ export default class ShopItem extends BaseUI {
         //商品价格
         this.ui.lbl_num.getComponent(Label).string = String(data.BuyValue);
         //商品图标
-        let frame = engine.resLoader.getAtlasByTag(ResPathEnum.PropIcon.bundle, ResPathEnum.PropIcon.resPath, item.Name);
+        let frame = engine.resLoader.getAtlasByTag(ResPathEnum.PropIcon.bundle, ResPathEnum.PropIcon.resPath, item.Icon);
         this.ui.ico_prop.getComponent(Sprite).spriteFrame = frame;
     }
 

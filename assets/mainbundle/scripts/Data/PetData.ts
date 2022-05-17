@@ -111,9 +111,9 @@ export class PetData {
     /** 学习力 */
     learningValue: LearningValue = null;
     /** 性格 */
-    character: EnumCharacter = null;
+    character: string = null;
     /** 特性 */
-    features: EnumFeatures = null;
+    features: string = null;
     /** 抗性 */
     resistance: Resistance = null;
     /** 刻印 */

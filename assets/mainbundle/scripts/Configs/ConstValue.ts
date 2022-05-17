@@ -57,6 +57,10 @@ export class ConstValue {
     public static isOppoXiuxian: boolean = false;
     /** 精灵最大等级 */
     public static readonly MaxPetLevel: number = 100;
+    /** 精灵最大个体 */
+    public static readonly MaxPetTalent: number = 100;
+    /** 精灵最大学习力 */
+    public static readonly MaxLearnValue: number = 255;
     /** 测试热更 */
     public static isTestHot: boolean = false;
     /** 测试防沉迷未成年 */

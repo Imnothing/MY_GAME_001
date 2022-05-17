@@ -4,6 +4,8 @@ const { ccclass } = _decorator;
 @ccclass
 export default class auto_ShopItem extends Component {
 	ShopItem: Node;
+	list_item: Node;
+	bg: Node;
 	top_banner: Node;
 	lbl_name: Node;
 	ico_prop: Node;
@@ -16,10 +18,12 @@ export default class auto_ShopItem extends Component {
 
     onLoad () {
 		this.ShopItem = this.node
-		this.top_banner = this.ShopItem.getChildByName("top_banner");
+		this.list_item = this.ShopItem.getChildByName("list_item");
+		this.bg = this.list_item.getChildByName("bg");
+		this.top_banner = this.list_item.getChildByName("top_banner");
 		this.lbl_name = this.top_banner.getChildByName("lbl_name");
-		this.ico_prop = this.ShopItem.getChildByName("ico_prop");
-		this.btn_buy = this.ShopItem.getChildByName("btn_buy");
+		this.ico_prop = this.list_item.getChildByName("ico_prop");
+		this.btn_buy = this.list_item.getChildByName("btn_buy");
 		this.lay_buy = this.btn_buy.getChildByName("lay_buy");
 		this.ico_diamond = this.lay_buy.getChildByName("ico_diamond");
 		this.lbl_num = this.lay_buy.getChildByName("lbl_num");

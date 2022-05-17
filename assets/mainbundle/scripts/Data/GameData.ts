@@ -22,7 +22,7 @@ export class GameData {
     //道具集合
     public propList: Map<string, PropInfo> = null;
     /**精灵背包 */
-    public petBagList: Map<string, PetData> = null
+    public petBagList: Map<number, PetData> = null
     //----------------------------------------------------------------
 
     constructor() {

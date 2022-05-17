@@ -4,6 +4,7 @@ const { ccclass } = _decorator;
 @ccclass
 export default class auto_StartUI extends Component {
 	StartUI: Node;
+	bg: Node;
 	item_bg: Node;
 	pet_base: Node;
 	pet_node: Node;
@@ -28,12 +29,15 @@ export default class auto_StartUI extends Component {
 	lbl_planet: Node;
 	btn_petbag: Node;
 	btn_recover: Node;
+	btn_start: Node;
+	lbl_start: Node;
 	btn_close: Node;
 
 	public static URL:string = "assets\homebundle\prefabs\UI\spt\StartUI.prefab"
 
     onLoad () {
 		this.StartUI = this.node
+		this.bg = this.StartUI.getChildByName("bg");
 		this.item_bg = this.StartUI.getChildByName("item_bg");
 		this.pet_base = this.item_bg.getChildByName("pet_base");
 		this.pet_node = this.pet_base.getChildByName("pet_node");
@@ -58,6 +62,8 @@ export default class auto_StartUI extends Component {
 		this.lbl_planet = this.baseInfo_bg.getChildByName("lbl_planet");
 		this.btn_petbag = this.item_bg.getChildByName("btn_petbag");
 		this.btn_recover = this.item_bg.getChildByName("btn_recover");
+		this.btn_start = this.item_bg.getChildByName("btn_start");
+		this.lbl_start = this.btn_start.getChildByName("lbl_start");
 		this.btn_close = this.item_bg.getChildByName("btn_close");
 
     }
