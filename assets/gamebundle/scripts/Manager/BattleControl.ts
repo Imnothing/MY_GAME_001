@@ -1,4 +1,5 @@
 import { ConfigReader } from "../../../mainbundle/scripts/Data/ConfigReader";
+import { FightPet } from "../../../mainbundle/scripts/Data/FightPet";
 import { EffectConfig } from "../../../mainbundle/scripts/Datatable/EffectConfig";
 import { SkillConfig } from "../../../mainbundle/scripts/Datatable/SkillConfig";
 import { Utils } from "../../../mainbundle/scripts/Utils/Utils";
@@ -254,6 +255,47 @@ export class BattleControl {
     doEffect(skill: SkillConfig, player: EnumPlayer) {
         let pet: PetUI = McGame.battleManager.getPetNow(player).getComponent(PetUI);
         let effects = skill.Effect.split("|");
+    }
+
+    /**
+     * 计算伤害
+     * @param attack_pet 
+     * @param hurt_pet 
+     * @param power 
+     * [(攻击方精灵等级×0.4 + 2)×(技能威力×攻击方的攻击值x(1+0.1*攻击方攻击等级))÷(防御方的防御值x(1+0.1*防御方防御等级))÷50 + 2]×本系技能系数修正(使用本系技能则为1.1，非本系技能为1)×克制系数×威力系数(217~255)÷255
+     */
+    calDamage(attack_pet: PetUI, hurt_pet: PetUI, skill: SkillConfig) {
+        let res = {
+            damage: 0,
+            isCritical: false
+        }
+        let atkInfo: FightPet = attack_pet.getPetInfo();
+        let atkBattleValue = attack_pet.getBattleLevel();
+        let hurtInfo: FightPet = hurt_pet.getPetInfo();
+        let hurtBattleValue = hurt_pet.getBattleLevel();
+        if (skill.Type == 1) {
+            let damage_1 = (atkInfo.level * 0.4 + 2) * (skill.Power * atkInfo.battleValue.atk * (1 + 0.1 * atkBattleValue[LevelType.LEVEL_Atk] ? atkBattleValue[LevelType.LEVEL_Atk] : 0)) / (hurtInfo.battleValue.def * (1 + 0.1 * hurtBattleValue[LevelType.LEVEL_Def] ? hurtBattleValue[LevelType.LEVEL_Def] : 0)) / 50 + 2
+            let damage_2 = (skill.Attribute == atkInfo.attribute ? 1.1 : 1) * McGame.battleManager.calRestraint(atkInfo.attribute, hurtInfo.attribute) * Utils.randomNum(217, 255) / 255;
+            let tmp_damage = damage_1 * damage_2;
+            //暴击
+            if (Utils.randomNum(1, 100) > skill.CritRate) {
+                tmp_damage = tmp_damage * 2;
+                res.isCritical = true;
+            }
+            res.damage = Math.floor(tmp_damage);
+        } else if (skill.Type == 2) {
+            let damage_1 = (atkInfo.level * 0.4 + 2) * (skill.Power * atkInfo.battleValue.sp_atk * (1 + 0.1 * atkBattleValue[LevelType.LEVEL_spAtk] ? atkBattleValue[LevelType.LEVEL_spAtk] : 0)) / (hurtInfo.battleValue.sp_def * (1 + 0.1 * hurtBattleValue[LevelType.LEVEL_spDef] ? hurtBattleValue[LevelType.LEVEL_spDef] : 0)) / 50 + 2
+            let damage_2 = (skill.Attribute == atkInfo.attribute ? 1.1 : 1) * McGame.battleManager.calRestraint(atkInfo.attribute, hurtInfo.attribute) * Utils.randomNum(217, 255) / 255;
+            let tmp_damage = damage_1 * damage_2;
+            //暴击
+            if (Utils.randomNum(1, 100) > skill.CritRate) {
+                tmp_damage = tmp_damage * 2;
+                res.isCritical = true;
+            }
+            res.damage = Math.floor(tmp_damage);
+        }
+
+        return res
     }
 
 }

@@ -45,14 +45,12 @@ export default class BattleUI extends BaseUI {
     protected static layerZIndex = EnumUILayer.UILayer;
     public battleControl: BattleControl;
     private enumTab: EnumTab = EnumTab.Skill;
-    private isOver: boolean = false;
 
 
     onLoad() {
         this.ui = this.node.addComponent(auto_BattleUI);
         this.initEvent();
         this.enumTab = EnumTab.Skill;
-        this.isOver = false;
         // this.switchTab(this.enumTab);
     }
 
@@ -103,7 +101,6 @@ export default class BattleUI extends BaseUI {
         })
 
         this.onAddEvent(GameListenerType.PlayBattleAni, this, (round_ani) => {
-            this.isOver = false;
             this.playBattleAni(round_ani);
         });
 
@@ -241,7 +238,6 @@ export default class BattleUI extends BaseUI {
     playBattleAni(arr: Array<BattleAni>) {
         if (arr.length > 0) {
             let ani: BattleAni = arr.shift();
-            console.log("=================ani", ani);
             if (ani.player == EnumPlayer.Own) {
                 if (ani.skill) {
                     // 属性
@@ -262,15 +258,15 @@ export default class BattleUI extends BaseUI {
                         if (ani.hp_other != null) {
                             this.ui.hp_bar_enemy.getComponent(ProgressBar).progress = ani.hp_other;
                         }
-                        if (arr.length == 0 && !this.isOver) {
-                            this.isOver = true;
+                        if (arr.length == 0) {
+                            // this.isOver = true;
                             McGame.battleManager.setBattleState(BattleState.Over);
                         } else {
                             this.playBattleAni(arr);
                         }
                     }
 
-                })
+                }, null, true)
             } else {
                 if (ani.skill) {
                     // 属性
@@ -291,14 +287,14 @@ export default class BattleUI extends BaseUI {
                         if (ani.hp_other != null) {
                             this.ui.hp_bar.getComponent(ProgressBar).progress = ani.hp_other;
                         }
-                        if (arr.length == 0 && !this.isOver) {
-                            this.isOver = true;
+                        if (arr.length == 0) {
+                            // this.isOver = true;
                             McGame.battleManager.setBattleState(BattleState.Over);
                         } else {
                             this.playBattleAni(arr);
                         }
                     }
-                })
+                }, null, true)
             }
         }
     }

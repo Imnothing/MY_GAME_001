@@ -79,8 +79,7 @@ export default class MainUI extends BaseUI {
         this.onRegisterEvent(this.ui.pet_recruit, async () => {
             // TODO: 临时测试用，获取精灵
             let rdId = Utils.randomNum(1, 8);
-            let rdLv = Utils.randomNum(1, 100);
-            let pet = await HomeManager.petManager.instantiatePet(String(rdId), rdLv);
+            let pet = await HomeManager.petManager.instantiatePet(String(rdId));
             let pet_list = GameDataManager.getInstance().getGameData().petBagList;
             pet_list[Date.now()] = pet;
             HomeManager.petManager.savePetBag();
