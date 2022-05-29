@@ -48,7 +48,7 @@ export default class PetDetailPropItem extends BaseUI {
             this.key = key;
         let prop: PropInfo = GameDataManager.getInstance().getGameData().propList[this.key];
         this.propInfo = prop;
-        if (prop.count <= 0) {
+        if (!prop || prop.count <= 0) {
             this.node.active = false;
             return;
         }
@@ -58,8 +58,6 @@ export default class PetDetailPropItem extends BaseUI {
         this.ui.ico_prop.getComponent(Sprite).spriteFrame = frame;
         //物品数量
         this.ui.lbl_num.getComponent(Label).string = String(prop.count);
-        console.log("=======icon", item.Icon);
-
     }
 
     hide(onHided: Function): void {

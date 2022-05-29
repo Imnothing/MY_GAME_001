@@ -259,7 +259,7 @@
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>thunder.png</key>
+            <key>spirit.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -274,7 +274,7 @@
                 <key>textureRotated</key>
                 <false/>
             </dict>
-            <key>water.png</key>
+            <key>thunder.png</key>
             <dict>
                 <key>aliases</key>
                 <array/>
@@ -286,6 +286,21 @@
                 <string>{40,40}</string>
                 <key>textureRect</key>
                 <string>{{720,0},{40,40}}</string>
+                <key>textureRotated</key>
+                <false/>
+            </dict>
+            <key>water.png</key>
+            <dict>
+                <key>aliases</key>
+                <array/>
+                <key>spriteOffset</key>
+                <string>{0,0}</string>
+                <key>spriteSize</key>
+                <string>{40,40}</string>
+                <key>spriteSourceSize</key>
+                <string>{40,40}</string>
+                <key>textureRect</key>
+                <string>{{760,0},{40,40}}</string>
                 <key>textureRotated</key>
                 <false/>
             </dict>
@@ -301,9 +316,9 @@
             <key>realTextureFileName</key>
             <string>attribute.png</string>
             <key>size</key>
-            <string>{760,40}</string>
+            <string>{800,40}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:70eff2c78afeaedf57b95ffc9b30bb87:11c7ab9b8358eaee93e2800554570b8e:0e13b0962346c446a2632dd1d78be507$</string>
+            <string>$TexturePacker:SmartUpdate:bb2579ad9672c5c5948ca89ff9c9102e:bdcb443a7fa2959d4df40a6c57cfcbe8:0e13b0962346c446a2632dd1d78be507$</string>
             <key>textureFileName</key>
             <string>attribute.png</string>
         </dict>

@@ -21,6 +21,7 @@ export default class auto_BattleUI extends Component {
 	tip_level_up: Node;
 	tip_priority: Node;
 	tip_resist: Node;
+	lbl_value: Node;
 	Tip_Right: Node;
 	banner_skill_enemy: Node;
 	banner_critical_skill_reverse: Node;
@@ -31,6 +32,7 @@ export default class auto_BattleUI extends Component {
 	tip_priority_enemy: Node;
 	tip_resist_enemy: Node;
 	tip_level_up_enemy: Node;
+	lbl_value_enemy: Node;
 	top: Node;
 	pet_avatar: Node;
 	pic_avatar: Node;
@@ -41,6 +43,7 @@ export default class auto_BattleUI extends Component {
 	label_petName: Node;
 	hp_bar: Node;
 	hp_inner_bar: Node;
+	lbl_hp: Node;
 	layout_shield: Node;
 	ico_resistance: Node;
 	ico_shield_normal: Node;
@@ -79,6 +82,7 @@ export default class auto_BattleUI extends Component {
 	label_petName_enemy: Node;
 	hp_bar_enemy: Node;
 	hp_inner_bar_reverse: Node;
+	lbl_hp_enemy: Node;
 	layout_sheild_enemy: Node;
 	ico_resistance_enemy: Node;
 	ico_shield_normal_enemy: Node;
@@ -149,6 +153,7 @@ export default class auto_BattleUI extends Component {
 		this.tip_level_up = this.Tip_Left.getChildByName("tip_level_up");
 		this.tip_priority = this.Tip_Left.getChildByName("tip_priority");
 		this.tip_resist = this.Tip_Left.getChildByName("tip_resist");
+		this.lbl_value = this.Tip_Left.getChildByName("lbl_value");
 		this.Tip_Right = this.TipLayer.getChildByName("Tip_Right");
 		this.banner_skill_enemy = this.Tip_Right.getChildByName("banner_skill_enemy");
 		this.banner_critical_skill_reverse = this.banner_skill_enemy.getChildByName("banner_critical_skill_reverse");
@@ -159,6 +164,7 @@ export default class auto_BattleUI extends Component {
 		this.tip_priority_enemy = this.Tip_Right.getChildByName("tip_priority_enemy");
 		this.tip_resist_enemy = this.Tip_Right.getChildByName("tip_resist_enemy");
 		this.tip_level_up_enemy = this.Tip_Right.getChildByName("tip_level_up_enemy");
+		this.lbl_value_enemy = this.Tip_Right.getChildByName("lbl_value_enemy");
 		this.top = this.View.getChildByName("top");
 		this.pet_avatar = this.top.getChildByName("pet_avatar");
 		this.pic_avatar = this.pet_avatar.getChildByName("pic_avatar");
@@ -169,6 +175,7 @@ export default class auto_BattleUI extends Component {
 		this.label_petName = this.layout_petInfo.getChildByName("label_petName");
 		this.hp_bar = this.pet_avatar.getChildByName("hp_bar");
 		this.hp_inner_bar = this.hp_bar.getChildByName("hp_inner_bar");
+		this.lbl_hp = this.hp_bar.getChildByName("lbl_hp");
 		this.layout_shield = this.pet_avatar.getChildByName("layout_shield");
 		this.ico_resistance = this.layout_shield.getChildByName("ico_resistance");
 		this.ico_shield_normal = this.layout_shield.getChildByName("ico_shield_normal");
@@ -207,6 +214,7 @@ export default class auto_BattleUI extends Component {
 		this.label_petName_enemy = this.layout_petInfo_enemy.getChildByName("label_petName_enemy");
 		this.hp_bar_enemy = this.pet_avatar_enemy.getChildByName("hp_bar_enemy");
 		this.hp_inner_bar_reverse = this.hp_bar_enemy.getChildByName("hp_inner_bar_reverse");
+		this.lbl_hp_enemy = this.hp_bar_enemy.getChildByName("lbl_hp_enemy");
 		this.layout_sheild_enemy = this.pet_avatar_enemy.getChildByName("layout_sheild_enemy");
 		this.ico_resistance_enemy = this.layout_sheild_enemy.getChildByName("ico_resistance_enemy");
 		this.ico_shield_normal_enemy = this.layout_sheild_enemy.getChildByName("ico_shield_normal_enemy");

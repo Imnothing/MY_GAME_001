@@ -7,7 +7,7 @@ import { engine } from "../../../scripts/framework/engine";
 import { GameListenerType } from "../Data/GameListenerType";
 import PetUI from "../UI/Battle/PetUI";
 import { BattleState, EnumPlayer } from "./BattleManager";
-import { LevelType } from "./BattleSkillSystem";
+import { ChangLevelWay, LevelType } from "./BattleSkillSystem";
 import { McGame } from "./McGame";
 
 
@@ -78,39 +78,32 @@ export class BattleControl {
             this.round_ani.push(new BattleAni(EnumPlayer.Own, null, own_petInfo.battleValue.hp / own_petInfo.battleValue.max_hp, null, 0, this.own_recover));
         }
 
+        //计算伤害
+        // if (this.own_skill) {
+        //     let skill: SkillConfig = ConfigReader.readSkillConfig(this.own_skill);
+        //     let res = this.calDamage(own_pet, enemy_pet, skill);
+        //     own_damage = res.damage;
+        //     isCritical = res.isCritical;
+        // }
+        // if (this.enemy_skill) {
+        //     let skill: SkillConfig = ConfigReader.readSkillConfig(this.enemy_skill);
+        //     let res = this.calDamage(enemy_pet, own_pet, skill);
+        //     enemy_damage = res.damage;
+        //     isCritical = res.isCritical;
+        // }
+
         // 判断先手
         if ((own_pet.getPriority() > enemy_pet.getPriority()) || ((own_pet.getPriority() <= enemy_pet.getPriority()) && own_petInfo.battleValue.spd >= enemy_petInfo.battleValue.spd)) {
             // 当回合使用了技能
             if (this.own_skill) {
                 if (own_pet.getPriority() > 0)
                     isPriority = true;
-                // 计算伤害 
-                // [(攻击方精灵等级×0.4 + 2)×技能威力×攻击方的攻击值÷防御方的防御值÷50 + 2]×本系技能系数修正(使用本系技能则为1.1，非本系技能为1)×克制系数×威力系数(217~255)÷255
-                own_damage = 0;
-                let skill: SkillConfig = ConfigReader.readSkillConfig(this.own_skill);
 
-                // 属性技能不计算伤害
-                if (skill.Type == 1) {
-                    let damage_1 = (own_petInfo.level * 0.4 + 2) * skill.Power * own_petInfo.battleValue.atk / (1 * enemy_petInfo.battleValue.def) / 50 + 2;
-                    let damage_2 = (skill.Attribute == own_petInfo.attribute ? 1.1 : 1) * McGame.battleManager.calRestraint(own_petInfo.attribute, enemy_petInfo.attribute) * Utils.randomNum(217, 255) / 255;
-                    let tmp_damage = damage_1 * damage_2;
-                    //暴击
-                    if (Utils.randomNum(1, 100) > skill.CritRate) {
-                        tmp_damage = tmp_damage * 2;
-                        isCritical = true;
-                    }
-                    own_damage = Math.floor(tmp_damage);
-                } else if (skill.Type == 2) {
-                    let damage_1 = (own_petInfo.level * 0.4 + 2) * skill.Power * own_petInfo.battleValue.sp_atk / (1 * enemy_petInfo.battleValue.sp_def) / 50 + 2;
-                    let damage_2 = (skill.Attribute == own_petInfo.attribute ? 1.1 : 1) * McGame.battleManager.calRestraint(own_petInfo.attribute, enemy_petInfo.attribute) * Utils.randomNum(217, 255) / 255;
-                    let tmp_damage = damage_1 * damage_2;
-                    //暴击
-                    if (Utils.randomNum(1, 100) > skill.CritRate) {
-                        tmp_damage = tmp_damage * 2;
-                        isCritical = true;
-                    }
-                    own_damage = Math.floor(tmp_damage);
-                }
+                let skill: SkillConfig = ConfigReader.readSkillConfig(this.own_skill);
+                let res = this.calDamage(own_pet, enemy_pet, skill);
+                own_damage = res.damage;
+                isCritical = res.isCritical;
+
                 // 对手阵亡
                 if (enemy_petInfo.battleValue.hp - own_damage <= 0) {
                     enemy_petInfo.battleValue.hp = 0;
@@ -125,32 +118,11 @@ export class BattleControl {
             }
             // 没阵亡 对手出招
             if (this.enemy_skill) {
-                // 计算伤害 
-                // [(攻击方精灵等级×0.4 + 2)×技能威力×攻击方的攻击值÷防御方的防御值÷50 + 2]×本系技能系数修正(使用本系技能则为1.1，非本系技能为1)×克制系数×威力系数(217~255)÷255
-                enemy_damage = 0;
                 let skill: SkillConfig = ConfigReader.readSkillConfig(this.enemy_skill);
-                // 属性技能不计算伤害
-                if (skill.Type == 1) {
-                    let damage_1 = (enemy_petInfo.level * 0.4 + 2) * skill.Power * enemy_petInfo.battleValue.atk / (1 * own_petInfo.battleValue.def) / 50 + 2;
-                    let damage_2 = (skill.Attribute == enemy_petInfo.attribute ? 1.1 : 1) * McGame.battleManager.calRestraint(enemy_petInfo.attribute, own_petInfo.attribute) * Utils.randomNum(217, 255) / 255;
-                    let tmp_damage = damage_1 * damage_2;
-                    //暴击
-                    if (Utils.randomNum(1, 100) > skill.CritRate) {
-                        tmp_damage = tmp_damage * 2;
-                        isCritical = true;
-                    }
-                    enemy_damage = Math.floor(tmp_damage);
-                } else if (skill.Type == 2) {
-                    let damage_1 = (enemy_petInfo.level * 0.4 + 2) * skill.Power * enemy_petInfo.battleValue.sp_atk / (1 * own_petInfo.battleValue.sp_def) / 50 + 2;
-                    let damage_2 = (skill.Attribute == enemy_petInfo.attribute ? 1.1 : 1) * McGame.battleManager.calRestraint(enemy_petInfo.attribute, own_petInfo.attribute) * Utils.randomNum(217, 255) / 255;
-                    let tmp_damage = damage_1 * damage_2;
-                    //暴击
-                    if (Utils.randomNum(1, 100) > skill.CritRate) {
-                        tmp_damage = tmp_damage * 2;
-                        isCritical = true;
-                    }
-                    enemy_damage = Math.floor(tmp_damage);
-                }
+                let res = this.calDamage(enemy_pet, own_pet, skill);
+                enemy_damage = res.damage;
+                isCritical = res.isCritical;
+
                 // 对手阵亡
                 if (own_petInfo.battleValue.hp - enemy_damage <= 0) {
                     own_petInfo.battleValue.hp = 0;
@@ -163,37 +135,15 @@ export class BattleControl {
                     this.round_ani.push(new BattleAni(EnumPlayer.Enemy, skill, null, own_petInfo.battleValue.hp / own_petInfo.battleValue.max_hp, enemy_damage, 0, isCritical, null));
                 }
             }
-            // 执行效果
         } else {
             if (this.enemy_skill) {
                 if (enemy_pet.getPriority() > 0)
                     isPriority = true;
-                // 计算伤害 
-                // [(攻击方精灵等级×0.4 + 2)×技能威力×攻击方的攻击值÷防御方的防御值÷50 + 2]×本系技能系数修正(使用本系技能则为1.1，非本系技能为1)×克制系数×威力系数(217~255)÷255
-                enemy_damage = 0;
                 let skill: SkillConfig = ConfigReader.readSkillConfig(this.enemy_skill);
-                // 属性技能不计算伤害
-                if (skill.Type == 1) {
-                    let damage_1 = (enemy_petInfo.level * 0.4 + 2) * skill.Power * enemy_petInfo.battleValue.atk / (1 * own_petInfo.battleValue.def) / 50 + 2;
-                    let damage_2 = (skill.Attribute == enemy_petInfo.attribute ? 1.1 : 1) * McGame.battleManager.calRestraint(enemy_petInfo.attribute, own_petInfo.attribute) * Utils.randomNum(217, 255) / 255;
-                    let tmp_damage = damage_1 * damage_2;
-                    //暴击
-                    if (Utils.randomNum(1, 100) > skill.CritRate) {
-                        tmp_damage = tmp_damage * 2;
-                        isCritical = true;
-                    }
-                    enemy_damage = Math.floor(tmp_damage);
-                } else if (skill.Type == 2) {
-                    let damage_1 = (enemy_petInfo.level * 0.4 + 2) * skill.Power * enemy_petInfo.battleValue.sp_atk / (1 * own_petInfo.battleValue.sp_def) / 50 + 2;
-                    let damage_2 = (skill.Attribute == enemy_petInfo.attribute ? 1.1 : 1) * McGame.battleManager.calRestraint(enemy_petInfo.attribute, own_petInfo.attribute) * Utils.randomNum(217, 255) / 255;
-                    let tmp_damage = damage_1 * damage_2;
-                    //暴击
-                    if (Utils.randomNum(1, 100) > skill.CritRate) {
-                        tmp_damage = tmp_damage * 2;
-                        isCritical = true;
-                    }
-                    enemy_damage = Math.floor(tmp_damage);
-                }
+                let res = this.calDamage(enemy_pet, own_pet, skill);
+                enemy_damage = res.damage;
+                isCritical = res.isCritical;
+
                 // 对手阵亡
                 if (own_petInfo.battleValue.hp - enemy_damage <= 0) {
                     own_petInfo.battleValue.hp = 0;
@@ -208,33 +158,11 @@ export class BattleControl {
                 // 没阵亡 对手出招
             }
             if (this.own_skill) {
-
-                // 计算伤害 
-                // [(攻击方精灵等级×0.4 + 2)×技能威力×攻击方的攻击值÷防御方的防御值÷50 + 2]×本系技能系数修正(使用本系技能则为1.1，非本系技能为1)×克制系数×威力系数(217~255)÷255
-                own_damage = 0;
                 let skill: SkillConfig = ConfigReader.readSkillConfig(this.own_skill);
-                // 属性技能不计算伤害
-                if (skill.Type == 1) {
-                    let damage_1 = (own_petInfo.level * 0.4 + 2) * skill.Power * own_petInfo.battleValue.atk / (1 * enemy_petInfo.battleValue.def) / 50 + 2;
-                    let damage_2 = (skill.Attribute == own_petInfo.attribute ? 1.1 : 1) * McGame.battleManager.calRestraint(own_petInfo.attribute, enemy_petInfo.attribute) * Utils.randomNum(217, 255) / 255;
-                    let tmp_damage = damage_1 * damage_2;
-                    //暴击
-                    if (Utils.randomNum(1, 100) > skill.CritRate) {
-                        tmp_damage = tmp_damage * 2;
-                        isCritical = true;
-                    }
-                    own_damage = Math.floor(tmp_damage);
-                } else if (skill.Type == 2) {
-                    let damage_1 = (own_petInfo.level * 0.4 + 2) * skill.Power * own_petInfo.battleValue.sp_atk / (1 * enemy_petInfo.battleValue.sp_def) / 50 + 2;
-                    let damage_2 = (skill.Attribute == own_petInfo.attribute ? 1.1 : 1) * McGame.battleManager.calRestraint(own_petInfo.attribute, enemy_petInfo.attribute) * Utils.randomNum(217, 255) / 255;
-                    let tmp_damage = damage_1 * damage_2;
-                    //暴击
-                    if (Utils.randomNum(1, 100) > skill.CritRate) {
-                        tmp_damage = tmp_damage * 2;
-                        isCritical = true;
-                    }
-                    own_damage = Math.floor(tmp_damage);
-                }
+                let res = this.calDamage(own_pet, enemy_pet, skill);
+                own_damage = res.damage;
+                isCritical = res.isCritical;
+
                 // 对手阵亡
                 if (enemy_petInfo.battleValue.hp - own_damage <= 0) {
                     enemy_petInfo.battleValue.hp = 0;
@@ -247,14 +175,34 @@ export class BattleControl {
                     this.round_ani.push(new BattleAni(EnumPlayer.Own, skill, null, enemy_petInfo.battleValue.hp / enemy_petInfo.battleValue.max_hp, own_damage, 0, isCritical, null));
                 }
             }
-            // 执行效果
         }
         engine.listenerManager.trigger(GameListenerType.PlayBattleAni, this.round_ani)
     }
 
-    doEffect(skill: SkillConfig, player: EnumPlayer) {
-        let pet: PetUI = McGame.battleManager.getPetNow(player).getComponent(PetUI);
+    doEffect(skill: SkillConfig, p1: PetUI, p2: PetUI) {
         let effects = skill.Effect.split("|");
+        effects.forEach(effect => {
+            switch (effect) {
+                // 10%令对手害怕 10 1006
+                case '1': {
+                    let possible = 10;
+                    let abnormal = "1006";
+                    McGame.battleSkillSystem.addAbnormal(p2, abnormal, possible);
+                    break;
+                }
+                // 技能使用成功时，攻击+2
+                case '2': {
+                    let type = LevelType.LEVEL_Atk;
+                    McGame.battleSkillSystem.changLevel(p1, ChangLevelWay.Promote, type, 2);
+                    break;
+                }
+                case '3': {
+                    let possible = 30;
+                    // if()
+                }
+
+            }
+        })
     }
 
     /**
@@ -274,7 +222,7 @@ export class BattleControl {
         let hurtInfo: FightPet = hurt_pet.getPetInfo();
         let hurtBattleValue = hurt_pet.getBattleLevel();
         if (skill.Type == 1) {
-            let damage_1 = (atkInfo.level * 0.4 + 2) * (skill.Power * atkInfo.battleValue.atk * (1 + 0.1 * atkBattleValue[LevelType.LEVEL_Atk] ? atkBattleValue[LevelType.LEVEL_Atk] : 0)) / (hurtInfo.battleValue.def * (1 + 0.1 * hurtBattleValue[LevelType.LEVEL_Def] ? hurtBattleValue[LevelType.LEVEL_Def] : 0)) / 50 + 2
+            let damage_1 = (atkInfo.level * 0.4 + 2) * (skill.Power * atkInfo.battleValue.atk * (1 + (0.1 * atkBattleValue[LevelType.LEVEL_Atk] ? atkBattleValue[LevelType.LEVEL_Atk] : 0))) / (hurtInfo.battleValue.def * (1 + (0.1 * hurtBattleValue[LevelType.LEVEL_Def] ? hurtBattleValue[LevelType.LEVEL_Def] : 0))) / 50 + 2
             let damage_2 = (skill.Attribute == atkInfo.attribute ? 1.1 : 1) * McGame.battleManager.calRestraint(atkInfo.attribute, hurtInfo.attribute) * Utils.randomNum(217, 255) / 255;
             let tmp_damage = damage_1 * damage_2;
             //暴击
@@ -284,7 +232,7 @@ export class BattleControl {
             }
             res.damage = Math.floor(tmp_damage);
         } else if (skill.Type == 2) {
-            let damage_1 = (atkInfo.level * 0.4 + 2) * (skill.Power * atkInfo.battleValue.sp_atk * (1 + 0.1 * atkBattleValue[LevelType.LEVEL_spAtk] ? atkBattleValue[LevelType.LEVEL_spAtk] : 0)) / (hurtInfo.battleValue.sp_def * (1 + 0.1 * hurtBattleValue[LevelType.LEVEL_spDef] ? hurtBattleValue[LevelType.LEVEL_spDef] : 0)) / 50 + 2
+            let damage_1 = (atkInfo.level * 0.4 + 2) * (skill.Power * atkInfo.battleValue.sp_atk * (1 + (0.1 * atkBattleValue[LevelType.LEVEL_spAtk] ? atkBattleValue[LevelType.LEVEL_spAtk] : 0))) / (hurtInfo.battleValue.sp_def * (1 + (0.1 * hurtBattleValue[LevelType.LEVEL_spDef] ? hurtBattleValue[LevelType.LEVEL_spDef] : 0))) / 50 + 2
             let damage_2 = (skill.Attribute == atkInfo.attribute ? 1.1 : 1) * McGame.battleManager.calRestraint(atkInfo.attribute, hurtInfo.attribute) * Utils.randomNum(217, 255) / 255;
             let tmp_damage = damage_1 * damage_2;
             //暴击

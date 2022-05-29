@@ -14,6 +14,7 @@ import { EnumAbnormal, EnumAbType } from '../../../../mainbundle/scripts/Data/Pe
 import { AbnormalConfig } from '../../../../mainbundle/scripts/Datatable/AbnormalConfig';
 import { PetConfig } from '../../../../mainbundle/scripts/Datatable/PetConfig';
 import { PicConfig } from '../../../../mainbundle/scripts/Datatable/PicConfig';
+import { Utils } from '../../../../mainbundle/scripts/Utils/Utils';
 import { engine } from '../../../../scripts/framework/engine';
 import { BaseUI } from '../../../../scripts/framework/lib/router/BaseUI';
 import { EnumBuff, EnumDeBuff, LevelType } from '../../Manager/BattleSkillSystem';
@@ -155,6 +156,10 @@ export default class PetUI extends BaseUI {
 
     getAbState() {
         return this.pet_abnormal;
+    }
+
+    setAbState(abId: string) {
+        this.pet_abnormal[abId] = Utils.randomNum(1, 3);
     }
 
     getPriority() {

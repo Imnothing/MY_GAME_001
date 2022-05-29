@@ -26,6 +26,7 @@ export enum EnumLearnType {
     sp_def = 4,
     spd = 5,
     hp = 6,
+    all = 7
 }
 export enum EnumResistType {
     Critical,
@@ -53,6 +54,7 @@ export class PetManager {
         value.sp_def = Math.round(((petConfig.SpDef * 2 + pet.talentValue + (pet.learningValue.sp_def / 4)) * pet.level / ConstValue.MaxPetLevel + 5) * (character.SpDef == 0 ? 1 : character.SpDef == 1 ? 1.1 : 0.9));
         value.spd = Math.round(((petConfig.Spd * 2 + pet.talentValue + (pet.learningValue.spd / 4)) * pet.level / ConstValue.MaxPetLevel + 5) * (character.Spd == 0 ? 1 : character.Spd == 1 ? 1.1 : 0.9));
         value.max_hp = Math.round((petConfig.Hp * 2 + pet.talentValue + (pet.learningValue.hp / 4)) * pet.level / 100 + pet.level + 10);
+        value.hp = value.max_hp;
         pet.battleValue = value;
         this.savePetBag();
         return true;
@@ -90,6 +92,7 @@ export class PetManager {
                 pet.learningValue.hp += num;
             } else return false;
         }
+        pet.learningValue.all += num;
 
         !init && this.refreshBattleValue(pet);
         this.savePetBag();

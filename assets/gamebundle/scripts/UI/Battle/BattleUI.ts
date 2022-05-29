@@ -5,11 +5,12 @@
  * @Version 1.0
  */
 
-import { _decorator, Component, Node, Button, Event, Toggle, Prefab, Label, ProgressBar, Sprite, instantiate, SpriteFrame, Animation, AnimationState } from 'cc';
+import { _decorator, Component, Node, Button, Event, Toggle, Prefab, Label, ProgressBar, Sprite, instantiate, SpriteFrame, Animation, AnimationState, Color, Vec3, tween } from 'cc';
 import { HomeManager } from '../../../../homebundle/scripts/Manager/HomeManager';
 import { BundleConfigs } from '../../../../mainbundle/scripts/Configs/BundleConfigs';
 import { ResPathEnum } from '../../../../mainbundle/scripts/Configs/ResPathEnum';
 import { EnumUILayer, UIConfigs } from '../../../../mainbundle/scripts/Configs/UIConfigs';
+import { BattleValue } from '../../../../mainbundle/scripts/Data/BattleValue';
 import { ConfigReader } from '../../../../mainbundle/scripts/Data/ConfigReader';
 import { AttributeConfig } from '../../../../mainbundle/scripts/Datatable/AttributeConfig';
 import { PetConfig } from '../../../../mainbundle/scripts/Datatable/PetConfig';
@@ -125,6 +126,7 @@ export default class BattleUI extends BaseUI {
             this.ui.label_petName.getComponent(Label).string = petConfig.Name;
             //体力
             this.ui.hp_bar.getComponent(ProgressBar).progress = petInfo.battleValue.hp / petInfo.battleValue.max_hp;
+            this.ui.lbl_hp.getComponent(Label).string = `${petInfo.battleValue.hp}/${petInfo.battleValue.max_hp}`
             //等级
             this.ui.label_lv.getComponent(Label).string = "LV." + (petInfo.level);
             //属性
@@ -158,6 +160,7 @@ export default class BattleUI extends BaseUI {
             this.ui.label_petName_enemy.getComponent(Label).string = petConfig.Name;
             //体力
             this.ui.hp_bar_enemy.getComponent(ProgressBar).progress = petInfo.battleValue.hp / petInfo.battleValue.max_hp;
+            this.ui.lbl_hp_enemy.getComponent(Label).string = `${petInfo.battleValue.hp}/${petInfo.battleValue.max_hp}`
             //等级
             this.ui.label_lv_enemy.getComponent(Label).string = "LV." + (petInfo.level);
             //属性
@@ -237,6 +240,8 @@ export default class BattleUI extends BaseUI {
 
     playBattleAni(arr: Array<BattleAni>) {
         if (arr.length > 0) {
+            let own_pet_battleValue: BattleValue = McGame.battleManager.getPetNow(EnumPlayer.Own).getComponent(PetUI).getPetInfo().battleValue;
+            let enemy_pet_battleValue: BattleValue = McGame.battleManager.getPetNow(EnumPlayer.Enemy).getComponent(PetUI).getPetInfo().battleValue;
             let ani: BattleAni = arr.shift();
             if (ani.player == EnumPlayer.Own) {
                 if (ani.skill) {
@@ -247,16 +252,59 @@ export default class BattleUI extends BaseUI {
                     this.ui.lbl_tip.getComponent(Label).string = ani.skill.Name;
                     // 暴击
                     this.ui.banner_skill.getComponent(Toggle).isChecked = ani.isCritical;
+                } else {
+                    // 属性
+                    this.ui.ico_tip_attribute.getComponent(Sprite).spriteFrame = engine.resLoader.getAtlasByTag(ResPathEnum.Attribute.bundle, ResPathEnum.Attribute.resPath, 'spirit');
+                    // 名称
+                    this.ui.lbl_tip.getComponent(Label).string = "使用道具";
+                    // 暴击
+                    this.ui.banner_skill.getComponent(Toggle).isChecked = false;
                 }
                 let aniComp = this.ui.banner_skill.getComponent(Animation);
                 aniComp.play();
                 aniComp.on(Animation.EventType.FINISHED, (type: string, state: AnimationState) => {
                     if (state.name == "banner_skill_show1") {
                         if (ani.hp_player != null) {
-                            this.ui.hp_bar.getComponent(ProgressBar).progress = ani.hp_player;
+                            let hp_bar = this.ui.hp_bar.getComponent(ProgressBar);
+                            let tweenTargetWidth = new Vec3(hp_bar.progress, 0, 0);
+                            tween(tweenTargetWidth)
+                                .to(0.5, new Vec3(ani.hp_player, 0, 0), {
+                                    'onUpdate': (target: Vec3, ratio: number) => {
+                                        hp_bar.progress = target.x;
+                                    }
+                                })
+                                .call(() => {
+                                    hp_bar.progress = ani.hp_player;
+                                })
+                                .start()
                         }
                         if (ani.hp_other != null) {
-                            this.ui.hp_bar_enemy.getComponent(ProgressBar).progress = ani.hp_other;
+                            let hp_bar = this.ui.hp_bar_enemy.getComponent(ProgressBar);
+                            let tweenTargetWidth = new Vec3(hp_bar.progress, 0, 0);
+                            tween(tweenTargetWidth)
+                                .to(0.5, new Vec3(ani.hp_other, 0, 0), {
+                                    'onUpdate': (target: Vec3, ratio: number) => {
+                                        hp_bar.progress = target.x;
+                                    }
+                                })
+                                .call(() => {
+                                    hp_bar.progress = ani.hp_other;
+                                })
+                                .start()
+                        }
+
+                        this.ui.lbl_hp.getComponent(Label).string = `${own_pet_battleValue.hp}/${own_pet_battleValue.max_hp}`
+                        this.ui.lbl_hp_enemy.getComponent(Label).string = `${enemy_pet_battleValue.hp}/${enemy_pet_battleValue.max_hp}`
+
+                        if (ani.damage != 0) {
+                            this.ui.lbl_value_enemy.getComponent(Label).string = "-" + ani.damage
+                            this.ui.lbl_value_enemy.getComponent(Label).color = new Color(255, 95, 65, 255)
+                            this.ui.lbl_value_enemy.getComponent(Animation).play();
+                        }
+                        if (ani.recover != 0) {
+                            this.ui.lbl_value.getComponent(Label).string = "+" + ani.recover
+                            this.ui.lbl_value.getComponent(Label).color = new Color(105, 255, 159, 255)
+                            this.ui.lbl_value.getComponent(Animation).play();
                         }
                         if (arr.length == 0) {
                             // this.isOver = true;
@@ -276,19 +324,65 @@ export default class BattleUI extends BaseUI {
                     this.ui.lbl_tip_enemy.getComponent(Label).string = ani.skill.Name;
                     // 暴击
                     this.ui.banner_skill_enemy.getComponent(Toggle).isChecked = ani.isCritical;
+                } else {
+                    // 属性
+                    this.ui.ico_tip_attribute_enemy.getComponent(Sprite).spriteFrame = engine.resLoader.getAtlasByTag(ResPathEnum.Attribute.bundle, ResPathEnum.Attribute.resPath, 'spirit');
+                    // 名称
+                    this.ui.lbl_tip_enemy.getComponent(Label).string = "使用道具";
+                    // 暴击
+                    this.ui.banner_skill_enemy.getComponent(Toggle).isChecked = false;
                 }
                 let aniComp = this.ui.banner_skill_enemy.getComponent(Animation);
                 aniComp.play();
                 aniComp.on(Animation.EventType.FINISHED, (type: string, state: AnimationState) => {
                     if (state.name == "banner_skill_show2") {
+                        // 血条1
                         if (ani.hp_player != null) {
-                            this.ui.hp_bar_enemy.getComponent(ProgressBar).progress = ani.hp_player;
+                            let hp_bar = this.ui.hp_bar_enemy.getComponent(ProgressBar);
+                            let tweenTargetWidth = new Vec3(hp_bar.progress, 0, 0);
+                            tween(tweenTargetWidth)
+                                .to(0.5, new Vec3(ani.hp_player, 0, 0), {
+                                    'onUpdate': (target: Vec3, ratio: number) => {
+                                        hp_bar.progress = target.x;
+                                    }
+                                })
+                                .call(() => {
+                                    hp_bar.progress = ani.hp_player;
+                                })
+                                .start()
                         }
+                        // 血条2
                         if (ani.hp_other != null) {
-                            this.ui.hp_bar.getComponent(ProgressBar).progress = ani.hp_other;
+                            let hp_bar = this.ui.hp_bar.getComponent(ProgressBar);
+                            let tweenTargetWidth = new Vec3(hp_bar.progress, 0, 0);
+                            tween(tweenTargetWidth)
+                                .to(0.5, new Vec3(ani.hp_other, 0, 0), {
+                                    'onUpdate': (target: Vec3, ratio: number) => {
+                                        hp_bar.progress = target.x;
+                                    }
+                                })
+                                .call(() => {
+                                    hp_bar.progress = ani.hp_other;
+                                })
+                                .start()
                         }
+
+                        this.ui.lbl_hp.getComponent(Label).string = `${own_pet_battleValue.hp}/${own_pet_battleValue.max_hp}`
+                        this.ui.lbl_hp_enemy.getComponent(Label).string = `${enemy_pet_battleValue.hp}/${enemy_pet_battleValue.max_hp}`
+                        // 伤害
+                        if (ani.damage != 0) {
+                            this.ui.lbl_value.getComponent(Label).string = "-" + ani.damage
+                            this.ui.lbl_value.getComponent(Label).color = new Color(255, 95, 65, 255)
+                            this.ui.lbl_value.getComponent(Animation).play();
+                        }
+                        // 治疗
+                        if (ani.recover != 0) {
+                            this.ui.lbl_value_enemy.getComponent(Label).string = "+" + ani.recover
+                            this.ui.lbl_value_enemy.getComponent(Label).color = new Color(105, 255, 159, 255)
+                            this.ui.lbl_value_enemy.getComponent(Animation).play();
+                        }
+                        // 结束
                         if (arr.length == 0) {
-                            // this.isOver = true;
                             McGame.battleManager.setBattleState(BattleState.Over);
                         } else {
                             this.playBattleAni(arr);

@@ -14,6 +14,7 @@ import { LocalKeys } from '../../../../mainbundle/scripts/Data/LocalKeys';
 import { PetConfig } from '../../../../mainbundle/scripts/Datatable/PetConfig';
 import { PicConfig } from '../../../../mainbundle/scripts/Datatable/PicConfig';
 import { GameDataManager } from '../../../../mainbundle/scripts/Manager/GameDataManager';
+import { UIHelp } from '../../../../mainbundle/scripts/Utils/UIHelp';
 import { Utils } from '../../../../mainbundle/scripts/Utils/Utils';
 import { engine } from '../../../../scripts/framework/engine';
 import { BaseUI } from '../../../../scripts/framework/lib/router/BaseUI';
@@ -83,6 +84,8 @@ export default class MainUI extends BaseUI {
             let pet_list = GameDataManager.getInstance().getGameData().petBagList;
             pet_list[Date.now()] = pet;
             HomeManager.petManager.savePetBag();
+
+            UIHelp.showTip("添加精灵成功！")
         }, this)
 
 

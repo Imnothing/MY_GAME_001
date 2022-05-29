@@ -586,6 +586,40 @@
       ],
       "subMetas": {}
     },
+    "0772a": {
+      "importer": "sprite-frame",
+      "uuid": "b0b291e0-6ae5-4cbc-9103-0470ff7ed58f@0772a",
+      "displayName": "",
+      "id": "0772a",
+      "name": "spirit",
+      "userData": {
+        "trimType": "auto",
+        "trimThreshold": 1,
+        "rotated": false,
+        "offsetX": 0,
+        "offsetY": 0,
+        "trimX": 680,
+        "trimY": 0,
+        "width": 40,
+        "height": 40,
+        "rawWidth": 40,
+        "rawHeight": 40,
+        "borderTop": 0,
+        "borderBottom": 0,
+        "borderLeft": 0,
+        "borderRight": 0,
+        "packable": true,
+        "isUuid": true,
+        "imageUuidOrDatabaseUri": "6523bd4c-b613-4664-8855-2b69fee57b7a@6c48a",
+        "atlasUuid": "b0b291e0-6ae5-4cbc-9103-0470ff7ed58f"
+      },
+      "ver": "1.0.9",
+      "imported": true,
+      "files": [
+        ".json"
+      ],
+      "subMetas": {}
+    },
     "5cb08": {
       "importer": "sprite-frame",
       "uuid": "b0b291e0-6ae5-4cbc-9103-0470ff7ed58f@5cb08",
@@ -598,7 +632,7 @@
         "rotated": false,
         "offsetX": 0,
         "offsetY": 0,
-        "trimX": 680,
+        "trimX": 720,
         "trimY": 0,
         "width": 40,
         "height": 40,
@@ -632,7 +666,7 @@
         "rotated": false,
         "offsetX": 0,
         "offsetY": 0,
-        "trimX": 720,
+        "trimX": 760,
         "trimY": 0,
         "width": 40,
         "height": 40,

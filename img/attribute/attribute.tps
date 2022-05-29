@@ -34,7 +34,7 @@
         <key>dataFormat</key>
         <string>cocos2d</string>
         <key>textureFileName</key>
-        <filename></filename>
+        <filename>attribute.png</filename>
         <key>flipPVR</key>
         <false/>
         <key>pvrQualityLevel</key>
@@ -202,6 +202,7 @@
             <key type="filename">normal.png</key>
             <key type="filename">psychic.png</key>
             <key type="filename">saint.png</key>
+            <key type="filename">spirit.png</key>
             <key type="filename">thunder.png</key>
             <key type="filename">water.png</key>
             <struct type="IndividualSpriteSettings">
@@ -240,6 +241,7 @@
             <filename>saint.png</filename>
             <filename>thunder.png</filename>
             <filename>water.png</filename>
+            <filename>spirit.png</filename>
         </array>
         <key>ignoreFileList</key>
         <array/>

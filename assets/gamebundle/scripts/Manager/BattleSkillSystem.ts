@@ -25,7 +25,7 @@ export enum LevelType {
 }
 
 /** 等级改变方式 */
-enum ChangLevelWay {
+export enum ChangLevelWay {
     /** 提升 */
     Promote = "Promote",
     /** 降低 */
@@ -126,9 +126,9 @@ export class BattleSkillSystem {
     changLevel(pet: PetUI, way: ChangLevelWay, type: LevelType, num?: number) {
         switch (way) {
             case ChangLevelWay.Promote:
-                pet.getBattleValue()[type] = pet.getBattleValue()[type] + num >= GameConstValue.MaxBattleValue ? GameConstValue.MaxBattleValue : pet.getBattleValue()[type] + num
+                pet.getBattleLevel()[type] = pet.getBattleLevel()[type] + num >= GameConstValue.MaxBattleValue ? GameConstValue.MaxBattleValue : pet.getBattleLevel()[type] + num
             case ChangLevelWay.Reduce:
-                pet.getBattleValue()[type] = pet.getBattleValue()[type] - num <= -GameConstValue.MaxBattleValue ? -GameConstValue.MaxBattleValue : pet.getBattleValue()[type] - num
+                pet.getBattleLevel()[type] = pet.getBattleLevel()[type] - num <= -GameConstValue.MaxBattleValue ? -GameConstValue.MaxBattleValue : pet.getBattleLevel()[type] - num
 
         }
     }
@@ -212,11 +212,7 @@ export class BattleSkillSystem {
             let rd = Utils.randomNum(1, 100);
             if (rd > possibility) return false;
         }
-        if (!pet.getAbState()[abId]) {
-            pet.getAbState()[abId] = Utils.randomNum(1, 3);
-        } else {
-            pet.getAbState()[abId]++;
-        }
+        pet.setAbState(abId);
         return true;
     }
 
