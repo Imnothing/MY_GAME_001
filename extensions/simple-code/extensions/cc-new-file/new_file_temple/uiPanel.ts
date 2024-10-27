@@ -7,21 +7,22 @@
 
 import { _decorator, Component, Node, Button, Event } from 'cc';
 import _AUTOUI from './autoUI/auto__UINAME';
-import { BundleConfigs } from '../../../mainbundle/scripts/Configs/BundleConfigs';
-import { EnumUILayer } from '../../../mainbundle/scripts/Configs/UIConfigs';
-import { BaseUI } from '../../../scripts/framework/lib/router/BaseUI';
+import { BundleConfigs } from "../../../../mainbundle/scripts/Configs/BundleConfigs";
+import { EnumUILayer } from '../../../../mainbundle/scripts/Configs/UIConfigs';
+import { BaseUI } from "../../../../scripts/framework/lib/router/BaseUI";
+
 const { ccclass, property } = _decorator;
 
 @ccclass
 export default class _UINAME extends BaseUI {
-    ui: _AUTOUI = null;
+	ui: _AUTOUI = null;
 
     protected static prefabUrl = `${BundleConfigs._BUNDLENAME}/prefabs/_MODULE/_UINAME`;
     protected static className = "_UINAME";
     protected static layerZIndex = EnumUILayer.UILayer;
 
-
-    onLoad() {
+    
+    onLoad(){
         this.ui = this.node.addComponent(_AUTOUI);
         this.initEvent();
     }
@@ -34,7 +35,7 @@ export default class _UINAME extends BaseUI {
         onHided();
     }
 
-    initEvent() {
+    initEvent(){
 
     }
 

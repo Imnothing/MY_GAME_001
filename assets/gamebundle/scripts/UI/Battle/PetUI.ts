@@ -194,4 +194,5 @@ export default class PetUI extends BaseUI {
         this.onDead();
     }
 
+
 }
